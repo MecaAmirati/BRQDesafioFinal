@@ -7,7 +7,15 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+{path:'',redirectTo:'components/home',pathMatch:'full'},
+{path:'cadastro',component:CadastroComponent},
+{path:'carros',component:CarrosComponent},
+{path:'home',component:HomeComponent},
+{path:'locadora', component:LocadoraComponent},
+{path:'perfil', component:LoginComponent},
+{path:'reservas',component:ReservasComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
