@@ -1,4 +1,5 @@
 <main>
+  <!-- //só vai aparecer nas paginas:carros,reservas,locadora,perfil -->
   <nav *ngIf="router.routerState.snapshot.url == '/carros' || router.routerState.snapshot.url == '/reservas' || router.routerState.snapshot.url == '/locadora' || router.routerState.snapshot.url == '/perfil'" >
     <ul>
       <li><a href="../home" >Home</a></li>
@@ -7,6 +8,7 @@
     </ul>
   </nav>
   <img src="../../../assets/logos/Group 1.png">
+    <!-- //só vai aparecer nas paginas:carros,reservas,locadora,perfil -->
   <nav *ngIf="router.routerState.snapshot.url == '/carros' || router.routerState.snapshot.url == '/reservas' || router.routerState.snapshot.url == '/locadora' || router.routerState.snapshot.url == '/perfil'" >
     <ul>
       <li><a href="../locadora">Locadoras</a></li>
