@@ -10,3 +10,17 @@
     padding: 0;
     text-decoration: none;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btnLogin, .btnCadastrar{
+    border: 1px solid #DB1812;
+    font-family: 'Quicksand';
+    background: #DB1812;
+    border-radius: 5px;
+    color: white;
+    width: 250px;
+    height: 70px;
+    font-size: 24px;
+}
