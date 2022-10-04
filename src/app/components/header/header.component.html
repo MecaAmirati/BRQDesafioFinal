@@ -1,1 +1,17 @@
-<p>header works!</p>
+<main>
+  <nav *ngIf="router.routerState.snapshot.url == '/carros' || router.routerState.snapshot.url == '/reservas' || router.routerState.snapshot.url == '/locadora' || router.routerState.snapshot.url == '/perfil'" >
+    <ul>
+      <li><a href="../home/home.component.html" >Home</a></li>
+      <li><a href="../carros/carros.component.html">Carros</a></li>
+      <li><a href="../reservas/reservas.component.html">Reservas</a></li>
+    </ul>
+  </nav>
+  <img src="../../../assets/logos/Group 1.png">
+  <nav *ngIf="router.routerState.snapshot.url == '/carros' || router.routerState.snapshot.url == '/reservas' || router.routerState.snapshot.url == '/locadora' || router.routerState.snapshot.url == '/perfil'" >
+    <ul>
+      <li><a href="../locadora/locadora.component.html">Locadoras</a></li>
+      <li><a href="../perfil/perfil.component.html">Perfil</a></li>
+      <li><a href="../home/home.component.html">Sair</a></li>
+    </ul>
+  </nav>
+</main>
