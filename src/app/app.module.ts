@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -11,6 +12,9 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { CarrosComponent } from './components/carros/carros.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { LocadoraComponent } from './components/locadora/locadora.component';
+import { FooterComponent } from './components/footer/footer.component';
+
+
 
 @NgModule({
   declarations: [
@@ -22,11 +26,14 @@ import { LocadoraComponent } from './components/locadora/locadora.component';
     PerfilComponent,
     CarrosComponent,
     ReservasComponent,
-    LocadoraComponent
+    LocadoraComponent,
+    FooterComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
