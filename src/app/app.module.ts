@@ -16,6 +16,10 @@ import { FooterComponent } from './components/footer/footer.component';
 
 
 
+
+//modulo http
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,12 +32,12 @@ import { FooterComponent } from './components/footer/footer.component';
     ReservasComponent,
     LocadoraComponent,
     FooterComponent
-    
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
