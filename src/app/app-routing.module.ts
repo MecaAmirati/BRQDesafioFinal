@@ -6,6 +6,7 @@ import { CarrosComponent } from './components/carros/carros.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 const routes: Routes = [
 {path:'',redirectTo:'home',pathMatch:'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
 {path:'carros',component:CarrosComponent},
 {path:'home',component:HomeComponent},
 {path:'locadora', component:LocadoraComponent},
-{path:'perfil', component:LoginComponent},
+{path:'login', component:LoginComponent},
+{path:'perfil', component:PerfilComponent},
 {path:'reservas',component:ReservasComponent}
 ];
 
