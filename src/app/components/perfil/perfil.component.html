@@ -1,1 +1,75 @@
-<p>perfil works!</p>
+<section>
+    <div>
+        <mat-card class="box1Perfil">
+            <mat-card-content>
+                <div class="titlePerfil">
+                    <mat-card-title> Perfil </mat-card-title>
+                </div>
+
+                <form [formGroup]="formularioPerfil">
+                    <div class="formPerfil">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Nome</mat-label>
+                                <input formControlName="nome" matInput type="text" name="nome" placeholder="Maria de Fátma Muniz">
+                                <mat-error>{{error}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Telefone</mat-label>
+                                <input formControlName="tel" matInput type="text" name="tel" placeholder="(11) 9999-9090">
+                                <mat-error>{{error}}</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>E-mail</mat-label>
+                                <input formControlName="email" matInput type="text" name="email" placeholder="maria@gmail.com">
+                                <mat-error *ngIf="formularioPerfil.get('email')?.hasError('required') || formularioPerfil.get('email')?.hasError('email')"> {{validaEmail()}} </mat-error>
+                            </mat-form-field>
+
+                            <div class="containerBotao">
+                                <button type="submit" [disabled]="!formularioPerfil.valid"> Atualizar </button>
+                            </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="box2Perfil">
+
+        
+        <div class="tituloCadastrados">
+            <h2> USUÁRIOS CADASTRADOS </h2>
+        </div>
+
+                                                <!-- (usuarios.nome, usuarios.tel, usuarios.email) -->
+        <button class="botaoCard" (click)="puxarParaInput()" > 
+            <div class="cardsPerfil">
+
+                <mat-card *ngFor="let usuario of usuarios">
+    
+                    <div>
+                        <h3>{{usuario.nome}}</h3>
+                    </div>
+    
+                    <div>
+                        <p>{{usuario.tel}}</p>
+                    </div>
+    
+                    <div>
+                        <p>{{usuario.email}}</p>
+                    </div>
+    
+                    <div>
+                        <button (click)="excluirUsuario(usuario.id)" >Excluir usúario</button>
+                    </div>
+    
+                </mat-card>
+    
+            </div>
+        </button>
+
+
+    </div>
+    
+</section>

@@ -1,16 +1,18 @@
 {
   "usuario": [
     {
-      "id": 1,
-      "nome": "Paulo",
-      "email": "paulo@email.com",
+      "id": 2,
+      "nome": "Priscila",
+      "tel": 11964648857,
+      "email": "priscila@email.com",
       "foto": "avatar.png",
-      "senha":"123",
-      "adm":true
+      "senha": "123",
+      "adm": true
     },
     {
       "id": 2,
       "nome": "Priscila",
+      "tel": 11964648857,
       "email": "priscila@email.com",
       "foto": "avatar.png",
       "senha":"123",
@@ -34,7 +36,7 @@
       "portas": 4,
       "npessoas": 5,
       "locadoraId": 1,
-      "tipoId" : 2
+      "tipoId": 2
     },
     {
       "id": 2,
@@ -42,7 +44,7 @@
       "portas": 4,
       "npessoas": 5,
       "locadoraId": 1,
-      "tipoId" : 2
+      "tipoId": 2
     },
     {
       "nome": "Gol",
@@ -50,7 +52,7 @@
       "npessoas": "4",
       "locadoraId": "1",
       "id": 3,
-      "tipoId" : 1
+      "tipoId": 1
     }
   ],
   "reservas": [
