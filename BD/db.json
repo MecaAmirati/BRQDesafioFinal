@@ -15,8 +15,17 @@
       "tel": 11964648857,
       "email": "priscila@email.com",
       "foto": "avatar.png",
-      "senha":"123",
-      "adm":true
+      "senha": "123",
+      "adm": true
+    },
+    {
+      "id": 3,
+      "nome": "Teste3",
+      "tel": "565656",
+      "email": "rafa@gmil",
+      "foto": "foto",
+      "senha": "123",
+      "adm": false
     }
   ],
   "locadoras": [
