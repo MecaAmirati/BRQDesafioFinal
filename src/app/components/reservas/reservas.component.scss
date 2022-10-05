@@ -1,0 +1,58 @@
+#containerReserva{
+    max-width: 1140px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+  }
+// border-bottom: 1px solid black ;
+// width: 60%;
+
+#containerDados{
+    border: 1px solid #9F9999;
+    border-radius: 10px;
+    margin: auto;
+    padding: 70px;
+
+}
+
+#nomeCarro{
+    background: #DCE0E2;
+    border-radius: 10px;
+    font-size: 24px;
+    margin-left: 70px;
+    margin: auto;
+    width: 992px;
+    margin-top: 60px;
+}
+
+#tipoCarro{
+    background: #DCE0E2;
+    border-radius: 10px;
+    font-size: 24px;
+    margin: auto;
+    width: 992px;
+    margin-top: 40px;
+}
+
+// .mat-form-field-wrapper{
+//     font: 400 14px / 20px Quicksand, 'Quicksand', sans-serif;
+//     font-weight: 400;
+//     line-height: 1.125;
+//     font-family: 'Quicksand', sans-serif;
+//     letter-spacing: normal;
+//     text-align: left;
+//     font-size: 24px;
+//     margin: 0;
+//     padding: 0;
+//     text-decoration: none;
+//     padding-bottom: 0;
+//     position: relative;
+// }
+

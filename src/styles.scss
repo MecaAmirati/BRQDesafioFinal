@@ -47,7 +47,7 @@ $BRQDesafioFinal-theme: mat.define-light-theme((
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
 
 .btnLogin, .btnCadastrar{
     border: 1px solid #DB1812;
@@ -59,3 +59,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 70px;
     font-size: 24px;
 }
+
+
