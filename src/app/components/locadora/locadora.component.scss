@@ -1,0 +1,147 @@
+main{
+  max-width: 1140px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+box-cadastro{
+  display: flex;
+  justify-items: center;
+  margin: auto;
+}
+
+.box1Locadora{
+  max-width: 1137px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #9F9999;
+  margin-top: 3%;
+  justify-content: center;
+  align-self: center;
+}
+
+.titleLocadoura{
+
+  margin-top: 3%;
+}
+mat-card-title{
+  font-family: Quicksand;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 0em;
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.formLocadora{
+  display: flex;
+  flex-direction: column;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+.ultimo-card{
+  max-width: 953px;
+  display: flex;
+  justify-content: space-between;
+}
+mat-form-field{
+  font-family: Quicksand;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  margin-bottom: 1%;
+}
+
+mat-form-field input{
+  height: 45px;
+  max-width: 953px;
+  border-radius: 10px;
+  background: #DCE0E2;
+  font-size: larger;
+
+}
+
+
+#input-tel{
+  width: 50%;
+  max-width: 450px;
+}
+
+
+.ultimo-card button:disabled{
+  background-color: #9F9999;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background: #DCE0E2;
+  border: 1px solid #DCE0E2;
+  border-radius: 10px !important;
+  font-size: larger;
+}
+
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+  display: none !important;
+
+}
+
+#box-cards{
+  margin-top: 124px;
+  margin-bottom: 59px;
+}
+
+.card-locadora{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #9F9999;
+}
+mat-card-title-group{
+
+  font-family: 'Montserrat';
+  font-style: normal;
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+
+}
+
+span{
+
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+}
+.btnEditar{
+  width: 250px;
+  height: 70px;
+  background: #DB1812;
+  border-radius: 5px;
+  margin-right: 19px;
+
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #FFFFFF;
+
+}
+.btnExcluir{
+  width: 250px;
+  height: 70px;
+  border: 2px solid #DB1812;
+  border-radius: 5px;
+
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #DB1812;;
+
+}
