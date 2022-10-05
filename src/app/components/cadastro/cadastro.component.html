@@ -1,3 +1,39 @@
-<app-header></app-header>
-<p>cadastro works!</p>
-<app-footer></app-footer>
+<section>
+    <div>
+        <mat-card>
+            <mat-card-content>
+                <div class="titleCadastro">
+                    <mat-card-title> Cadastrar </mat-card-title>
+                </div>
+                
+                <form [formGroup]="formularioCadastro" (ngSubmit)="salvarDadosUsuario()">
+                    
+                    <div class="formCadastro">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Nome completo</mat-label>
+                            <input formControlName="nome" matInput type="text" name="nome" placeholder="Digite o nome completo" required>
+                            <mat-error>{{error}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Telefone</mat-label>
+                            <input formControlName="tel" matInput type="text" name="tel" placeholder="(DD)+Numero" required>
+                            <mat-error>{{error}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>E-mail</mat-label>
+                            <input formControlName="email" matInput type="text" name="email" placeholder="Exemplo@exemplo.com" required>
+                            <mat-error *ngIf="formularioCadastro.get('email')?.hasError('required') || formularioCadastro.get('email')?.hasError('email')"> {{validaEmail()}} </mat-error>
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="containerBotao">
+                        <button mat-button type="submit" [disabled]="!formularioCadastro.valid" > Cadastrar </button>
+                    </div>
+                     
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</section>
