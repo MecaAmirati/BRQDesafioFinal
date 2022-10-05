@@ -1,0 +1,80 @@
+section{
+    width: 100%;
+    height: auto;
+}
+
+section div{
+    display: flex;
+    justify-content: center;
+}
+
+mat-card{
+    width: 790px;
+    height: 700px;
+    border-radius: 10px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border: 1px solid #9F9999
+}
+
+.titleCadastro{
+    margin-bottom: 3%;
+}
+
+mat-card-title{
+    font-family: Quicksand;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+.formCadastro{
+    display: flex;
+    flex-direction: column;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+mat-form-field input{
+    width: 669px;
+    height: 70px;
+    border-radius: 10px;
+    margin-top: 30px;
+    font-family: Quicksand;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.containerBotao{
+    text-align: center;
+    margin-top: 3%;
+}
+
+.containerBotao button{
+    text-align: center;
+    height: 70px;
+    width: 250px;
+    border-radius: 5px;
+    background: #DB1812;
+    color: white;
+    font-family: Quicksand;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: #DCE0E2;
+    border: 1px solid #DCE0E2;
+    border-radius: 10px !important;
+    font-size: larger; 
+}
+
