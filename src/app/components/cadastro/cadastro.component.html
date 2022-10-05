@@ -6,7 +6,7 @@
                     <mat-card-title> Cadastrar </mat-card-title>
                 </div>
                 
-                <form [formGroup]="formularioCadastro">
+                <form [formGroup]="formularioCadastro" (ngSubmit)="salvarDadosUsuario()">
                     
                     <div class="formCadastro">
                         <mat-form-field appearance="fill">
@@ -29,7 +29,7 @@
                     </div>
                     
                     <div class="containerBotao">
-                        <button mat-button type="submit" > Cadastrar </button>
+                        <button mat-button type="submit" [disabled]="!formularioCadastro.valid" > Cadastrar </button>
                     </div>
                      
                 </form>

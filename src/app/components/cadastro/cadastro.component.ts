@@ -12,7 +12,7 @@ export class CadastroComponent implements OnInit {
 
   formularioCadastro!: FormGroup;
   error ="Este campo é obrigatório";
-  // usuarios: UsuarioInterface[];
+  usuarios: UsuarioInterface[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,38 +40,52 @@ export class CadastroComponent implements OnInit {
 
 
 
-//----------------- para continuar esta função precisamos resolver a Interface (tel)
+//----------------- Função Para Salvar Usuario na locadora (falta salvar no json)
 
-  // SalvarDadosUsuario(){
+  salvarDadosUsuario(){
 
-  //   const id = this.nextId()
+    const id = this.nextId()
 
-  //   const nome = this.formularioCadastro.controls["nome"].value;
-  //   const tel = this.formularioCadastro.controls["tel"].value;
-  //   const email = this.formularioCadastro.controls["email"].value;
-  //   const foto = this.formularioCadastro.controls["foto"].value;
-  //   const senha = this.formularioCadastro.controls["senha"].value;
-  //   const adm = this.formularioCadastro.controls["adm"].value;
+    const nome = this.formularioCadastro.controls["nome"].value;
+    const tel = this.formularioCadastro.controls["tel"].value;
+    const email = this.formularioCadastro.controls["email"].value;
+    const foto = "foto";
+    const senha = "123";
+    const adm = false;
 
-  //   const usuario: UsuarioInterface = {id: id, nome: nome, tel: tel, email: email, foto: foto, senha: senha, adm: adm}
-  // }
+    const usuario: UsuarioInterface = {id: id, nome: nome, tel: tel, email: email, foto: foto, senha: senha, adm: adm};
+
+
+    this.usuarioService.salvarUsuario(usuario).subscribe({
+      next: () =>{
+        // console.log(this.usuarios);
+        console.log("Cadastrado com sucesso");
+        // this.ngOnInit();
+      },
+      error: () =>{
+        console.log("Erro ao Salvar Usuario");
+      }
+    });
+
+
+  }
 
   //----------------função para gerar o ID
-  // nextId(){
+  nextId(){
     
-  //   let maiorId = 0;
-  //   for (let i = 0; i < this.usuarios.length; i++) {
-  //     this.usuarios[i].id
-  //     if(this.usuarios.length > 0){
-  //       maiorId = this.usuarios[i].id
-  //     }
+    let maiorId = 0;
+    for (let i = 0; i < this.usuarios.length; i++) {
+      this.usuarios[i].id
+      if(this.usuarios.length > 0){
+        maiorId = this.usuarios[i].id
+      }
       
-  //   }
-  //   maiorId++;
-  //   console.log(maiorId);
+    }
+    maiorId++;
+    console.log(maiorId); // trazendo o id 1 no console
 
-  //   return maiorId;
-  // }
+    return maiorId;
+  }
 
 
 
