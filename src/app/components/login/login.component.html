@@ -1,1 +1,26 @@
-<p>login works!</p>
+<app-header></app-header>
+<main>
+    <mat-card class="card_login">
+        <mat-card-title>
+            <h1 class="title">Login</h1>
+        </mat-card-title>
+        <form actions="">
+            <mat-form-field appearance="fill" class="input">
+                <mat-label>Email:</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input">
+                <mat-label>Senha:</mat-label>
+                <input matInput>
+            </mat-form-field>
+
+            <div class="div_btn">
+        <button mat-raised-button color="warn" class="btn_login">Login</button>
+            </div>
+        </form>
+        <div class="links">
+            <a href="">Esqueci a Senha</a>
+            <a routerLink="../cadastro">Criar conta</a>
+          </div>
+    </mat-card>
+</main>
