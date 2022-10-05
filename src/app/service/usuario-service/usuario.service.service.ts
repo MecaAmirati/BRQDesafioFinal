@@ -8,7 +8,7 @@ import { UsuarioInterface } from 'src/app/model/usuario.model';
 })
 export class UsuarioServiceService {
   private listaUsuario:any;
-  private url="http://localhost:3004/carros";
+  private url="http://localhost:3000/usuario";
   constructor(
     private httpClient:HttpClient
   ) { }

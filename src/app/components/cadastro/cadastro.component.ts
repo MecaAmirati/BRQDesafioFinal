@@ -27,6 +27,14 @@ export class CadastroComponent implements OnInit {
       email: new FormControl('',[Validators.required, Validators.email])
     })
 
+    this.usuarioService.lerUsuarios().subscribe({
+      next: (usuarios: UsuarioInterface[]) => {
+        this.usuarios = usuarios;
+      },
+      error: () => {
+        console.log("erro ao ler usuarios");
+      }
+    })
 
   }
 
