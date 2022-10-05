@@ -1,1 +1,87 @@
-<p>carros works!</p>
+
+<main>
+  <section>
+    <fieldset class="fildset_form">
+      <form [formGroup]="form" class="flex-col center width90 marginAuto" >
+        <h2>Carros</h2>
+
+        <mat-form-field class="width100" appearance="fill">
+          <!-- <mat-label>Nome</mat-label> -->
+          <input matInput formControlName="carroNomeInput" name="carroNomeInput" placeholder="Nome do carro" class="">
+          <mat-error *ngIf="form.get('form')?.hasError('required')">
+          Este campo é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="width100">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipoSelect"  name="tipoSelect" required>
+            <mat-option >None</mat-option>
+            <mat-option *ngFor="let tipoCarro of tiposCarros" [value]="tipoCarro.id">{{tipoCarro.nome}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.hasError('required')">Tipo não selecionado</mat-error>
+        </mat-form-field>
+
+        <div class="flex spc-between width100">
+          <mat-form-field class="width45">
+            <!-- <mat-label>Nome</mat-label> -->
+            <input matInput type="number" formControlName="portasInput" name="portasInput" placeholder="Ex. 4" class="input-border inp">
+            <mat-error *ngIf="form.get('portasInput')?.hasError('required')">
+            Este campo é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="width45">
+            <!-- <mat-label>Nome</mat-label> -->
+            <input matInput formControlName="nPessoaInput" name="nPessoaInput" placeholder="Ex. 5" class="input-border inp">
+            <mat-error *ngIf="form.get('nomeForm')?.hasError('required')">
+            Este campo é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field class="width100">
+          <mat-label>Locadora</mat-label>
+          <mat-select formControlName="locadoraSelect"  name="locadoraSelect" required>
+            <mat-option >None</mat-option>
+            <mat-option *ngFor="let locadora of locadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.hasError('required')">Locadora não selecionada</mat-error>
+        </mat-form-field>
+
+
+      </form>
+      <button class="btn-cadastrar"  [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Cadastrar</button>
+    </fieldset>
+  </section>
+    <div>
+      <h2>Titulo do tipo de carro</h2>
+      <div class="cards-list flex spc-between wrap">
+
+        <mat-card class="card">
+          <img mat-card-image src="../../../assets/carros/car3_2.png" alt="Foto do carro">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class=""></div> -->
+            <mat-card-title>Fiat Uno</mat-card-title>
+            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              Faca sua reserva E garanta a locacao do automovel
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="btns-card">
+            <button mat-button class="btn">Editar</button>
+            <button mat-button class="btn">Excluir</button>
+          </mat-card-actions>
+        </mat-card>
+
+
+
+      </div>
+    </div>
+  <section>
+
+  </section>
+</main>

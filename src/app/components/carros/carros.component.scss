@@ -1,0 +1,32 @@
+main{
+  margin:auto;
+  max-width:1137px ;
+}
+
+.fildset_form{
+  border: 1px solid #9F9999;
+  border-radius: 10px;
+}
+.card{
+  height: 600px;
+  max-width: 352px;
+  margin-top:20px
+
+}
+
+.btns-card{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.btn{
+  margin-top: 10px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background: #DCE0E2;
+    border: 1px solid #DCE0E2;
+    border-radius: 10px !important;
+    font-size: larger;
+  }
