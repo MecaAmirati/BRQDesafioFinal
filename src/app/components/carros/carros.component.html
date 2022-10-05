@@ -3,7 +3,7 @@
   <section>
     <fieldset class="fildset_form">
       <form [formGroup]="form" class="flex-col center width90 marginAuto" >
-        <h2>Carros</h2>
+        <h2 class="titleCarros">Carros</h2>
 
         <mat-form-field class="width100" appearance="fill">
           <!-- <mat-label>Nome</mat-label> -->
@@ -13,7 +13,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="width100">
+        <mat-form-field class="width100" appearance="fill">
           <mat-label>Tipo</mat-label>
           <mat-select formControlName="tipoSelect"  name="tipoSelect" required>
             <mat-option >None</mat-option>
@@ -22,8 +22,8 @@
           <mat-error *ngIf="form.hasError('required')">Tipo não selecionado</mat-error>
         </mat-form-field>
 
-        <div class="flex spc-between width100">
-          <mat-form-field class="width45">
+        <div class="flex spc-between width100" appearance="fill">
+          <mat-form-field class="width48" appearance="fill">
             <!-- <mat-label>Nome</mat-label> -->
             <input matInput type="number" formControlName="portasInput" name="portasInput" placeholder="Ex. 4" class="input-border inp">
             <mat-error *ngIf="form.get('portasInput')?.hasError('required')">
@@ -31,7 +31,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="width45">
+          <mat-form-field class="width48" appearance="fill">
             <!-- <mat-label>Nome</mat-label> -->
             <input matInput formControlName="nPessoaInput" name="nPessoaInput" placeholder="Ex. 5" class="input-border inp">
             <mat-error *ngIf="form.get('nomeForm')?.hasError('required')">
@@ -41,20 +41,24 @@
 
         </div>
 
-        <mat-form-field class="width100">
-          <mat-label>Locadora</mat-label>
-          <mat-select formControlName="locadoraSelect"  name="locadoraSelect" required>
-            <mat-option >None</mat-option>
-            <mat-option *ngFor="let locadora of locadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
-          </mat-select>
-          <mat-error *ngIf="form.hasError('required')">Locadora não selecionada</mat-error>
-        </mat-form-field>
+        <div class="flex spc-between width100">
+          <mat-form-field class="widthLocadora" appearance="fill">
+            <mat-label>Locadora</mat-label>
+            <mat-select formControlName="locadoraSelect"  name="locadoraSelect" required>
+              <mat-option >None</mat-option>
+              <mat-option *ngFor="let locadora of locadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.hasError('required')">Locadora não selecionada</mat-error>
+          </mat-form-field>
 
-
+          <button class="btn-cadastrar"  (click)="salvarCarro()" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Cadastrar</button>
+        </div>
       </form>
-      <button class="btn-cadastrar"  [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Cadastrar</button>
+
     </fieldset>
   </section>
+
+  <section>
     <div>
       <h2>Titulo do tipo de carro</h2>
       <div class="cards-list flex spc-between wrap">
@@ -81,7 +85,5 @@
 
       </div>
     </div>
-  <section>
-
   </section>
 </main>

@@ -8,7 +8,7 @@ import { TipoCarroInterface } from 'src/app/model/tipocarro.model';
 })
 export class TipocarroServiceService {
   private listaTipoCarros:any;
-  private url="http://localhost:3004/carros";
+  private url="http://localhost:3000/tipoCarro";
   constructor(
     private httpClient:HttpClient
   ) { }

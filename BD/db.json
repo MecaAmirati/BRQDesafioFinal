@@ -5,16 +5,16 @@
       "nome": "Paulo",
       "email": "paulo@email.com",
       "foto": "avatar.png",
-      "senha":"123",
-      "adm":true
+      "senha": "123",
+      "adm": true
     },
     {
       "id": 2,
       "nome": "Priscila",
       "email": "priscila@email.com",
       "foto": "avatar.png",
-      "senha":"123",
-      "adm":true
+      "senha": "123",
+      "adm": true
     }
   ],
   "locadoras": [
@@ -34,7 +34,7 @@
       "portas": 4,
       "npessoas": 5,
       "locadoraId": 1,
-      "tipoId" : 2
+      "tipoId": 2
     },
     {
       "id": 2,
@@ -42,7 +42,7 @@
       "portas": 4,
       "npessoas": 5,
       "locadoraId": 1,
-      "tipoId" : 2
+      "tipoId": 2
     },
     {
       "nome": "Gol",
@@ -50,7 +50,23 @@
       "npessoas": "4",
       "locadoraId": "1",
       "id": 3,
-      "tipoId" : 1
+      "tipoId": 1
+    },
+    {
+      "id": 4,
+      "nome": "Hugo Goncalves Bertolassi",
+      "portas": 2,
+      "npessoas": "2",
+      "locadoraId": 1,
+      "tipoId": 1
+    },
+    {
+      "id": 5,
+      "nome": "a",
+      "portas": 1,
+      "npessoas": "2",
+      "locadoraId": 1,
+      "tipoId": 2
     }
   ],
   "reservas": [
