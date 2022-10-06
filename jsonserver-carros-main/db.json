@@ -25,12 +25,6 @@
       "nome": "Tres Irmãos",
       "endereco": "Rua Marechal, 20 ",
       "telefone": "(11) 8888-8888"
-    },
-    {
-      "id": 3,
-      "nome": "Matriz",
-      "endereco": "Rua doutor, 80",
-      "telefone": "11111111"
     }
   ],
   "carros": [
