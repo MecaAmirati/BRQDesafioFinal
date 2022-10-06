@@ -19,6 +19,7 @@ export class CarrosComponent implements OnInit {
   carros:CarroInterface[]=[];
   tiposCarros:TipoCarroInterface[]=[];
   locadoras:LocadoraInterface[]=[]
+  adm:boolean=true;
 
   constructor(
     private formBuilder:FormBuilder,
