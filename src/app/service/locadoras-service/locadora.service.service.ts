@@ -8,7 +8,7 @@ import { LocadoraInterface } from 'src/app/model/locadoras.model';
 })
 export class LocadoraServiceService {
   private listaLocadoras:any;
-  private url="http://localhost:3004/carros";
+  private url="http://localhost:3000/locadoras";
   constructor(
     private httpClient:HttpClient
   ) { }
