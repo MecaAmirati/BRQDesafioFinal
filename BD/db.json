@@ -32,14 +32,14 @@
     {
       "id": 1,
       "nome": "Dois Irmãos",
-      "endereco":"Rua marques, 320",
-      "telefone":"(11) 8888-8888"
+      "endereco": "Rua marques, 320",
+      "telefone": "(11) 8888-8888"
     },
     {
       "id": 2,
       "nome": "Tres Irmãos",
-      "endereco":"Rua marques, 320",
-      "telefone":"(11) 8888-8888"
+      "endereco": "Rua marques, 320",
+      "telefone": "(11) 8888-8888"
     }
   ],
   "carros": [
@@ -49,7 +49,8 @@
       "portas": 4,
       "npessoas": 5,
       "locadoraId": 1,
-      "tipoId": 2
+      "tipoId": 2,
+      "foto": ""
     },
     {
       "id": 2,
@@ -66,7 +67,8 @@
       "npessoas": "4",
       "locadoraId": "1",
       "id": 3,
-      "tipoId": 1
+      "tipoId": 1,
+      "foto": ""
     }
   ],
   "reservas": [],
