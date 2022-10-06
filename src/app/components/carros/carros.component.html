@@ -6,9 +6,9 @@
         <h2 class="titleCarros">Carros</h2>
 
         <mat-form-field class="width100" appearance="fill">
-          <!-- <mat-label>Nome</mat-label> -->
+          <mat-label>Nome do Carro</mat-label>
           <input matInput formControlName="carroNomeInput" name="carroNomeInput" placeholder="Nome do carro" class="">
-          <mat-error *ngIf="form.get('form')?.hasError('required')">
+          <mat-error *ngIf="form.get('carroNomeInput')?.hasError('required')">
           Este campo é <strong>obrigatório</strong>
           </mat-error>
         </mat-form-field>
@@ -19,7 +19,7 @@
             <mat-option >None</mat-option>
             <mat-option *ngFor="let tipoCarro of tiposCarros" [value]="tipoCarro.id">{{tipoCarro.nome}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="form.hasError('required')">Tipo não selecionado</mat-error>
+          <mat-error *ngIf="form.get('tipoSelect')?.hasError('required')">Tipo não selecionado</mat-error>
         </mat-form-field>
 
         <div class="flex spc-between width100" appearance="fill">
@@ -34,7 +34,7 @@
           <mat-form-field class="width48" appearance="fill">
             <!-- <mat-label>Nome</mat-label> -->
             <input matInput formControlName="nPessoaInput" name="nPessoaInput" placeholder="Ex. 5" class="input-border inp">
-            <mat-error *ngIf="form.get('nomeForm')?.hasError('required')">
+            <mat-error *ngIf="form.get('nPessoaInput')?.hasError('required')">
             Este campo é <strong>obrigatório</strong>
             </mat-error>
           </mat-form-field>
@@ -48,7 +48,7 @@
               <mat-option >None</mat-option>
               <mat-option *ngFor="let locadora of locadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
             </mat-select>
-            <mat-error *ngIf="form.hasError('required')">Locadora não selecionada</mat-error>
+            <mat-error *ngIf="form.get('locadoraSelect')?.hasError('required')">Locadora não selecionada</mat-error>
           </mat-form-field>
 
           <button class="btn-cadastrar"  (click)="salvarCarro()" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Cadastrar</button>
@@ -62,32 +62,29 @@
     <div *ngFor="let tipo of  tiposCarros">
     <!-- <div > -->
       <!-- <h2>Carro 1</h2> -->
-      <h2>{{tipo.nome}}</h2>
+      <h2 class="tipoTitle">{{tipo.nome}}</h2>
       <div class="cards-list flex spc-between wrap">
         <ng-container *ngFor="let carro of carros,let i = index" >
-          <!-- <p *ngIf="carro.tipoId == tipo.id ">{{tiposCarros[i].id}},{{carro.tipoId}}</p> -->
-        <mat-card class="card" *ngIf="carro.tipoId == tipo.id ">
-          <img mat-card-image *ngIf="carro.foto!=''" src={{carro.foto}} alt="Foto do carro">
-          <img mat-card-image *ngIf="carro.foto==''" src="../../../assets/carros/car3_2.png" alt="Foto do carro">
-          <!-- <p>{{carro.foto}}</p> -->
-          <mat-card-header>
-            <!-- <p>{{carro.foto}}</p> -->
-            <!-- <div mat-card-avatar class=""></div> -->
-            <mat-card-title>{{carro.nome}}</mat-card-title>
-            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-          </mat-card-header>
-          <mat-card-content>
-            <p>12121 '{{carro.foto}}'</p>
-            <p>{{carro.tipoId}}</p>
-            <p>
-              Faca sua reserva E garanta a locacao do automovel
-            </p>
-          </mat-card-content>
-          <mat-card-actions class="btns-card">
-            <button mat-button class="btn" (click)="editarCarro(carro)">Editar</button>
-            <button mat-button class="btn" (click)="excluirCarro(carro)">Excluir</button>
-          </mat-card-actions>
-        </mat-card>
+
+          <mat-card class="card" *ngIf="carro.tipoId == tipo.id ">
+            <img mat-card-image class="imgCarro" *ngIf="carro.foto!=''" src={{carro.foto}} alt="Foto do carro">
+            <img mat-card-image class="imgCarro" *ngIf="carro.foto==''" src="../../../assets/carros/vazio.jpg" alt="Foto do carro">
+            <mat-card-header>
+
+              <!-- <div mat-card-avatar class=""></div> -->
+              <mat-card-title>{{carro.nome}}</mat-card-title>
+              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                Faca sua reserva E garanta a locacao do automovel
+              </p>
+            </mat-card-content>
+            <mat-card-actions class="btns-card">
+              <button mat-button class="btn" (click)="editarCarro(carro)">Editar</button>
+              <button mat-button class="btn" (click)="excluirCarro(carro)">Excluir</button>
+            </mat-card-actions>
+          </mat-card>
         </ng-container>
       </div>
     </div>

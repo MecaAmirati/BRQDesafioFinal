@@ -35,25 +35,16 @@
       "npessoas": 5,
       "locadoraId": 1,
       "tipoId": 2,
-      "foto":""
+      "foto": ""
     },
     {
-      "nome": "Gol",
-      "portas": "4",
-      "npessoas": "4",
-      "locadoraId": "1",
-      "id": 3,
-      "tipoId": 1,
-      "foto":""
-    },
-    {
-      "id": 4,
-      "nome": "Hugo Goncalves Bertolassi",
-      "portas": 2,
-      "npessoas": "2",
+      "id": 5,
+      "nome": "a",
+      "portas": 99,
+      "npessoas": "5",
       "locadoraId": 1,
       "tipoId": 1,
-      "foto":"../../../assets/carros/car3_2.png"
+      "foto": ""
     }
   ],
   "reservas": [],

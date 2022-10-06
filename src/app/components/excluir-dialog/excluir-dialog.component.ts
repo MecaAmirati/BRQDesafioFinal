@@ -11,7 +11,7 @@ export class ExcluirDialogComponent implements OnInit {
   texto:string="Olar"
   constructor(
     public dialogRef: MatDialogRef<ExcluirDialogComponent>,
-    //@Inject(MAT_DIALOG_DATA) public data:CarroInterface
+    @Inject(MAT_DIALOG_DATA) public data:string
   ) { }
 
   ngOnInit(): void {

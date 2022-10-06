@@ -13,7 +13,7 @@ import { CarrosComponent } from './components/carros/carros.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { LocadoraComponent } from './components/locadora/locadora.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
 //matform
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -27,11 +27,12 @@ import {MatSelectModule} from '@angular/material/select';
 
 //material card
 import {MatCardModule} from '@angular/material/card';
-import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
 
 //dialog
 import {MatDialogModule} from '@angular/material/dialog';
 
+//icon
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReactiveFormsModule,
     MatSelectModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
 
   ],
   providers: [],

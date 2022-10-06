@@ -125,6 +125,7 @@ export class CarrosComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ExcluirDialogComponent, {
       width: '30%',
+      height:'30%',
       enterAnimationDuration,
       exitAnimationDuration,
       data:text
