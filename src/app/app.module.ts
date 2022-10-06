@@ -20,7 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //modulo http
 import {HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 //modulos select
 import {MatSelectModule} from '@angular/material/select';
