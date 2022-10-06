@@ -20,7 +20,7 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
-    
+
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class CadastroComponent implements OnInit {
 
   //----------------------Função para validação do e-mail (error) -----
   validaEmail(): String{
-    
+
     if(this.formularioCadastro.controls["email"].hasError('required')){
       return this.error;
     }
@@ -91,14 +91,14 @@ export class CadastroComponent implements OnInit {
 
   //----------------função para gerar o ID
   nextId(){
-    
+
     let maiorId = 0;
     for (let i = 0; i < this.usuarios.length; i++) {
       this.usuarios[i].id
       if(this.usuarios.length > 0){
         maiorId = this.usuarios[i].id
       }
-      
+
     }
     maiorId++;
     console.log(maiorId); // trazendo o id 1 no console
@@ -165,7 +165,7 @@ export class CadastroComponent implements OnInit {
           panelClass: ['snackbar-tema-falha']
         })
       break;
-    
+
       default:
         this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
           duration: 2000,

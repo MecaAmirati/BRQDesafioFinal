@@ -2,44 +2,29 @@
   "usuario": [
     {
       "id": 1,
-      "nome": "Rafael Gasparetto",
-      "tel": "123",
-      "email": "teste@teste3",
-      "foto": "avatar.png",
-      "senha": "123",
-      "adm": true
+      "nome": "Paulo",
+      "email": "paulo@email.com",
+      "foto": "avatar.png"
     },
     {
       "id": 2,
       "nome": "Priscila",
-      "tel": 11964648857,
       "email": "priscila@email.com",
-      "foto": "avatar.png",
-      "senha": "123",
-      "adm": true
-    },
-    {
-      "id": 3,
-      "nome": "asdada",
-      "tel": "asda",
-      "email": "asd@as",
-      "foto": "foto",
-      "senha": "123",
-      "adm": false
+      "foto": "avatar.png"
     }
   ],
   "locadoras": [
     {
       "id": 1,
       "nome": "Dois Irmãos",
-      "endereco":"Rua marques, 320",
-      "telefone":"(11) 8888-8888"
+      "endereco": " Rua Catedral, 30",
+      "telefone": "(11) 8888-8888"
     },
     {
       "id": 2,
       "nome": "Tres Irmãos",
-      "endereco":"Rua marques, 320",
-      "telefone":"(11) 8888-8888"
+      "endereco": "Rua Marechal, 20 ",
+      "telefone": "(11) 8888-8888"
     }
   ],
   "carros": [
@@ -57,8 +42,7 @@
       "portas": 4,
       "npessoas": 5,
       "locadoraId": 1,
-      "tipoId": 2,
-      "foto": ""
+      "tipoId": 2
     },
     {
       "nome": "Gol",
@@ -69,7 +53,24 @@
       "tipoId": 1
     }
   ],
-  "reservas": [],
+  "reservas": [
+    {
+      "id": 1,
+      "data": "2022-05-20",
+      "horario": "15:00",
+      "dataentrega": "2022-05-25",
+      "usuarioId": 1,
+      "carroId": 1
+    },
+    {
+      "id": 2,
+      "data": "2022-05-21",
+      "horario": "15:00",
+      "dataentrega": "2022-05-25",
+      "usuarioId": 2,
+      "carroId": 1
+    }
+  ],
   "tipoCarro": [
     {
       "id": 1,

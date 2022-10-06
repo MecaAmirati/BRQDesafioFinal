@@ -1,3 +1,49 @@
 <app-header></app-header>
-<p>locadora works!</p>
+<main>
+  <div id="box-cadastro">
+      <mat-card class="box1Locadora">
+          <mat-card-content>
+              <div class="titleLocadora">
+                  <mat-card-title> Locadora </mat-card-title>
+              </div>
+              <form [formGroup]="formularioLocadora" (ngSubmit)="salvarDadosLocadora()" >
+                  <div class="formLocadora">
+                          <mat-form-field appearance="fill">
+                              <mat-label>Locadoura:</mat-label>
+                              <input  matInput formControlName="locadora" name="locadora"  >
+                              <mat-error *ngIf="formularioLocadora.get('locadora')?.hasError('required')">{{Validacao()}}</mat-error>
+                          </mat-form-field>
+                          <mat-form-field appearance="fill">
+                              <mat-label>Endereço:</mat-label>
+                              <input matInput formControlName="endereco" name="endereco" >
+                              <mat-error *ngIf="formularioLocadora.get('endereco')?.hasError('required')">{{Validacao()}}</mat-error>
+                          </mat-form-field>
+                          <div class="ultimo-card">
+                            <mat-form-field id="input-tel" appearance="fill">
+                              <mat-label>Telefone:</mat-label>
+                              <input  matInput formControlName="telefone" name="telefone" >
+                              <mat-error *ngIf="formularioLocadora.get('telefone')?.hasError('required')||formularioLocadora.get('telefone')?.hasError('pattern')">{{ValidacaoTelefone()}}</mat-error>
+                            </mat-form-field>
+                            <button  mat-flat-button type="submit" class="btnCadastrar botao" [disabled]="formularioLocadora.invalid" >Cadastrar</button>
+                          </div>
+                  </div>
+              </form>
+          </mat-card-content>
+      </mat-card>
+  </div>
+  <div id="box-cards">
+    <mat-card class="card-locadora" *ngFor="let locadora of locadorasList">
+      <mat-card-title-group class="conteudo"><b>{{locadora.nome}}</b></mat-card-title-group>
+      <span class="conteudo">
+        <p>{{locadora.endereco}}</p>
+        <p>{{locadora.telefone}}</p>
+      </span>
+      <div class="conteudo div-botao">
+        <button mat-flat-button class=" btnEditar " >Editar</button>
+        <button mat-flat-button class=" btnExcluir " (click)="DeletarLocadora(locadora.id)">Excluir</button>
+      </div>
+
+    </mat-card>
+  </div>
+</main>
 <app-footer></app-footer>
