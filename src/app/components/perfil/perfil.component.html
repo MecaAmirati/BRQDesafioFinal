@@ -39,17 +39,17 @@
 
     <div class="box2Perfil">
 
-        
         <div class="tituloCadastrados">
             <h2> USUÁRIOS CADASTRADOS </h2>
         </div>
 
-                                                <!-- (usuarios.nome, usuarios.tel, usuarios.email) -->
-        <button class="botaoCard" (click)="puxarParaInput()" > 
-            <div class="cardsPerfil">
 
-                <mat-card *ngFor="let usuario of usuarios">
-    
+        <div class="cardsPerfil">
+
+            <mat-card *ngFor="let usuario of usuarios">
+
+                <button class="botaoCard" (click)="puxarParaInput(usuario.id, usuario.nome, usuario.tel, usuario.email)" >
+
                     <div>
                         <h3>{{usuario.nome}}</h3>
                     </div>
@@ -63,15 +63,13 @@
                     </div>
     
                     <div>
-                        <button (click)="excluirUsuario(usuario.id)" >Excluir usúario</button>
+                        <button class="botaoExcluirUsuario" (click)="excluirUsuario(usuario.id)" >Excluir usúario</button>
                     </div>
-    
-                </mat-card>
-    
-            </div>
-        </button>
-
-
+                </button>
+            </mat-card>
+           
+        </div>
+        
     </div>
     
 </section>

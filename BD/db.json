@@ -21,7 +21,7 @@
     {
       "id": 3,
       "nome": "Teste3",
-      "tel": "565656",
+      "tel": 565656,
       "email": "rafa@gmil",
       "foto": "foto",
       "senha": "123",

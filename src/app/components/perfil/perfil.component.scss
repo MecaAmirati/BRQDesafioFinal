@@ -133,10 +133,11 @@ mat-form-field input{
 .cardsPerfil mat-card{
     display: flex;
     width: 1137px;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 2%;
     margin-bottom: 2%;
     align-items: baseline;
+    border: 1px solid gray;
 }
 
 .cardsPerfil mat-card h3{
@@ -158,11 +159,10 @@ mat-form-field input{
     text-align: left;
 }
 
-.cardsPerfil mat-card button{
+.botaoExcluirUsuario{
     height: 70px;
     width: 250px;
     border-radius: 5px;
-
     font-family: Quicksand;
     font-size: 24px;
     font-weight: 700;
@@ -176,5 +176,10 @@ mat-form-field input{
 }
 
 .botaoCard{
+    width: 1137px;
+    display: flex;
     border: none;
+    background-color: white;
+    justify-content: space-between;
+    align-items: baseline;
 }
