@@ -27,6 +27,10 @@ import {MatSelectModule} from '@angular/material/select';
 
 //material card
 import {MatCardModule} from '@angular/material/card';
+import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
+
+//dialog
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import {MatCardModule} from '@angular/material/card';
     ReservasComponent,
     LocadoraComponent,
     FooterComponent,
+    ExcluirDialogComponent,
 
 
   ],
@@ -53,7 +58,8 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
 
   ],
   providers: [],

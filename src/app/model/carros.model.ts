@@ -5,5 +5,6 @@ export interface CarroInterface{
   npessoas:number;
   locadoraId:number;
   tipoId:number;
+  foto:string;
 }
 

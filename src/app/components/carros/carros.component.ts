@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { CarroInterface } from 'src/app/model/carros.model';
 import { CarrosService } from 'src/app/service/carros-service/carros.service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 
 @Component({
   selector: 'app-carros',
@@ -22,7 +24,8 @@ export class CarrosComponent implements OnInit {
     private formBuilder:FormBuilder,
     private carroService:CarrosService,
     private tipoService:TipocarroServiceService,
-    private locadoraService:LocadoraServiceService
+    private locadoraService:LocadoraServiceService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -71,7 +74,7 @@ export class CarrosComponent implements OnInit {
     const locadoraId= this.form.controls['locadoraSelect'].value;
     const tipoId=this.form.controls['tipoSelect'].value;
 
-    const objectCarro:CarroInterface={id:id,nome:nome,portas:portas,npessoas:npessoas,locadoraId:locadoraId,tipoId:tipoId}
+    const objectCarro:CarroInterface={id:id,nome:nome,portas:portas,npessoas:npessoas,locadoraId:locadoraId,tipoId:tipoId,foto:""}
     console.log(objectCarro)
 
     this.carroService.salvarCarro(objectCarro).subscribe({
@@ -95,5 +98,51 @@ export class CarrosComponent implements OnInit {
     maiorid++
     return (maiorid)
   }
+
+  public excluirCarro(carro:CarroInterface){
+    const text=`Voce realmente quer excluir o carro: ${carro.nome}?`
+    this.excludeDialog(carro.id,text)
+    // this.carroService.excluirCarro(id).subscribe({
+    //   next:()=>{
+    //     this.ngOnInit();
+
+    //   },
+    //   error:()=>{
+    //     console.log("erro ao excluir filme");
+
+    //   }
+    // })
+  }
+
+  editarCarro(carro:CarroInterface){
+
+  }
+  /////////////////////
+  //dialog
+  excludeDialog(id:number,text:string): void {
+    let enterAnimationDuration='500ms';
+    let exitAnimationDuration='500ms';
+
+    const dialogRef = this.dialog.open(ExcluirDialogComponent, {
+      width: '30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:text
+    })
+
+    dialogRef.afterClosed().subscribe(boolean => {
+      if(boolean){
+        this.carroService.excluirCarro(id).subscribe({
+          next:()=>{
+            this.ngOnInit()
+          },
+          error:()=>{
+            alert("Erro ao excluir")
+          }
+        })
+      }
+    })
+  }
+
 
 }

@@ -59,30 +59,36 @@
   </section>
 
   <section>
-    <div>
-      <h2>Titulo do tipo de carro</h2>
+    <div *ngFor="let tipo of  tiposCarros">
+    <!-- <div > -->
+      <!-- <h2>Carro 1</h2> -->
+      <h2>{{tipo.nome}}</h2>
       <div class="cards-list flex spc-between wrap">
-
-        <mat-card class="card">
-          <img mat-card-image src="../../../assets/carros/car3_2.png" alt="Foto do carro">
+        <ng-container *ngFor="let carro of carros,let i = index" >
+          <!-- <p *ngIf="carro.tipoId == tipo.id ">{{tiposCarros[i].id}},{{carro.tipoId}}</p> -->
+        <mat-card class="card" *ngIf="carro.tipoId == tipo.id ">
+          <img mat-card-image *ngIf="carro.foto!=''" src={{carro.foto}} alt="Foto do carro">
+          <img mat-card-image *ngIf="carro.foto==''" src="../../../assets/carros/car3_2.png" alt="Foto do carro">
+          <!-- <p>{{carro.foto}}</p> -->
           <mat-card-header>
+            <!-- <p>{{carro.foto}}</p> -->
             <!-- <div mat-card-avatar class=""></div> -->
-            <mat-card-title>Fiat Uno</mat-card-title>
+            <mat-card-title>{{carro.nome}}</mat-card-title>
             <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
           </mat-card-header>
           <mat-card-content>
+            <p>12121 '{{carro.foto}}'</p>
+            <p>{{carro.tipoId}}</p>
             <p>
               Faca sua reserva E garanta a locacao do automovel
             </p>
           </mat-card-content>
           <mat-card-actions class="btns-card">
-            <button mat-button class="btn">Editar</button>
-            <button mat-button class="btn">Excluir</button>
+            <button mat-button class="btn" (click)="editarCarro(carro)">Editar</button>
+            <button mat-button class="btn" (click)="excluirCarro(carro)">Excluir</button>
           </mat-card-actions>
         </mat-card>
-
-
-
+        </ng-container>
       </div>
     </div>
   </section>
