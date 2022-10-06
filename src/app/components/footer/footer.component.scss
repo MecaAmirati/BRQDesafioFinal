@@ -19,14 +19,14 @@ footer{
 .box1{
     display: flex;
     flex-direction: column;
-    width: 68%;
+    width: 66%;
     
 }
 
 .boxLink{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     font-family: Roboto;
     font-size: 24px;
     font-weight: 400;
@@ -35,10 +35,14 @@ footer{
     text-align: left;
     margin-bottom: 80px;
     margin-right: 30px;
+    padding-left: 12%;
 }
+
+
 
 .boxLink a{
     color: black;
+    border-bottom: 1px solid black;
 }
 
 .boxContato{
@@ -55,6 +59,11 @@ footer{
 
 }
 
+.boxContato a{
+    text-decoration: none;
+    color: black;
+}
+
 
 .box2{
     display: flex;
@@ -62,6 +71,10 @@ footer{
     border-left: 1px solid black;
     height: 250px;
     padding-top: 8px;
+    align-content: space-around;
+    align-items: center;
+    justify-content: center;
+    padding-left: 42px;
 }
 
 .box2 img{

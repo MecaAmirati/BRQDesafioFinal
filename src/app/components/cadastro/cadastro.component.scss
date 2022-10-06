@@ -95,4 +95,22 @@ mat-form-field input{
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
     display: none !important;
  
- }
+}
+
+//------------ Cor do Spinner 
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke:#DB1812 !important;
+}
+
+.spinner{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 998;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+}
+

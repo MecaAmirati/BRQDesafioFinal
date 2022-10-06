@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioInterface } from 'src/app/model/usuario.model';
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
 
@@ -13,10 +14,12 @@ export class CadastroComponent implements OnInit {
   formularioCadastro!: FormGroup;
   error ="Este campo é obrigatório";
   usuarios: UsuarioInterface[] = [];
+  loading = this.usuarioService.loading; //atribuindo o spinner a variavel loading
 
   constructor(
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioServiceService
+    private usuarioService: UsuarioServiceService,
+    private snackBar: MatSnackBar,
     
   ) { }
 
@@ -27,17 +30,19 @@ export class CadastroComponent implements OnInit {
       email: new FormControl('',[Validators.required, Validators.email])
     })
 
+    // ----- Ler os Perfis do BD e lista no mat-card
     this.usuarioService.lerUsuarios().subscribe({
       next: (usuarios: UsuarioInterface[]) => {
         this.usuarios = usuarios;
       },
       error: () => {
-        console.log("erro ao ler usuarios");
+        this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
       }
     })
 
   }
 
+  //----------------------Função para validação do e-mail (error) -----
   validaEmail(): String{
     
     if(this.formularioCadastro.controls["email"].hasError('required')){
@@ -51,6 +56,8 @@ export class CadastroComponent implements OnInit {
 //----------------- Função Para Salvar Usuario na locadora (falta salvar no json)
 
   salvarDadosUsuario(){
+
+    this.usuarioService.showLoading();
 
     const id = this.nextId()
 
@@ -67,11 +74,15 @@ export class CadastroComponent implements OnInit {
     this.usuarioService.salvarUsuario(usuario).subscribe({
       next: () =>{
         // console.log(this.usuarios);
-        console.log("Cadastrado com sucesso");
+        // console.log("Cadastrado com sucesso");
         // this.ngOnInit();
+        this.usuarioService.hideLoading();
+        this.alertaDados("sucesso_cadastrar")
       },
       error: () =>{
-        console.log("Erro ao Salvar Usuario");
+        // console.log("Erro ao Salvar Usuario");
+        this.usuarioService.hideLoading();
+        this.alertaDados("falha_cadastrar");
       }
     });
 
@@ -95,6 +106,74 @@ export class CadastroComponent implements OnInit {
     return maiorId;
   }
 
+  //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
+  alertaDados(tipoExecucao: String){
 
+    switch (tipoExecucao) {
+      case "sucesso_cadastrar":
+        this.snackBar.open("Cadastrado com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
+
+      case "sucesso_editar":
+        this.snackBar.open("Editado com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
+
+      case "sucesso_excluir":
+        this.snackBar.open("Excluido com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
+
+      case "falha_cadastrar":
+        this.snackBar.open("Desculpe, erro ao cadastrar", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "falha_editar":
+        this.snackBar.open("Desculpe, erro ao editar", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "falha_excluir":
+        this.snackBar.open("Desculpe, erro ao excluir", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "erro_bancoDados":
+        this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "erro_generico":
+        this.snackBar.open("Erro :(", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+    
+      default:
+        this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema']
+        })
+      break;
+    }
+
+  }
 
 }

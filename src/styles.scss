@@ -60,65 +60,34 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 24px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//----------- SnackBar
 
-//padrao Css Hugo
-
-.flex{
-  display: flex;
-  flex-direction: row;
-
-}
-.flex-col{
-  display: flex;
-  flex-direction: column;
-
-}
-
-.spc-around{
-  justify-content: space-around;
-}
-
-.spc-between{
-
-  justify-content: space-between;
-}
-
-.txt-left{
-  text-align: left;
-}
-.txt-center{
+.snackbar-tema-sucesso{ //snackBar para sucesso
+  background-color: #150ee7;
+  color: white;
+  height: 50px;
   text-align: center;
-}
-
-.center{
-  align-items: center;
-  align-content: center;
   justify-content: center;
-}
-.wrap{
-flex-wrap: wrap;
+  width: 300px;
 }
 
-.width400px{
-  width: 400px;
-
+.snackbar-tema-falha{ // snackbar para falha
+  background-color: #DB1812;
+  color: white;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  width: 300px;
 }
-.width100{
+
+.spinner{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-}
-.width90{
-width: 90%;
-}
-.width50{
-  width: 50%;
-}
-
-.width48{
-  width: 48%;
-}
-
-.marginAuto{
-  margin:auto;
+  height: 100%;
+  top: 0;
+  z-index: 998;
+  background-color: rgba($color: #000000, $alpha: 0.3);
 }

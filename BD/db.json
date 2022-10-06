@@ -2,9 +2,9 @@
   "usuario": [
     {
       "id": 1,
-      "nome": "Priscila",
-      "tel": 11964648857,
-      "email": "priscila@email.com",
+      "nome": "Rafael Gasparetto",
+      "tel": "123",
+      "email": "teste@teste3",
       "foto": "avatar.png",
       "senha": "123",
       "adm": true
