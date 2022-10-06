@@ -45,7 +45,7 @@ export class CarrosComponent implements OnInit {
           next:(objects:TipoCarroInterface[]) =>{
             this.tiposCarros=objects;
             this.locadoraService.lerLocadoras().subscribe({
-              next:(objects:TipoCarroInterface[]) =>{
+              next:(objects:LocadoraInterface[]) =>{
                 this.locadoras=objects;
               },
               error:()=>{
