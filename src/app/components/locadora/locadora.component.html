@@ -32,15 +32,15 @@
       </mat-card>
   </div>
   <div id="box-cards">
-    <mat-card class="card-locadora">
-      <mat-card-title-group><b>Locadora</b></mat-card-title-group>
-      <span>
-        <p>Rua marques, 320</p>
-        <p>(11) 8888-8888</p>
+    <mat-card class="card-locadora" *ngFor="let locadora of locadorasList">
+      <mat-card-title-group class="conteudo"><b>{{locadora.nome}}</b></mat-card-title-group>
+      <span class="conteudo">
+        <p>{{locadora.endereco}}</p>
+        <p>{{locadora.telefone}}</p>
       </span>
-      <div>
+      <div class="conteudo div-botao">
         <button mat-flat-button class=" btnEditar " >Editar</button>
-        <button mat-flat-button class=" btnExcluir " >Excluir</button>
+        <button mat-flat-button class=" btnExcluir " (click)="DeletarLocadora(locadora.id)">Excluir</button>
       </div>
 
     </mat-card>

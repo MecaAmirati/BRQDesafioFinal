@@ -97,6 +97,11 @@ mat-form-field input{
   justify-content: space-between;
   border: 1px solid #9F9999;
 }
+.conteudo{
+  width: 25%;
+  display: flex;
+  justify-content: flex-start;
+}
 mat-card-title-group{
 
   font-family: 'Montserrat';
@@ -110,11 +115,15 @@ mat-card-title-group{
 
 span{
 
+  flex-direction: column;
   font-family: 'Quicksand';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 25px;
+}
+.div-botao{
+  width: 40%;
 }
 .btnEditar{
   width: 250px;
@@ -143,5 +152,8 @@ span{
   font-size: 24px;
   line-height: 30px;
   color: #DB1812;;
-
 }
+// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
+//   height: 0px;
+//   display: none;
+// }
