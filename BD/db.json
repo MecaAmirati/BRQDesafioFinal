@@ -31,11 +31,15 @@
   "locadoras": [
     {
       "id": 1,
-      "nome": "Dois Irmãos"
+      "nome": "Dois Irmãos",
+      "endereco":"Rua marques, 320",
+      "telefone":"(11) 8888-8888"
     },
     {
       "id": 2,
-      "nome": "Tres Irmãos"
+      "nome": "Tres Irmãos",
+      "endereco":"Rua marques, 320",
+      "telefone":"(11) 8888-8888"
     }
   ],
   "carros": [
