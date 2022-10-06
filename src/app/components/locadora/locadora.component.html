@@ -6,25 +6,25 @@
               <div class="titleLocadora">
                   <mat-card-title> Locadora </mat-card-title>
               </div>
-              <form >
+              <form [formGroup]="formularioLocadora" (ngSubmit)="salvarDadosLocadora()" >
                   <div class="formLocadora">
                           <mat-form-field appearance="fill">
                               <mat-label>Locadoura:</mat-label>
-                              <input  matInput>
-                              <mat-error></mat-error>
+                              <input  matInput formControlName="locadora" name="locadora"  >
+                              <mat-error *ngIf="formularioLocadora.get('locadora')?.hasError('required')">{{Validacao()}}</mat-error>
                           </mat-form-field>
                           <mat-form-field appearance="fill">
                               <mat-label>Endereço:</mat-label>
-                              <input matInput >
-
+                              <input matInput formControlName="endereco" name="endereco" >
+                              <mat-error *ngIf="formularioLocadora.get('endereco')?.hasError('required')">{{Validacao()}}</mat-error>
                           </mat-form-field>
                           <div class="ultimo-card">
                             <mat-form-field id="input-tel" appearance="fill">
                               <mat-label>Telefone:</mat-label>
-                              <input  matInput  >
-                              <mat-error></mat-error>
+                              <input  matInput formControlName="telefone" name="telefone" >
+                              <mat-error *ngIf="formularioLocadora.get('telefone')?.hasError('required')||formularioLocadora.get('telefone')?.hasError('pattern')">{{ValidacaoTelefone()}}</mat-error>
                             </mat-form-field>
-                            <button  mat-flat-button class="btnCadastrar botao">Cadastrar</button>
+                            <button  mat-flat-button type="submit" class="btnCadastrar botao" [disabled]="formularioLocadora.invalid" >Cadastrar</button>
                           </div>
                   </div>
               </form>
