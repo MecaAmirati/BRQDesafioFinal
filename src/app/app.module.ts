@@ -13,9 +13,9 @@ import { CarrosComponent } from './components/carros/carros.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { LocadoraComponent } from './components/locadora/locadora.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {  FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -36,7 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 //icon
 import {MatIconModule} from '@angular/material/icon';import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +67,8 @@ import {MatIconModule} from '@angular/material/icon';import { BrowserAnimationsM
     MatDialogModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule
 
   ],
   providers: [],

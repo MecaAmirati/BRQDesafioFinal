@@ -17,6 +17,15 @@
       "foto": "avatar.png",
       "senha": "123",
       "adm": true
+    },
+    {
+      "id": 3,
+      "nome": "asdada",
+      "tel": "asda",
+      "email": "asd@as",
+      "foto": "foto",
+      "senha": "123",
+      "adm": false
     }
   ],
   "locadoras": [
@@ -53,25 +62,7 @@
       "npessoas": "4",
       "locadoraId": "1",
       "id": 3,
-      "tipoId" : 1
-    }
-  ],
-  "reservas": [
-    {
-      "id": 1,
-      "data": "2022-05-20",
-      "horario": "15:00",
-      "dataentrega": "2022-05-25",
-      "usuarioId": 1,
-      "carroId": 1
-    },
-    {
-      "id": 2,
-      "data": "2022-05-21",
-      "horario": "15:00",
-      "dataentrega": "2022-05-25",
-      "usuarioId": 2,
-      "carroId": 1
+      "tipoId": 1
     }
   ],
   "reservas": [],
