@@ -13,15 +13,26 @@ import { CarrosComponent } from './components/carros/carros.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { LocadoraComponent } from './components/locadora/locadora.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-
+import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
+//matform
+import {MatInputModule} from '@angular/material/input'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //modulo http
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//modulos select
+import {MatSelectModule} from '@angular/material/select';
+
+//material card
+import {MatCardModule} from '@angular/material/card';
+
+//dialog
+import {MatDialogModule} from '@angular/material/dialog';
+
+//icon
+import {MatIconModule} from '@angular/material/icon';import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +45,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CarrosComponent,
     ReservasComponent,
     LocadoraComponent,
-    FooterComponent
+    FooterComponent,
+    ExcluirDialogComponent,
+
 
   ],
   imports: [
@@ -42,13 +55,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
+    MatInputModule,
     MatFormFieldModule,
-    MatInputModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatCardModule,
+    MatDialogModule,
+    MatIconModule
 
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

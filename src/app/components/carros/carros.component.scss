@@ -1,0 +1,113 @@
+main{
+  margin:20px auto;
+
+  max-width:1137px ;
+}
+
+section{
+  margin-top:70px;
+}
+
+.fildset_form{
+  border: 1px solid #9F9999;
+  border-radius: 10px;
+}
+
+.titleCarros{
+  margin-top:30px ;
+}
+.div-line{
+  width: 60%;
+  border-top:solid 1px
+}
+.card{
+  height: 600px;
+  max-width: 352px;
+  margin-top:20px;
+  //box-sizing: border-box;
+  border:1px solid #C6C4C4;
+}
+
+.btns-card{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.btn{
+  margin-top: 10px;
+}
+
+
+::ng-deep .mat-form-field .mat-form-field-flex{//muda a cor somente da da parte do input
+  background: #DCE0E2;
+}
+
+//Controle da linha do underline
+::ng-deep .mat-form-field-underline{//Apaga a underline
+  //display: none;
+}
+::ng-deep .mat-form-field-underline:focus,
+::ng-deep .mat-form-field-underline:hover{
+  display:inline-block;
+}
+
+::ng-deep .mat-form-field-ripple{//cor do underline quando tem o hover
+  background-color: blue;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple{ //cor do underline  quando seleciona
+  background-color: blue;
+}
+::ng-deep .mat-form-field-underline::before{//cor do underline antes de clicar/inicia a pagina
+  background-color: #DCE0E2 !important;
+}
+
+//Cor do label
+::ng-deep .mat-form-field-label-wrapper label{//cor inicial da label
+  color:black;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label{//cor do label quando o field for  selecionado
+  color: #9F9999;
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {//cor do label quando o field esta em erro
+  color: rgb(250, 0, 250);
+}
+
+////////////////////////////////////////////////////////////////
+// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+//     background: #DCE0E2;
+//     border: 1px solid #DCE0E2;
+//     border-radius: 10px !important;
+//     font-size: larger;
+//     margin: 15px 0px;
+//     height: 50px;
+//   }
+
+  .widthLocadora{
+    width: 70%;
+  }
+
+.tipoTitle{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 49px;
+  margin-top:40px;
+  width: 60%;
+  border-bottom: 1px solid;
+}
+
+
+.imgCarro{
+
+  //width: auto;
+  //max-height:160px;
+
+}
+
+.mat-card{
+  display: flex;
+  flex-direction: column;
+}
