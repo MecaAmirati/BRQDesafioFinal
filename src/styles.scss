@@ -59,3 +59,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 70px;
     font-size: 24px;
 }
+
+//----------- SnackBar
+
+.snackbar-tema-sucesso{ //snackBar para sucesso
+  background-color: #150ee7; 
+  color: white;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  width: 300px;
+}
+
+.snackbar-tema-falha{ // snackbar para falha
+  background-color: #DB1812;
+  color: white;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  width: 300px;
+}

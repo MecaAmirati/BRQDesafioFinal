@@ -1,6 +1,7 @@
 import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioInterface } from 'src/app/model/usuario.model';
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
 
@@ -11,14 +12,17 @@ import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.s
 })
 export class PerfilComponent implements OnInit {
 
+  private usuarioSelecionado!: UsuarioInterface
   formularioPerfil!: FormGroup;
   error ="Este campo é obrigatório";
   usuarios: UsuarioInterface[] = [];
+  loading = this.usuarioService.loading; //atribuindo o spinner a variavel loading
 
 
   constructor( 
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioServiceService
+    private usuarioService: UsuarioServiceService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -33,9 +37,10 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.lerUsuarios().subscribe({
       next: (usuarios: UsuarioInterface[]) => {
         this.usuarios = usuarios;
+        // this.formularioPerfil.reset();
       },
       error: () => {
-        console.log("Erro ao ler o usúario");
+        this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
       }
     })
 
@@ -54,59 +59,134 @@ export class PerfilComponent implements OnInit {
 
   // ----------------------Função para excluir o Perfil no BD -----
   excluirUsuario(id: any){
-
+    this.usuarioService.showLoading();
     this.usuarioService.excluirUsuario(id).subscribe({
       next: () => {
-        console.log("Usuario excluido");
+        // console.log("Usuario excluido");
         this.ngOnInit();
+        this.usuarioService.hideLoading();
+        this.alertaDados("sucesso_excluir")
       },
       error: () => {
-        console.log("Erro ao excluir Usúario");
+        this.usuarioService.hideLoading();
+        this.alertaDados("falha_excluir");
       }
     })
 
   }
 
   //-----------------------Função para puxar do card para o Input--------
-  puxarParaInput(id: any, nome: string, tel: number, email:string){ 
-    
-    this.formularioPerfil.controls['nome'].setValue(nome);
-    this.formularioPerfil.controls['tel'].setValue(tel);
-    this.formularioPerfil.controls['email'].setValue(email);
+  puxarParaInput(usuario: UsuarioInterface){ 
+    this.usuarioService.showLoading();
+    this.formularioPerfil.controls['nome'].setValue(usuario.nome);
+    this.formularioPerfil.controls['tel'].setValue(usuario.tel);
+    this.formularioPerfil.controls['email'].setValue(usuario.email);
 
-    id = id; // para não perder o id quando puxar o card
+    this.usuarioSelecionado = usuario;
 
-    console.log(id, nome, tel, email);
+    this.usuarioService.hideLoading();
+    console.log(usuario);
     
   }
 
   //----------------------Função de atualizar Perfil
   editarPerfil(){
 
-    // this.usuarioService.updateUsuario(this.usuarios).subscribe({
-    //   next: () => {
-       
-    //   },
-    //   error: () => {
+    let perfilAtual: UsuarioInterface = {
+      id: this.usuarioSelecionado.id,
+      nome: this.formularioPerfil.controls['nome'].value,
+      tel: this.formularioPerfil.controls['tel'].value,
+      email: this.formularioPerfil.controls['email'].value,
+      foto: this.usuarioSelecionado.foto,
+      senha: this.usuarioSelecionado.senha,
+      adm: this.usuarioSelecionado.adm
+    };
+    this.usuarioService.showLoading();
+    this.usuarioService.updateUsuario(perfilAtual).subscribe({
+      next: () => {
+      //  console.log("Usuario editado");
+       this.ngOnInit();
+       this.usuarioService.hideLoading();
+       this.alertaDados("sucesso_editar");
+      },
+      error: () => {
+        // console.log("Erro ao editar");
+        this.usuarioService.hideLoading();
+        this.alertaDados("falha_editar");
+        
+      }
+    })
 
-    //   }
-    // })
+  }
 
-    // ----------------------------- Segunda Tentativa 
+  //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
 
-    // let perfilAtual: UsuarioInterface = {
-    //   id: this.formularioPerfil.controls['id'].value,
-    //   nome: this.formularioPerfil.controls['nome'].value,
-    //   tel: this.formularioPerfil.controls['tel'].value,
-    //   email: this.formularioPerfil.controls['email'].value,
-    //   foto: this.formularioPerfil.controls['foto'].value,
-    //   senha: this.formularioPerfil.controls['senha'].value,
-    //   adm: this.formularioPerfil.controls['adm'].value
-    // };
+  alertaDados(tipoExecucao: String){
 
-    // this.id = this.formularioPerfil.controls['id'].value
+    switch (tipoExecucao) {
+      case "sucesso_cadastrar":
+        this.snackBar.open("Cadastrado com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
 
+      case "sucesso_editar":
+        this.snackBar.open("Editado com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
 
+      case "sucesso_excluir":
+        this.snackBar.open("Excluido com sucesso", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
+
+      case "falha_cadastrar":
+        this.snackBar.open("Desculpe, erro ao cadastrar", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "falha_editar":
+        this.snackBar.open("Desculpe, erro ao editar", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "falha_excluir":
+        this.snackBar.open("Desculpe, erro ao excluir", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "erro_bancoDados":
+        this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "erro_generico":
+        this.snackBar.open("Erro :(", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+    
+      default:
+        this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema']
+        })
+      break;
+    }
 
   }
 

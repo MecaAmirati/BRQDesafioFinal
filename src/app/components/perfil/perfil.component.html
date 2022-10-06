@@ -29,7 +29,7 @@
                             </mat-form-field>
 
                             <div class="containerBotao">
-                                <button type="submit" [disabled]="!formularioPerfil.valid"> Atualizar </button>
+                                <button type="submit" [disabled]="!formularioPerfil.valid" (click)="editarPerfil()"> Atualizar </button>
                             </div>
                     </div>
                 </form>
@@ -48,7 +48,7 @@
 
             <mat-card *ngFor="let usuario of usuarios">
 
-                <button class="botaoCard" (click)="puxarParaInput(usuario.id, usuario.nome, usuario.tel, usuario.email)" >
+                <button class="botaoCard" (click)="puxarParaInput(usuario)" >
 
                     <div>
                         <h3>{{usuario.nome}}</h3>
@@ -70,6 +70,10 @@
            
         </div>
         
+    </div>
+
+    <div class="spinner" *ngIf="loading | async" >
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
     
 </section>

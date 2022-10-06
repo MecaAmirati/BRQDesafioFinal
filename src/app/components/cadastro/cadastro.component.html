@@ -30,12 +30,19 @@
                     </div>
                     
                     <div class="containerBotao">
-                        <a routerLink="../perfil"><button mat-button type="submit" [disabled]="!formularioCadastro.valid" > Cadastrar </button></a>
+                        <!-- <a routerLink="../perfil"> //esta redirecionando antes de salvar -->
+                            <button mat-button type="submit" [disabled]="!formularioCadastro.valid"  > Cadastrar </button>
+                        <!-- </a>                                                                 *ngIf=""  formularioCadastro.valid == router.routerState.snapshot.url == '/perfil'           -->
                     </div>
                      
                 </form>
             </mat-card-content>
         </mat-card>
     </div>
+
+    <div class="spinner" *ngIf="loading | async" >
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+
 </section>
 <app-footer></app-footer>

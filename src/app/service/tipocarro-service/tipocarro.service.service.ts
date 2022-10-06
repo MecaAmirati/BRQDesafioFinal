@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TipoCarroInterface } from 'src/app/model/tipocarro.model';
 
 @Injectable({
@@ -12,6 +12,20 @@ export class TipocarroServiceService {
   constructor(
     private httpClient:HttpClient
   ) { }
+
+  //---- fazendo o progress spiner
+  private _loading = new BehaviorSubject<boolean>(false) 
+  public readonly loading = this._loading.asObservable();
+
+
+  //----------------------Funçoes do Spinner----------------------
+
+  showLoading(){
+    this._loading.next(true);
+  }
+  hideLoading(){
+    this._loading.next(false);
+  }
 
   get tipoCarros(){
     return this.listaTipoCarros;
