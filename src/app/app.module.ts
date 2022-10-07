@@ -36,6 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 //icon
 import {MatIconModule} from '@angular/material/icon';import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
+import { CarrosEditarDialogComponent } from './components/carros-editar-dialog/carros-editar-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dial
     LocadoraComponent,
     FooterComponent,
     ExcluirDialogComponent,
+    CarrosEditarDialogComponent,
 
 
   ],

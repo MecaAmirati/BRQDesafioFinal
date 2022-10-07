@@ -8,13 +8,14 @@ import { LocadoraInterface } from 'src/app/model/locadoras.model';
 })
 export class LocadoraServiceService {
   private listaLocadoras:any;
-  private url="http://localhost:3000/locadoras";
+  // private url="http://localhost:3000/locadoras";
+  private url="https://servidor-carros.herokuapp.com/locadoras";
   constructor(
     private httpClient:HttpClient
   ) { }
 
   //---- fazendo o progress spiner
-  private _loading = new BehaviorSubject<boolean>(false) 
+  private _loading = new BehaviorSubject<boolean>(false)
   public readonly loading = this._loading.asObservable();
 
 

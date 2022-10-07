@@ -8,13 +8,14 @@ import { TipoCarroInterface } from 'src/app/model/tipocarro.model';
 })
 export class TipocarroServiceService {
   private listaTipoCarros:any;
-  private url="http://localhost:3000/tipoCarro";
+  private url="https://servidor-carros.herokuapp.com/tipoCarros";
+  // private url="http://localhost:3000/tipoCarro";
   constructor(
     private httpClient:HttpClient
   ) { }
 
   //---- fazendo o progress spiner
-  private _loading = new BehaviorSubject<boolean>(false) 
+  private _loading = new BehaviorSubject<boolean>(false)
   public readonly loading = this._loading.asObservable();
 
 

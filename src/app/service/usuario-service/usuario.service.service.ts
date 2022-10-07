@@ -8,13 +8,14 @@ import { UsuarioInterface } from 'src/app/model/usuario.model';
 })
 export class UsuarioServiceService {
   private listaUsuario:any;
-  private url="http://localhost:3000/usuario";
+  // private url="http://localhost:3000/usuario";
+  private url='https://servidor-carros.herokuapp.com/usuarios';
   constructor(
     private httpClient:HttpClient
   ) { }
 
   //---- fazendo o progress spiner
-  private _loading = new BehaviorSubject<boolean>(false) 
+  private _loading = new BehaviorSubject<boolean>(false)
   public readonly loading = this._loading.asObservable();
 
 

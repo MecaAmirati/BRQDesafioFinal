@@ -1,10 +1,10 @@
 export interface UsuarioInterface{
   id:number;
+  senha:string;
   nome:string;
-  tel:number;
+  telefone:number;
   email:string;
   foto:string;
-  senha:string;
   adm:boolean;
 }
 

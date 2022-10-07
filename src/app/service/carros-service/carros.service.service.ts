@@ -8,13 +8,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CarrosService {
   private listaCarros:any;
-  private url="http://localhost:3000/carros";
+  // private url="http://localhost:3000/carros";
+  private url="https://servidor-carros.herokuapp.com/carros";
   constructor(
     private httpClient:HttpClient
   ) { }
 
   //---- fazendo o progress spiner
-  private _loading = new BehaviorSubject<boolean>(false) 
+  private _loading = new BehaviorSubject<boolean>(false)
   public readonly loading = this._loading.asObservable();
 
 
@@ -37,6 +38,16 @@ export class CarrosService {
 
   lerCarros():Observable<CarroInterface[]>{
     return this.httpClient.get<CarroInterface[]>(this.url)
+  }
+
+  lerCarrosLocadora():Observable<CarroInterface[]>{
+    const endpoint=`?_expand=locadora`
+    return this.httpClient.get<CarroInterface[]>(`${this.url}${endpoint}`)
+  }
+
+  lerCarrosTipoCarro():Observable<CarroInterface[]>{
+    const endpoint=`?_expand=tipoCarro`
+    return this.httpClient.get<CarroInterface[]>(`${this.url}${endpoint}`)
   }
 
   lerCarroById(id:number):Observable<CarroInterface>{

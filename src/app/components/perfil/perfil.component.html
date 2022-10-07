@@ -53,29 +53,29 @@
                     <div>
                         <h3>{{usuario.nome}}</h3>
                     </div>
-    
+
                     <div>
-                        <p>{{usuario.tel}}</p>
+                        <p>{{usuario.telefone}}</p>
                     </div>
-    
+
                     <div>
                         <p>{{usuario.email}}</p>
                     </div>
-    
+
                     <div>
                         <button class="botaoExcluirUsuario" (click)="excluirUsuario(usuario.id)" >Excluir usúario</button>
                     </div>
                 </button>
             </mat-card>
-           
+
         </div>
-        
+
     </div>
 
     <div class="spinner" *ngIf="loading | async" >
         <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
-    
+
 </section>
 
 <app-footer></app-footer>

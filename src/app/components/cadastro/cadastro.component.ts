@@ -68,7 +68,7 @@ export class CadastroComponent implements OnInit {
     const senha = "123";
     const adm = false;
 
-    const usuario: UsuarioInterface = {id: id, nome: nome, tel: tel, email: email, foto: foto, senha: senha, adm: adm};
+    const usuario: UsuarioInterface = {id: id, nome: nome, telefone: tel, email: email, foto: foto, senha: senha, adm: adm};
 
 
     this.usuarioService.salvarUsuario(usuario).subscribe({

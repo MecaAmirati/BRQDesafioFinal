@@ -8,6 +8,7 @@ import { CarroInterface } from 'src/app/model/carros.model';
 import { CarrosService } from 'src/app/service/carros-service/carros.service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
+import { CarrosEditarDialogComponent } from '../carros-editar-dialog/carros-editar-dialog.component';
 
 @Component({
   selector: 'app-carros',
@@ -63,6 +64,7 @@ export class CarrosComponent implements OnInit {
         console.log("Erro ao listar carros");
       }
     })
+    this.carrosLocadora()
   }
 
   ///////////////////////////////////
@@ -75,7 +77,7 @@ export class CarrosComponent implements OnInit {
     const locadoraId= this.form.controls['locadoraSelect'].value;
     const tipoId=this.form.controls['tipoSelect'].value;
 
-    const objectCarro:CarroInterface={id:id,nome:nome,portas:portas,npessoas:npessoas,locadoraId:locadoraId,tipoId:tipoId,foto:""}
+    const objectCarro:CarroInterface={id:id,nome:nome,portas:portas,npessoas:npessoas,locadoraId:locadoraId,tipoCarroId:tipoId}
     console.log(objectCarro)
 
     this.carroService.salvarCarro(objectCarro).subscribe({
@@ -116,7 +118,21 @@ export class CarrosComponent implements OnInit {
   }
 
   editarCarro(carro:CarroInterface){
+    this.editarDialog(carro);
+  }
 
+  //carroLocadora!:any[];
+  carrosLocadora(){
+    this.carroService.lerCarrosTipoCarro().subscribe({
+        next:(objects:CarroInterface[])=>{
+          console.log(objects)
+          //this.ngOnInit();
+        },
+        error:()=>{
+          console.log("erro ao excluir filme");
+
+        }
+      })
   }
   /////////////////////
   //dialog
@@ -146,5 +162,32 @@ export class CarrosComponent implements OnInit {
     })
   }
 
+ ////Dialog
+ editarDialog(element:CarroInterface): void {
+  let enterAnimationDuration='500ms';
+  let exitAnimationDuration='500ms';
+  //abrir o dialog
+  const dialogRef = this.dialog.open(CarrosEditarDialogComponent, {
+    width: '30%',
+    enterAnimationDuration,
+    exitAnimationDuration,
+    data:element
+  })
 
+  dialogRef.afterClosed().subscribe(element => {
+    if(element){
+      this.carroService.showLoading()
+      this.carroService.updateCarro(element).subscribe({
+        next:()=>{
+          this.ngOnInit()
+          this.carroService.hideLoading()
+      },
+        error:()=>{
+          this.carroService.hideLoading()
+          alert("Erro ao salvar filme")
+        }
+      })
+    }
+  })
+}
 }

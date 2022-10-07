@@ -53,10 +53,10 @@ section{
 }
 
 ::ng-deep .mat-form-field-ripple{//cor do underline quando tem o hover
-  background-color: blue;
+  background-color: black;
 }
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple{ //cor do underline  quando seleciona
-  background-color: blue;
+  background-color: black;
 }
 ::ng-deep .mat-form-field-underline::before{//cor do underline antes de clicar/inicia a pagina
   background-color: #DCE0E2 !important;
@@ -71,7 +71,7 @@ section{
 }
 
 ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {//cor do label quando o field esta em erro
-  color: rgb(250, 0, 250);
+  //color: rgb(250, 0, 250);
 }
 
 ////////////////////////////////////////////////////////////////

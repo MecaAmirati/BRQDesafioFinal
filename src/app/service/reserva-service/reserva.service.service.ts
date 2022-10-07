@@ -8,13 +8,14 @@ import { ReservaInterface } from 'src/app/model/reservas.model';
 })
 export class ReservaServiceService {
   private listaReservas:any;
-  private url="http://localhost:3004/carros";
+  // private url="http://localhost:3004/carros";
+  private url="https://servidor-carros.herokuapp.com/reservas";
   constructor(
     private httpClient:HttpClient
   ) { }
 
   //---- fazendo o progress spiner
-  private _loading = new BehaviorSubject<boolean>(false) 
+  private _loading = new BehaviorSubject<boolean>(false)
   public readonly loading = this._loading.asObservable();
 
 

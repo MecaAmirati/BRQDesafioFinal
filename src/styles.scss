@@ -91,3 +91,64 @@ body { margin: 0; }
   z-index: 998;
   background-color: rgba($color: #000000, $alpha: 0.3);
 }
+
+//padrao Css Hugo
+
+.flex{
+  display: flex;
+  flex-direction: row;
+
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.spc-around{
+  justify-content: space-around;
+}
+
+.spc-between{
+
+  justify-content: space-between;
+}
+
+.txt-left{
+  text-align: left;
+}
+.txt-center{
+  text-align: center;
+}
+
+.center{
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.wrap{
+flex-wrap: wrap;
+}
+
+.width400px{
+  width: 400px;
+
+}
+.width100{
+  width: 100%;
+}
+.width90{
+width: 90%;
+}
+.width50{
+  width: 50%;
+}
+
+.width48{
+  width: 48%;
+}
+
+.marginAuto{
+  margin:auto;
+}
+
