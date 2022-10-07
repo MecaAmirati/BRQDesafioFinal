@@ -11,19 +11,32 @@
 
         </div>
         <div id="boxDatas">
+            <mat-form-field id="dataReserva" appearance="fill">
+                <mat-label>Data reserva:</mat-label>
+                <input matInput formControlName="dataReserva" name="dataReserva" placeholder="dd/mm/aaaa">
+            </mat-form-field>
+            <mat-form-field id="horaReserva" appearance="fill">
+                <mat-label>Horário da reserva:</mat-label>
+                <input matInput formControlName="horaReserva" name="horaReserva" placeholder="ex. 15:00">
+            </mat-form-field>
+            <mat-form-field id="dataDevolucao" appearance="fill">
+                <mat-label>Data da Devolução:</mat-label>
+                <input matInput formControlName="dataDevolucao" name="dataDevolucao" placeholder="dd/mm/aaaa">
+            </mat-form-field>
 
         </div>
         <div id="boxLocadora">
-             <!-- <mat-form-field id="tipoCarro" appearance="fill">
+            <mat-form-field id="tipoCarro" appearance="fill">
                 <mat-label>Tipo</mat-label>
                 <mat-select>
                   <mat-option value="one">First option</mat-option>
-                  <mat-option value="two">Second option</mat-option>
                 </mat-select>
-            </mat-form-field> -->
+            </mat-form-field>
+            <button class="btnLogin" mat-raised-button >Atualizar</button>
         </div>
     </form>
     <div id="containerDadosAPI" >
+        <h2>RESERVAS CADASTRADAS</h2>
         <div id="cardAPI">
             <div id="imagemAPI">
 
