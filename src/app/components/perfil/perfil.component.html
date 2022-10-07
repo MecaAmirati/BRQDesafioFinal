@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <section>
-    <div>
+    <div class="container">
         <mat-card class="box1Perfil">
             <mat-card-content>
                 <div class="titlePerfil">
@@ -29,7 +29,12 @@
                             </mat-form-field>
 
                             <div class="containerBotao">
-                                <button type="submit" [disabled]="!formularioPerfil.valid" (click)="editarPerfil()"> Atualizar </button>
+                                <div>
+                                    <button type="submit" class="botaoEditarPerfil" [disabled]="!formularioPerfil.valid" (click)="editarPerfil()"> Atualizar </button>
+                                </div>
+                                <div>
+                                    <button *ngIf="adm" type="submit" class="botaoExcluirUsuario" (click)="excluirUsuarioComum()">Excluir Cadastro</button>
+                                </div> 
                             </div>
                     </div>
                 </form>
@@ -37,7 +42,7 @@
         </mat-card>
     </div>
 
-    <div class="box2Perfil">
+    <div class="box2Perfil" *ngIf="adm">
 
         <div class="tituloCadastrados">
             <h2> USUÁRIOS CADASTRADOS </h2>

@@ -1,15 +1,6 @@
 {
   "usuario": [
     {
-      "id": 1,
-      "nome": "Rafael Gasparetto",
-      "tel": "123",
-      "email": "teste@teste3",
-      "foto": "avatar.png",
-      "senha": "123",
-      "adm": true
-    },
-    {
       "id": 2,
       "nome": "Priscila",
       "tel": 11964648857,
@@ -23,6 +14,24 @@
       "nome": "asdada",
       "tel": "asda",
       "email": "asd@as",
+      "foto": "foto",
+      "senha": "123",
+      "adm": false
+    },
+    {
+      "id": 4,
+      "nome": "Teste3",
+      "tel": "565656",
+      "email": "rafa@gmil",
+      "foto": "foto",
+      "senha": "123",
+      "adm": false
+    },
+    {
+      "id": 5,
+      "nome": "rafa",
+      "tel": "123",
+      "email": "teste@teste3",
       "foto": "foto",
       "senha": "123",
       "adm": false

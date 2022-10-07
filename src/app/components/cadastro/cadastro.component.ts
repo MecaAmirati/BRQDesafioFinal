@@ -27,7 +27,9 @@ export class CadastroComponent implements OnInit {
     this.formularioCadastro = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
       tel: new FormControl('', [Validators.required]),
-      email: new FormControl('',[Validators.required, Validators.email])
+      email: new FormControl('',[Validators.required, Validators.email]),
+      senha: new FormControl('',[Validators.required]),
+      confirmarSenha: new FormControl('',[Validators.required])
     })
 
     // ----- Ler os Perfis do BD e lista no mat-card
@@ -51,9 +53,19 @@ export class CadastroComponent implements OnInit {
     return this.formularioCadastro.controls["email"].hasError('email') ? "E-mail inválido" : '';
   }
 
+  //---------------------Função para validar a confirmação de senha no cadastro
+  validaSenhas(){
+
+    if (this.formularioCadastro.controls["senha"].value != this.formularioCadastro.controls["confirmarSenha"].value) {
+      this.formularioCadastro.controls["confirmarSenha"].setErrors({camposDivergentes: true})
+    }
+
+    return this.formularioCadastro.controls["confirmarSenha"].hasError('camposDivergentes') ? 'As senhas devem ser iguais' : ''
+  }
 
 
-//----------------- Função Para Salvar Usuario na locadora (falta salvar no json)
+
+//----------------------Função Para Salvar Usuario na locadora (falta salvar no json)
 
   salvarDadosUsuario(){
 
@@ -65,7 +77,7 @@ export class CadastroComponent implements OnInit {
     const tel = this.formularioCadastro.controls["tel"].value;
     const email = this.formularioCadastro.controls["email"].value;
     const foto = "foto";
-    const senha = "123";
+    const senha = this.formularioCadastro.controls["senha"].value;
     const adm = false;
 
     const usuario: UsuarioInterface = {id: id, nome: nome, tel: tel, email: email, foto: foto, senha: senha, adm: adm};

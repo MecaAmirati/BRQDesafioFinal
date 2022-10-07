@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioInterface } from 'src/app/model/usuario.model';
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
+import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-perfil',
@@ -17,12 +19,13 @@ export class PerfilComponent implements OnInit {
   error ="Este campo é obrigatório";
   usuarios: UsuarioInterface[] = [];
   loading = this.usuarioService.loading; //atribuindo o spinner a variavel loading
-
+  adm:boolean=true;
 
   constructor( 
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +56,9 @@ export class PerfilComponent implements OnInit {
     if(this.formularioPerfil.controls["email"].hasError('required')){
       return this.error;
     }
+
+    // if(this.formularioPerfil.controls)
+
     return this.formularioPerfil.controls["email"].hasError('email') ? "E-mail inválido" : '';
 
   }
@@ -118,6 +124,55 @@ export class PerfilComponent implements OnInit {
     })
 
   }
+
+   //----------------mesma coisa da função de dialog abaixo
+   public excluirUsuarioComum(usuario?: UsuarioInterface){
+    const text = `${"usuario.nome"}, Você realmente deseja excluir o seu Cadastro?`
+    const idTemporario =10;
+    this.excludeDialog(idTemporario,text)
+  }
+
+  /////////////////////
+  //dialog
+  // ------------------------para terminar essa função preciso que ja esteja setado o usuario no login
+  excludeDialog(id:number,text:string): void {
+    let enterAnimationDuration='500ms';
+    let exitAnimationDuration='500ms';
+
+    const dialogRef = this.dialog.open(ExcluirDialogComponent, {
+      width: '30%',
+      height:'30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:text
+    })
+
+    dialogRef.afterClosed().subscribe(boolean => {
+      if(boolean){
+        this.usuarioService.excluirUsuario(id).subscribe({
+          next:()=>{
+            this.ngOnInit()
+          },
+          error:()=>{
+            alert("Erro ao excluir")
+          }
+        })
+      }
+    })
+  }
+
+
+  // verificarEmailRepetido(usuario: UsuarioInterface){
+
+  //   for (let i = 0; i < this.usuarios.length; i++) {
+  //     if(this.usuarios[i].email == usuario.email){
+  //       return 0;
+  //     } 
+  //   }
+  //   return 1;
+  // }
+
+
 
   //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
 
