@@ -36,12 +36,14 @@ export class CadastroComponent implements OnInit {
     this.usuarioService.lerUsuarios().subscribe({
       next: (usuarios: UsuarioInterface[]) => {
         this.usuarios = usuarios;
+        console.log(this.usuarios);
       },
       error: () => {
         this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
       }
     })
 
+  
   }
 
   //----------------------Função para validação do e-mail (error) -----
@@ -63,11 +65,27 @@ export class CadastroComponent implements OnInit {
     return this.formularioCadastro.controls["confirmarSenha"].hasError('camposDivergentes') ? 'As senhas devem ser iguais' : ''
   }
 
+  verificarEmail(usuario: UsuarioInterface){
+
+    for (let i = 0; i < this.usuarios.length; i++) {
+      if(this.usuarios[i].email === this.formularioCadastro.controls["email"].value){
+        console.log("email já cadastrado");
+        // this.formularioCadastro.controls["email"].setErrors({emailExistente: true})
+        return false;
+      }
+    }
+    // return this.formularioCadastro.controls["email"].hasError('emailExistente') ? "E-mail já cadastrado" : '';
+    return true;
+
+  }
+
 
 
 //----------------------Função Para Salvar Usuario na locadora (falta salvar no json)
 
   salvarDadosUsuario(){
+
+    
 
     this.usuarioService.showLoading();
 
@@ -82,21 +100,30 @@ export class CadastroComponent implements OnInit {
 
     const usuario: UsuarioInterface = {id: id, nome: nome, tel: tel, email: email, foto: foto, senha: senha, adm: adm};
 
+    if (this.verificarEmail(usuario)) {
+      this.usuarioService.salvarUsuario(usuario).subscribe({
+        next: () =>{
+          // console.log(this.usuarios);
+          // console.log("Cadastrado com sucesso");
+          // this.ngOnInit();
+          this.usuarioService.hideLoading();
+          this.alertaDados("sucesso_cadastrar")
+        },
+        error: () =>{
+          // console.log("Erro ao Salvar Usuario");
+          this.usuarioService.hideLoading();
+          this.alertaDados("falha_cadastrar");
+        }
+      });
 
-    this.usuarioService.salvarUsuario(usuario).subscribe({
-      next: () =>{
-        // console.log(this.usuarios);
-        // console.log("Cadastrado com sucesso");
-        // this.ngOnInit();
-        this.usuarioService.hideLoading();
-        this.alertaDados("sucesso_cadastrar")
-      },
-      error: () =>{
-        // console.log("Erro ao Salvar Usuario");
-        this.usuarioService.hideLoading();
-        this.alertaDados("falha_cadastrar");
-      }
-    });
+    }else{
+      this.usuarioService.hideLoading();
+      this.alertaDados("email_existente");
+      
+    }
+    
+
+
 
 
   }
@@ -117,6 +144,9 @@ export class CadastroComponent implements OnInit {
 
     return maiorId;
   }
+
+
+
 
   //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
   alertaDados(tipoExecucao: String){
@@ -173,6 +203,13 @@ export class CadastroComponent implements OnInit {
 
       case "erro_generico":
         this.snackBar.open("Erro :(", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "email_existente":
+        this.snackBar.open("E-mail já existente, por favor realize login", undefined, {
           // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })

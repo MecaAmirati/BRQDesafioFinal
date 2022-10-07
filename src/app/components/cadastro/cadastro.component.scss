@@ -60,8 +60,16 @@ mat-form-field input{
 }
 
 .containerBotao{
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    margin-top: 3%;
+    align-items: center;
+}
+
+.containerBotao a{
+    margin-top: 1%;
+    text-decoration: none;
+    color: red;
 }
 
 .containerBotao button{

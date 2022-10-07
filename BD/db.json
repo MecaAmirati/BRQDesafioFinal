@@ -35,6 +35,15 @@
       "foto": "foto",
       "senha": "123",
       "adm": false
+    },
+    {
+      "id": 6,
+      "nome": "rafa",
+      "tel": "123",
+      "email": "teste@teste4",
+      "foto": "foto",
+      "senha": "123",
+      "adm": false
     }
   ],
   "locadoras": [
