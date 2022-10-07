@@ -32,8 +32,8 @@
                                 <div>
                                     <button type="submit" class="botaoEditarPerfil" [disabled]="!formularioPerfil.valid" (click)="editarPerfil()"> Atualizar </button>
                                 </div>
-                                <div>
-                                    <button *ngIf="adm" type="submit" class="botaoExcluirUsuario" (click)="excluirUsuarioComum()">Excluir Cadastro</button>
+                                <div *ngIf="adm">
+                                    <button  type="submit" class="botaoExcluirUsuario" (click)="excluirUsuarioComum()">Excluir Cadastro</button>
                                 </div> 
                             </div>
                     </div>

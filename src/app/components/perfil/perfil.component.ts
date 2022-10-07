@@ -50,28 +50,37 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  //----------------------Função para validação do e-mail (error) -----
+  //----------------------Funções para validação do e-mail -----
   validaEmail(): String{
 
     if(this.formularioPerfil.controls["email"].hasError('required')){
       return this.error;
     }
-
-    // if(this.formularioPerfil.controls)
-
     return this.formularioPerfil.controls["email"].hasError('email') ? "E-mail inválido" : '';
 
   }
 
+  verificarEmail(usuario: UsuarioInterface){
+
+    for (let i = 0; i < this.usuarios.length; i++) {
+      if(this.usuarios[i].email === this.formularioPerfil.controls["email"].value){
+        console.log("email já cadastrado");
+        return false;
+      }
+    }
+    return true;
+  }
+
   // ----------------------Função para excluir o Perfil no BD -----
   excluirUsuario(id: any){
+
     this.usuarioService.showLoading();
     this.usuarioService.excluirUsuario(id).subscribe({
       next: () => {
         // console.log("Usuario excluido");
         this.ngOnInit();
         this.usuarioService.hideLoading();
-        this.alertaDados("sucesso_excluir")
+        this.alertaDados("sucesso_excluir");
       },
       error: () => {
         this.usuarioService.hideLoading();
@@ -83,6 +92,7 @@ export class PerfilComponent implements OnInit {
 
   //-----------------------Função para puxar do card para o Input--------
   puxarParaInput(usuario: UsuarioInterface){
+
     this.usuarioService.showLoading();
     this.formularioPerfil.controls['nome'].setValue(usuario.nome);
     this.formularioPerfil.controls['tel'].setValue(usuario.telefone);
@@ -108,25 +118,42 @@ export class PerfilComponent implements OnInit {
       adm: this.usuarioSelecionado.adm
     };
     this.usuarioService.showLoading();
-    this.usuarioService.updateUsuario(perfilAtual).subscribe({
-      next: () => {
-      //  console.log("Usuario editado");
-       this.ngOnInit();
-       this.usuarioService.hideLoading();
-       this.alertaDados("sucesso_editar");
-      },
-      error: () => {
-        // console.log("Erro ao editar");
+
+    if(perfilAtual.email != this.usuarioSelecionado.email){
+
+      if (this.verificarEmail(perfilAtual)) {
+        this.usuarioService.updateUsuario(perfilAtual).subscribe({
+          next: () => {
+          //  console.log("Usuario editado");
+           this.ngOnInit();
+           this.usuarioService.hideLoading();
+           this.alertaDados("sucesso_editar");
+          },
+          error: () => {
+            // console.log("Erro ao editar");
+            this.usuarioService.hideLoading();
+            this.alertaDados("falha_editar");
+          }
+        })
+        
+      }else{
         this.usuarioService.hideLoading();
-        this.alertaDados("falha_editar");
-
+        this.alertaDados("email_existente_perfil");
+        console.log("existente");
+        
       }
-    })
+      this.usuarioService.hideLoading();
+      this.alertaDados("email_existente_perfil");
+      console.log();
+      
+    }
 
+    this.usuarioService.hideLoading();
+    
   }
 
-   //----------------mesma coisa da função de dialog abaixo
-   public excluirUsuarioComum(usuario?: UsuarioInterface){
+  //----------------mesma coisa da função de dialog abaixo
+  public excluirUsuarioComum(usuario?: UsuarioInterface){
     const text = `${"usuario.nome"}, Você realmente deseja excluir o seu Cadastro?`
     const idTemporario =10;
     this.excludeDialog(idTemporario,text)
@@ -160,19 +187,6 @@ export class PerfilComponent implements OnInit {
       }
     })
   }
-
-
-  verificarEmailRepetido(usuario: UsuarioInterface){
-
-    for (let i = 0; i < this.usuarios.length; i++) {
-      if(this.usuarios[i].email == usuario.email){
-        return 1 ;
-      } 
-    }
-    return 0;
-
-  }
-
 
 
   //----------------------------------------- função para tratamento de erro SnackBar -------------------------------
@@ -232,6 +246,13 @@ export class PerfilComponent implements OnInit {
       case "erro_generico":
         this.snackBar.open("Erro :(", undefined, {
           // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "email_existente_perfil":
+        this.snackBar.open("Este email já está em uso, Tente outro", undefined, {
+          duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;

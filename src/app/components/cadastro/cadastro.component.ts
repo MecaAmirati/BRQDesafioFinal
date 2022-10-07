@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UsuarioInterface } from 'src/app/model/usuario.model';
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
+import { PerfilComponent } from '../perfil/perfil.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,6 +22,7 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
+    private router: Router
 
   ) { }
 
@@ -85,11 +88,9 @@ export class CadastroComponent implements OnInit {
 
   salvarDadosUsuario(){
 
-    
-
     this.usuarioService.showLoading();
 
-    const id = this.nextId()
+    const id = this.nextId();
 
     const nome = this.formularioCadastro.controls["nome"].value;
     const tel = this.formularioCadastro.controls["tel"].value;
@@ -107,7 +108,8 @@ export class CadastroComponent implements OnInit {
           // console.log("Cadastrado com sucesso");
           // this.ngOnInit();
           this.usuarioService.hideLoading();
-          this.alertaDados("sucesso_cadastrar")
+          this.alertaDados("sucesso_cadastrar");
+          this.router.navigate(['/perfil']);
         },
         error: () =>{
           // console.log("Erro ao Salvar Usuario");
@@ -121,10 +123,6 @@ export class CadastroComponent implements OnInit {
       this.alertaDados("email_existente");
       
     }
-    
-
-
-
 
   }
 
@@ -210,7 +208,7 @@ export class CadastroComponent implements OnInit {
 
       case "email_existente":
         this.snackBar.open("E-mail já existente, por favor realize login", undefined, {
-          // duration: 20000,
+          duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
