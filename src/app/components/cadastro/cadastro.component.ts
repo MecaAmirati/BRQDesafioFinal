@@ -43,7 +43,7 @@ export class CadastroComponent implements OnInit {
       }
     })
 
-  
+
   }
 
   //----------------------Função para validação do e-mail (error) -----
@@ -85,7 +85,7 @@ export class CadastroComponent implements OnInit {
 
   salvarDadosUsuario(){
 
-    
+
 
     this.usuarioService.showLoading();
 
@@ -96,9 +96,9 @@ export class CadastroComponent implements OnInit {
     const email = this.formularioCadastro.controls["email"].value;
     const foto = "foto";
     const senha = this.formularioCadastro.controls["senha"].value;
-    const adm = false;
+    //const adm = false;
 
-    const usuario: UsuarioInterface = {id: id, nome: nome, telefone: tel, email: email, foto: foto, senha: senha, adm: adm};
+    const usuario: UsuarioInterface = {id: id, nome: nome, telefone: tel, email: email, foto: foto, senha: senha};
 
     if (this.verificarEmail(usuario)) {
       this.usuarioService.salvarUsuario(usuario).subscribe({
@@ -119,9 +119,9 @@ export class CadastroComponent implements OnInit {
     }else{
       this.usuarioService.hideLoading();
       this.alertaDados("email_existente");
-      
+
     }
-    
+
 
 
 
@@ -210,7 +210,7 @@ export class CadastroComponent implements OnInit {
 
       case "email_existente":
         this.snackBar.open("E-mail já existente, por favor realize login", undefined, {
-          // duration: 20000,
+          duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;

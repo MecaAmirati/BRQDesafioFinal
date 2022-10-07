@@ -6,9 +6,9 @@
                 <div class="titleCadastro">
                     <mat-card-title> Cadastrar </mat-card-title>
                 </div>
-                
+
                 <form [formGroup]="formularioCadastro" (ngSubmit)="salvarDadosUsuario()">
-                    
+
                     <div class="formCadastro">
                         <mat-form-field appearance="fill">
                             <mat-label>Nome completo</mat-label>
@@ -40,14 +40,14 @@
                             <mat-error>{{error}}</mat-error>
                         </mat-form-field>
                     </div>
-                    
+
                     <div class="containerBotao">
                         <!-- <a routerLink="../perfil"> //esta redirecionando antes de salvar -->
                             <button mat-button type="submit" [disabled]="!formularioCadastro.valid"  > Cadastrar </button>
                             <a routerLink="../login">já tenho um cadastro</a>
                         <!-- </a>                                                                 *ngIf=""  formularioCadastro.valid == router.routerState.snapshot.url == '/perfil'           -->
                     </div>
-                     
+
                 </form>
             </mat-card-content>
         </mat-card>

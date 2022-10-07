@@ -105,7 +105,7 @@ export class PerfilComponent implements OnInit {
       email: this.formularioPerfil.controls['email'].value,
       foto: this.usuarioSelecionado.foto,
       senha: this.usuarioSelecionado.senha,
-      adm: this.usuarioSelecionado.adm
+      //adm: this.usuarioSelecionado.adm
     };
     this.usuarioService.showLoading();
     this.usuarioService.updateUsuario(perfilAtual).subscribe({
