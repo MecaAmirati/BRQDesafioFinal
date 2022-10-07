@@ -135,21 +135,13 @@ export class PerfilComponent implements OnInit {
             this.alertaDados("falha_editar");
           }
         })
-        
       }else{
         this.usuarioService.hideLoading();
         this.alertaDados("email_existente_perfil");
-        console.log("existente");
-        
       }
       this.usuarioService.hideLoading();
-      this.alertaDados("email_existente_perfil");
-      console.log();
-      
     }
-
     this.usuarioService.hideLoading();
-    
   }
 
   //----------------mesma coisa da função de dialog abaixo
