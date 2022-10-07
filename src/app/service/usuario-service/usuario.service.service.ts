@@ -14,7 +14,7 @@ export class UsuarioServiceService {
   ) { }
 
   //---- fazendo o progress spiner
-  private _loading = new BehaviorSubject<boolean>(false) 
+  private _loading = new BehaviorSubject<boolean>(false)
   public readonly loading = this._loading.asObservable();
 
 

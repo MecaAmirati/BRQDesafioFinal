@@ -26,6 +26,15 @@
       "foto": "foto",
       "senha": "123",
       "adm": false
+    },
+    {
+      "id": 4,
+      "nome": "admin",
+      "tel": "asda",
+      "email": "adm@adm",
+      "foto": "foto",
+      "senha": "adm",
+      "adm": true
     }
   ],
   "locadoras": [

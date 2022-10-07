@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit {
   loading = this.usuarioService.loading; //atribuindo o spinner a variavel loading
 
 
-  constructor( 
+  constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
@@ -49,7 +49,7 @@ export class PerfilComponent implements OnInit {
 
   //----------------------Função para validação do e-mail (error) -----
   validaEmail(): String{
-    
+
     if(this.formularioPerfil.controls["email"].hasError('required')){
       return this.error;
     }
@@ -76,7 +76,7 @@ export class PerfilComponent implements OnInit {
   }
 
   //-----------------------Função para puxar do card para o Input--------
-  puxarParaInput(usuario: UsuarioInterface){ 
+  puxarParaInput(usuario: UsuarioInterface){
     this.usuarioService.showLoading();
     this.formularioPerfil.controls['nome'].setValue(usuario.nome);
     this.formularioPerfil.controls['tel'].setValue(usuario.tel);
@@ -86,7 +86,7 @@ export class PerfilComponent implements OnInit {
 
     this.usuarioService.hideLoading();
     console.log(usuario);
-    
+
   }
 
   //----------------------Função de atualizar Perfil
@@ -113,7 +113,7 @@ export class PerfilComponent implements OnInit {
         // console.log("Erro ao editar");
         this.usuarioService.hideLoading();
         this.alertaDados("falha_editar");
-        
+
       }
     })
 
@@ -179,7 +179,7 @@ export class PerfilComponent implements OnInit {
           panelClass: ['snackbar-tema-falha']
         })
       break;
-    
+
       default:
         this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
           duration: 2000,
