@@ -1,28 +1,29 @@
 <app-header></app-header>
 <main>
-    <mat-card class="card_login">
-        <mat-card-title>
-            <h1 class="title">Login</h1>
-        </mat-card-title>
-        <form actions="">
-            <mat-form-field appearance="fill" class="input">
-                <mat-label>Email:</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="input">
-                <mat-label>Senha:</mat-label>
-                <input matInput>
-            </mat-form-field>
+  <mat-card class="card_login">
+    <mat-card-title>
+      <h1 class="title">Login</h1>
+    </mat-card-title>
+    <form [formGroup]="formularioLogin" (ngSubmit)="LoginUsuario()" >
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>Email:</mat-label>
+        <input matInput formControlName="email"  type="text" name="email" required>
+        <mat-error *ngIf="formularioLogin.get('email')?.hasError('required') || formularioLogin.get('email')?.hasError('email')"  >{{validacaoEmail()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input">
+        <mat-label>Senha:</mat-label>
+        <input matInput type="password" formControlName="senha" name="senha" required>
+        <mat-error *ngIf="formularioLogin.get('senha')?.hasError('required') " >{{Validacao()}}</mat-error>
+      </mat-form-field>
 
-            <div class="div_btn">
-              <a routerLink="../perfil"><button mat-raised-button color="warn" class="btn_login">Login</button></a>
-            </div>
-        </form>
-        <div class="links">
-
-          <a mat-button routerLink="../home">Esqueci a senha</a>
-          <a mat-button routerLink="../cadastro">Crie a sua conta aqui</a>
-        </div>
-    </mat-card>
+      <div class="div_btn">
+        <button mat-raised-button type="submit" color="warn" class="btn_login">Login</button>
+      </div>
+    </form>
+    <div class="links">
+      <a mat-button routerLink="../home">Esqueci a senha</a>
+      <a mat-button routerLink="../cadastro">Crie a sua conta aqui</a>
+    </div>
+  </mat-card>
 </main>
 <app-footer></app-footer>

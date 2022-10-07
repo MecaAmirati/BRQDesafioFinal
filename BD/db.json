@@ -20,30 +20,12 @@
     },
     {
       "id": 4,
-      "nome": "Teste3",
-      "tel": "565656",
-      "email": "rafa@gmil",
+      "nome": "admin",
+      "tel": "asda",
+      "email": "adm@adm",
       "foto": "foto",
-      "senha": "123",
-      "adm": false
-    },
-    {
-      "id": 5,
-      "nome": "rafa",
-      "tel": "123",
-      "email": "teste@teste3",
-      "foto": "foto",
-      "senha": "123",
-      "adm": false
-    },
-    {
-      "id": 6,
-      "nome": "rafa",
-      "tel": "123",
-      "email": "teste@teste4",
-      "foto": "foto",
-      "senha": "123",
-      "adm": false
+      "senha": "adm",
+      "adm": true
     }
   ],
   "locadoras": [

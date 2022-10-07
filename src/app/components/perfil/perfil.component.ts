@@ -167,7 +167,7 @@ export class PerfilComponent implements OnInit {
     for (let i = 0; i < this.usuarios.length; i++) {
       if(this.usuarios[i].email == usuario.email){
         return 1 ;
-      } 
+      }
     }
     return 0;
 
