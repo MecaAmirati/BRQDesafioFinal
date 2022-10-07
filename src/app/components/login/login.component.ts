@@ -1,8 +1,7 @@
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
 import { Component, OnInit,Injectable, } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from "@angular/router";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from "@angular/router";
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 
 @Component({
@@ -41,6 +40,7 @@ export class LoginComponent implements OnInit {
   VerificacaoAdm(usuarioEmail:string){
 
     switch (usuarioEmail) {
+      //email para ser admin
       case 'adm@adm':
         return true
 
@@ -53,20 +53,18 @@ export class LoginComponent implements OnInit {
   LoginUsuario(){
     let email:string=this.formularioLogin.controls["email"].value
     let senha:string=this.formularioLogin.controls["senha"].value
+    //procura o mesmo email da lista do usuario
     let usuario=this.listaUsuarios.filter((user:any)=>user.email==email)
-    console.log(usuario);
-
+//setar o usuario caso n encontre o email na lista
     if(usuario[0]==null){
-      console.log('0');
 
       usuario[0]={senha:"none"}
     }
-    console.log(usuario);
 
-    switch (usuario[0].senha) {
-      case senha:
-        this.admin.DataAdmin.next(this.VerificacaoAdm(usuario[0].email))
-        this.router.navigate(['/perfil'])
+    switch (usuario[0].senha) {//senha do usuario
+      case senha://caso for a mesma senha ela aceita o login
+        this.admin.DataAdmin.next(this.VerificacaoAdm(usuario[0].email))//setar a variavel global do admin
+        this.router.navigate(['/perfil'])//vai para a pagina login
         break
       default:
         console.log('senha errada')
@@ -78,12 +76,9 @@ export class LoginComponent implements OnInit {
     return `Este campo é obrigatório`
   }
   validacaoEmail(): String{
-
     if(this.formularioLogin.controls["email"].hasError('required')){
       return "Este campo é obrigatório";
     }
-
-
     return this.formularioLogin.controls["email"].hasError('email') ? "E-mail inválido" : '';
   }
 
