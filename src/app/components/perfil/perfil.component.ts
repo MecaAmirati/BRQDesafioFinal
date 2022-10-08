@@ -1,3 +1,5 @@
+import { LoginComponent } from './../login/login.component';
+import { AdminServiceService } from './../../service/admin-service/admin-service.service';
 import { identifierName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,29 +9,40 @@ import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.s
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
-
   private usuarioSelecionado!: UsuarioInterface
   formularioPerfil!: FormGroup;
   error ="Este campo é obrigatório";
   usuarios: UsuarioInterface[] = [];
   loading = this.usuarioService.loading; //atribuindo o spinner a variavel loading
-  adm:boolean=true;
 
+
+  adm:boolean=true;
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    public adminService: AdminServiceService,
+
+   ){}
+
 
   ngOnInit(): void {
-
+    this.adminService.GetAdmin().subscribe(dado=>{
+      this.adm=dado
+      console.log(this.adm,'q');
+    })
+    console.log(this.adm,'43');
+    if (this.adm==false){//caso o usuario não for admin, vai chamar a função
+      this.DadoPerfilNaoAdmin()
+    }
     this.formularioPerfil = this.formBuilder.group({
       nome: new FormControl('', [Validators.required]),
       tel: new FormControl('', [Validators.required]),
@@ -46,10 +59,20 @@ export class PerfilComponent implements OnInit {
         this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
       }
     })
-
-
   }
-
+  // ----------------------Função para colocar os dados no input do usuário não admin
+  DadoPerfilNaoAdmin(){
+    this.adminService.GetId().subscribe(id=>{//pega o id passado do login
+      this.usuarioService.lerUsuarioById(id).subscribe({//pega o restante das informações
+        next:(usuario)=>{
+          this.formularioPerfil.controls["nome"].setValue(usuario.nome)
+          this.formularioPerfil.controls["tel"].setValue(usuario.telefone)
+          this.formularioPerfil.controls["email"].setValue(usuario.email)
+        },
+        error:()=>{this.alertaDados("falha_pegar_dados")}
+      })
+    })
+  }
   //----------------------Função para validação do e-mail (error) -----
   validaEmail(): String{
 
@@ -93,11 +116,12 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.hideLoading();
     console.log(usuario);
 
+
   }
 
   //----------------------Função de atualizar Perfil
   editarPerfil(){
-
+    console.log(this.adm,'adm1')
     let perfilAtual: UsuarioInterface = {
       id: this.usuarioSelecionado.id,
       nome: this.formularioPerfil.controls['nome'].value,

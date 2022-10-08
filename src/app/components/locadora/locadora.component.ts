@@ -94,7 +94,6 @@ export class LocadoraComponent implements OnInit {
     })
   }
   DialogOpen(id:number){
-    
   }
 
 
