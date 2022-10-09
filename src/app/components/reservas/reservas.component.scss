@@ -10,20 +10,20 @@ h1{
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
   }
-// border-bottom: 1px solid black ;
+
+// mat-form-field{
+//     padding: 0;    
+// }
 
 #containerDados{
     border: 1px solid #9F9999;
     border-radius: 10px;
     margin: auto;
     padding: 70px;
-    // display: flex;
-    // flex-direction: column;
 
 }
 
 #nomeCarro{
-    background: #DCE0E2;
     border-radius: 10px;
     font-size: 24px;
     margin-left: 70px;
@@ -33,7 +33,6 @@ h1{
 }
 
 #tipoCarro{
-    background: #DCE0E2;
     border-radius: 10px;
     font-size: 24px;
     margin: auto;
@@ -50,7 +49,6 @@ h1{
 
 #dataReserva, #horaReserva, #dataDevolucao{
     width: 320px;
-    background: #DCE0E2;
     border-radius: 10px;
     font-size: 24px;
 
@@ -58,8 +56,20 @@ h1{
 
 #boxLocadora{
     display: flex;
-    margin-top: 40px;
+    justify-content: space-between;
+    // margin-top: 40px;
 
+}
+
+#filial{
+    border-radius: 10px;
+    font-size: 24px;
+    width: 584px;
+    margin-top: 20px;
+}
+
+.btnLogin{
+    margin-top: 20px;
 }
 
 h2{
@@ -70,4 +80,112 @@ h2{
     font-weight: bold;
     width: 634px;
     border-bottom: 1px solid black;
+    margin-bottom: 44px;
 }
+
+//API
+
+#containerDadosAPI{
+    max-width: 1140px;
+}
+
+.imgCarro{
+    width: 350px;
+    height: 200px;
+    margin-right: 75px;
+    text-align: center;
+}
+
+// #btnAPI button{
+//     background-color: white;
+//     border: none;
+// }
+
+#cardAPI{
+    // margin-bottom: 20px;
+    width: 1140px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.botaoCard{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+}
+
+.boxCard{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-right: 240px;
+    // margin-right: 125px;
+}
+
+.boxCard h3{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.boxCard p{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+}
+
+.btnExcluir{
+    margin-top: 110px;
+}
+
+.btnExcluir:hover{
+    background: #DB1812;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+}
+
+.botaoCard:hover{
+    background-color: #f9f9fa;
+
+}
+
+::ng-deep .mat-card {
+    padding: 0 !important;
+}
+
+::ng-deep .mat-form-field .mat-form-field-flex{//muda a cor somente da da parte do input
+    background: #DCE0E2;
+  }
+  
+// ::ng-deep .mat-form-field-underline:focus,
+// ::ng-deep .mat-form-field-underline:hover{
+// display:inline-block;
+// }
+
+// ::ng-deep .mat-form-field-ripple{//cor do underline quando tem o hover
+// background-color: black;
+// }
+// ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple{ //cor do underline  quando seleciona
+// background-color: black;
+// }
+// ::ng-deep .mat-form-field-underline::before{//cor do underline antes de clicar/inicia a pagina
+// background-color: #DCE0E2 !important;
+// }
+
+// //Cor do label
+// ::ng-deep .mat-form-field-label-wrapper label{//cor inicial da label
+// color:black;
+// }
+// ::ng-deep .mat-form-field.mat-focused .mat-form-field-label{//cor do label quando o field for  selecionado
+// color: #9F9999;
+// }
+
+// Controle da linha do underline
+//   ::ng-deep .mat-form-field-underline{//Apaga a underline
+//     //display: none;
+//   }

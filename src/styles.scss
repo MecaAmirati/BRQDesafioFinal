@@ -60,6 +60,17 @@ body { margin: 0; }
     font-size: 24px;
 }
 
+.btnExcluir{
+    border: 1px solid #DB1812;
+    font-family: 'Quicksand';
+    background: white;
+    border-radius: 5px;
+    color: #DB1812;
+    width: 250px;
+    height: 70px;
+    font-size: 24px;
+}
+
 //----------- SnackBar
 
 .snackbar-tema-sucesso{ //snackBar para sucesso

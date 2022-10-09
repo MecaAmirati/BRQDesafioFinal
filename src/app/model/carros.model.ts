@@ -7,4 +7,3 @@ export interface CarroInterface{
   tipoCarroId:number;
   //foto:string;
 }
-
