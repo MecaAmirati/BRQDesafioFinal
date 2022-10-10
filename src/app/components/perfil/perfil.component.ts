@@ -262,7 +262,7 @@ export class PerfilComponent implements OnInit {
       break;
       case "falha_pegar_dados":
         this.snackBar.open("Falha ao pegar os dados do usuário", undefined, {
-          // duration: 20000,
+          duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;

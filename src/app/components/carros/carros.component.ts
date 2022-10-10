@@ -9,6 +9,7 @@ import { CarrosService } from 'src/app/service/carros-service/carros.service.ser
 import { MatDialog } from '@angular/material/dialog';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { CarrosEditarDialogComponent } from '../carros-editar-dialog/carros-editar-dialog.component';
+import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 
 @Component({
   selector: 'app-carros',
@@ -20,17 +21,22 @@ export class CarrosComponent implements OnInit {
   carros:CarroInterface[]=[];
   tiposCarros:TipoCarroInterface[]=[];
   locadoras:LocadoraInterface[]=[]
-  // adm:boolean=true;
+  adm:boolean=true;
 
   constructor(
     private formBuilder:FormBuilder,
     private carroService:CarrosService,
     private tipoService:TipocarroServiceService,
     private locadoraService:LocadoraServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private admService: AdminServiceService
   ) { }
 
   ngOnInit(): void {
+    //variavel para ver se o usuario é adm ou não
+    this.admService.GetAdmin().subscribe(dadoAdm=>{
+      this.adm=dadoAdm
+    })
     this.form=this.formBuilder.group({
       carroNomeInput:new FormControl('',[Validators.required]),
       tipoSelect:new FormControl('',[Validators.required]),

@@ -11,7 +11,7 @@
     <!-- //só vai aparecer nas paginas:carros,reservas,locadora,perfil -->
   <nav *ngIf="router.routerState.snapshot.url == '/carros' || router.routerState.snapshot.url == '/reservas' || router.routerState.snapshot.url == '/locadora' || router.routerState.snapshot.url == '/perfil'" >
     <ul>
-      <li><a routerLink="../locadora">Locadoras</a></li>
+      <li *ngIf="adm"><a routerLink="../locadora">Locadoras</a></li>
       <li><a routerLink="../perfil">Perfil</a></li>
       <li><a routerLink="../home">Sair</a></li>
     </ul>
