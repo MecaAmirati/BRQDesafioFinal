@@ -59,7 +59,16 @@ html, body { height: 100%; margin: 0; }
   width: 250px;
   height: 70px;
   font-size: 25px;
-  transition: all 0.4s linear;
+  transition: all 0.2s linear;
+}
+
+.btnLogin:hover, .btnCadastrar:hover{
+  transition: all 0.2s linear;
+  transform: translateY(-10px) scale(1.005) translateZ(0);
+  box-shadow: 0 12px 18px rgba(0,0,0,0.11);
+  border: 1px solid #DB1812;
+  background: white;
+  color: #DB1812;
 }
 
 .btnExcluir{
@@ -69,11 +78,11 @@ html, body { height: 100%; margin: 0; }
   width: 250px;
   height: 70px;
   font-size: 24px;
-  background-image: linear-gradient(#DB1812, #DB1812),linear-gradient(white, white);
+  transition: all .3s ease-out;
   background-size: 0 100%, auto;
   background-repeat: no-repeat;
   background-position: center center;
-  transition: all .3s ease-out;
+  background-image: linear-gradient(#DB1812, #DB1812), linear-gradient(white, white);
 }
 
 .btnExcluir:hover{
@@ -82,10 +91,30 @@ html, body { height: 100%; margin: 0; }
   background-size: 100% 100%, auto;
 }
 
+.btnEditar{
+  border: 1px solid #DB1812;
+  border-radius: 5px;
+  color: white;
+  width: 250px;
+  height: 70px;
+  font-size: 24px;
+  transition: all .3s ease-out;
+  background-size: 0 100%, auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: linear-gradient(white, white), linear-gradient(#DB1812, #DB1812);
+}
+
+.btnEditar:hover{
+  border-radius: 5px;
+  color: #DB1812;
+  background-size: 100% 100%, auto;
+}
+
 //----------- SnackBar
 
 .snackbar-tema-sucesso{ //snackBar para sucesso
-  background-color: #150ee7;
+  background-color: #0dc143;
   color: white;
   height: 50px;
   text-align: center;
@@ -176,3 +205,7 @@ width: 90%;
 .marginAuto{
   margin:auto;
 }
+
+/////////////////////////////////////////
+//////////////////TESTE//////////////////
+/////////////////////////////////////////

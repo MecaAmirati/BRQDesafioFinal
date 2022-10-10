@@ -10,19 +10,19 @@
 
                 <form [formGroup]="formularioPerfil">
                     <div class="formPerfil">
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="fill" class="input">
                                 <mat-label>Nome</mat-label>
                                 <input formControlName="nome" matInput type="text" name="nome" placeholder="Maria de Fátma Muniz">
                                 <mat-error>{{error}}</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="fill" class="input">
                                 <mat-label>Telefone</mat-label>
                                 <input formControlName="tel" matInput type="text" name="tel" placeholder="(11) 9999-9090">
                                 <mat-error>{{error}}</mat-error>
                             </mat-form-field>
 
-                            <mat-form-field appearance="fill">
+                            <mat-form-field appearance="fill" class="input">
                                 <mat-label>E-mail</mat-label>
                                 <input formControlName="email" matInput type="text" name="email" placeholder="maria@gmail.com">
                                 <mat-error *ngIf="formularioPerfil.get('email')?.hasError('required') || formularioPerfil.get('email')?.hasError('email')"> {{validaEmail()}} </mat-error>
@@ -30,10 +30,10 @@
 
                             <div class="containerBotao">
                                 <div>
-                                    <button type="submit" class="botaoEditarPerfil" [disabled]="!formularioPerfil.valid" (click)="editarPerfil()"> Atualizar </button>
+                                    <button type="submit" class="btnCadastrar" [disabled]="!formularioPerfil.valid" (click)="editarPerfil()"> Cadastrar </button>
                                 </div>
                                 <div>
-                                    <button *ngIf="adm" type="submit" class="botaoExcluirUsuario" (click)="excluirUsuarioComum()">Excluir Cadastro</button>
+                                    <button *ngIf="adm" type="submit" class="btnExcluir" (click)="excluirUsuarioComum()">Excluir Cadastro</button>
                                 </div> 
                             </div>
                     </div>
@@ -68,7 +68,7 @@
                     </div>
 
                     <div>
-                        <button class="botaoExcluirUsuario" (click)="excluirUsuario(usuario.id)" >Excluir usúario</button>
+                        <button class="btnExcluir" (click)="excluirUsuario(usuario.id)" >Excluir usúario</button>
                     </div>
                 </button>
             </mat-card>

@@ -8,26 +8,26 @@ section div{
     justify-content: center;
 }
 
-mat-card{
-    width: 790px;
-    height: 825px;
-    border-radius: 10px;
-    margin-bottom: 3%;
-    border: 1px solid #9F9999
-}
+// mat-card{
+//     width: 790px;
+//     height: 825px;
+//     border-radius: 10px;
+//     margin-bottom: 3%;
+//     border: 1px solid #9F9999
+// }
 
 .titleCadastro{
     margin-bottom: 3%;
 }
 
-mat-card-title{
-    font-family: Quicksand;
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 50px;
-    letter-spacing: 0em;
-    text-align: left;
-}
+// mat-card-title{
+//     font-family: Quicksand;
+//     font-size: 40px;
+//     font-weight: 700;
+//     line-height: 50px;
+//     letter-spacing: 0em;
+//     text-align: left;
+// }
 
 
 .formCadastro{
@@ -37,27 +37,26 @@ mat-card-title{
     margin-right: 8%;
 }
 
-mat-form-field{
-    font-family: Quicksand;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 30px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-bottom: 1%;
-}
+// mat-form-field{
+//     font-family: Quicksand;
+//     font-size: 24px;
+//     font-weight: 400;
+//     line-height: 30px;
+//     letter-spacing: 0em;
+//     text-align: left;
+//     margin-bottom: 1%;
+// }
 
-mat-form-field input{
-    width: 669px;
-    border-radius: 10px;
-    font-family: Quicksand;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 30px;
-    letter-spacing: 0em;
-    text-align: left;
-    
-}
+// mat-form-field input{
+//     width: 669px;
+//     border-radius: 10px;
+//     font-family: Quicksand;
+//     font-size: 24px;
+//     font-weight: 400;
+//     line-height: 30px;
+//     letter-spacing: 0em;
+//     text-align: left;
+// }
 
 .containerBotao{
     display: flex;
@@ -91,20 +90,20 @@ mat-form-field input{
     background-color: gray;
 }
 
-::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-    background: #DCE0E2;
-    border-radius: 10px !important; 
-}
+// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+//     background: #DCE0E2;
+//     border-radius: 10px !important; 
+// }
 
-::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
-    display: none !important;
+// ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+//     display: none !important;
  
-}
+// }
 
-//------------ Cor do Spinner 
-:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
-    stroke:#DB1812 !important;
-}
+// //------------ Cor do Spinner 
+// :host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+//     stroke:#DB1812 !important;
+// }
 
 .spinner{
     position: fixed;

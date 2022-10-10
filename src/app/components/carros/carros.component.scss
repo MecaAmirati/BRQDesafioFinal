@@ -44,50 +44,25 @@ section{
   height: 50px;
 }
 
-//Controle da linha do underline
-::ng-deep .mat-form-field-underline{//Apaga a underline
-  //display: none;
-}
-::ng-deep .mat-form-field-underline:focus,
-::ng-deep .mat-form-field-underline:hover{
-  display:inline-block;
-}
 
-::ng-deep .mat-form-field-ripple{//cor do underline quando tem o hover
-  background-color: black;
-}
-::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple{ //cor do underline  quando seleciona
-  background-color: black;
-}
-::ng-deep .mat-form-field-underline::before{//cor do underline antes de clicar/inicia a pagina
-  background-color: #DCE0E2 !important;
-}
+// ::ng-deep .mat-form-field-underline:focus,
+// ::ng-deep .mat-form-field-underline:hover{
+//   display:inline-block;
+// }
 
-//Cor do label
-::ng-deep .mat-form-field-label-wrapper label{//cor inicial da label
-  color:black;
-}
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label{//cor do label quando o field for  selecionado
-  color: #9F9999;
-}
+// ::ng-deep .mat-form-field-ripple{//cor do underline quando tem o hover
+//   background-color: black;
+// }
+// ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple{ //cor do underline  quando seleciona
+//   background-color: black;
+// }
+// ::ng-deep .mat-form-field-underline::before{//cor do underline antes de clicar/inicia a pagina
+//   background-color: #DCE0E2 !important;
+// }
 
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {//cor do label quando o field esta em erro
-  //color: rgb(250, 0, 250);
+.widthLocadora{
+  width: 70%;
 }
-
-////////////////////////////////////////////////////////////////
-// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-//     background: #DCE0E2;
-//     border: 1px solid #DCE0E2;
-//     border-radius: 10px !important;
-//     font-size: larger;
-//     margin: 15px 0px;
-//     height: 50px;
-//   }
-
-  .widthLocadora{
-    width: 70%;
-  }
 
 .tipoTitle{
   font-family: 'Montserrat';
@@ -101,12 +76,7 @@ section{
 }
 
 
-.imgCarro{
 
-  //width: auto;
-  //max-height:160px;
-
-}
 
 .mat-card{
   display: flex;
@@ -114,6 +84,37 @@ section{
 }
 
 
-// .tamanhoInput{
-//   height: 100px;
+
+////////////////////////////////////////////////////////////////
+// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+//     background: #DCE0E2;
+//     border: 1px solid #DCE0E2;
+//     border-radius: 10px !important;
+//     font-size: larger;
+//     margin: 15px 0px;
+//     height: 50px;
+//   }
+
+//Controle da linha do underline
+// ::ng-deep .mat-form-field-underline{//Apaga a underline
+//   //display: none;
+// }
+
+// .imgCarro{
+
+//   //width: auto;
+//   //max-height:160px;
+
+// }
+
+//Cor do label
+// ::ng-deep .mat-form-field-label-wrapper label{//cor inicial da label
+//   color:black;
+// }
+// ::ng-deep .mat-form-field.mat-focused .mat-form-field-label{//cor do label quando o field for  selecionado
+//   color: #9F9999;
+// }
+
+// ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {//cor do label quando o field esta em erro
+//   //color: rgb(250, 0, 250);
 // }

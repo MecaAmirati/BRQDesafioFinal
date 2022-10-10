@@ -3,32 +3,32 @@
     <form [formGroup]="form" id="containerDados" >
         <h1>Reservas</h1>
         <div id="boxNome">
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" class="nomeCarro">
                 <mat-label>Nome do Carro</mat-label>
-                <input id="nomeCarro" matInput formControlName="nomeCarro" name="nomeCarro" placeholder="Nome do Carro">
+                <input matInput formControlName="nomeCarro" name="nomeCarro" placeholder="Nome do Carro">
             </mat-form-field>
 
         </div>
         <div id="boxDatas">
-            <mat-form-field appearance="fill" >
+            <mat-form-field  appearance="fill" class="dataReserva">
                 <mat-label>Data reserva:</mat-label>
-                <input id="dataReserva" matInput formControlName="dataReserva" name="dataReserva" placeholder="dd/mm/aaaa">
+                <input matInput   formControlName="dataReserva1" name="dataReserva" placeholder="dd/mm/aaaa">
             </mat-form-field>
-            <mat-form-field  appearance="fill">
+            <mat-form-field appearance="fill" class="horaReserva">
                 <mat-label>Horário da reserva:</mat-label>
-                <input id="horaReserva" matInput formControlName="horaReserva" name="horaReserva" placeholder="ex. 15:00">
+                <input matInput   formControlName="horaReserva1" name="horaReserva" placeholder="ex. 15:00">
             </mat-form-field>
-            <mat-form-field  appearance="fill">
+            <mat-form-field  appearance="fill" class="dataDevolucao">
                 <mat-label>Data da Devolução:</mat-label>
-                <input id="dataDevolucao"  matInput formControlName="dataDevolucao" name="dataDevolucao" placeholder="dd/mm/aaaa">
+                <input matInput    formControlName="dataDevolucao1" name="dataDevolucao" placeholder="dd/mm/aaaa">
             </mat-form-field>
 
         </div>
         <div id="boxLocadora">
-            <mat-form-field>
+            <mat-form-field appearance="fill" >
                 <mat-label>Locadora Filial 1</mat-label>
-                <mat-select id="filial" formControlName="nomeFilial" name="nomeFilial">
-                  <mat-option value="one">First option</mat-option>
+                <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial">
+                    <mat-option value="one">First option</mat-option>
                 </mat-select>
             </mat-form-field>
             <button class="btnLogin"><span>Atualizar</span></button>
