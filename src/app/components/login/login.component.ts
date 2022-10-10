@@ -3,6 +3,7 @@ import { Component, OnInit,Injectable,Output,EventEmitter  } from '@angular/core
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,14 @@ export class LoginComponent implements OnInit {
     email: new FormControl('',[Validators.required, Validators.email]),
     senha: new FormControl('',[Validators.required])
   });
-  CasoAdmin:boolean=false;
+
   listaUsuarios:any=[]
-  @Output() messageEvent = new EventEmitter<boolean>()
+
   constructor( private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private router: Router,
-    private admin: AdminServiceService
-
+    private admin: AdminServiceService,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -33,11 +34,12 @@ export class LoginComponent implements OnInit {
         this.listaUsuarios=usuario
       },
       error:()=>{
-        console.log('erro carregar api')
+        this.alertaDados('erro_bancoDados')
       }
     })
   }
-  VerificacaoAdm(usuarioEmail:string){//função para verificar se o email do login é de admin
+  //-------------função para verificar se o email do login é de admin-----------------
+  VerificacaoAdm(usuarioEmail:string){
     switch (usuarioEmail) {
 
       case 'uiui@ui'://email do admin
@@ -50,26 +52,27 @@ export class LoginComponent implements OnInit {
 
     }
   }
-  LoginUsuario(){
+
+  LoginUsuario(){//--------------função de login do usuario--------------------
     let email:string=this.formularioLogin.controls["email"].value
     let senha:string=this.formularioLogin.controls["senha"].value
     //procura o mesmo email da lista do usuario
     let usuario=this.listaUsuarios.filter((user:any)=>user.email==email) //pegar o id
-    console.log(usuario);
-    usuario=usuario[0]
-    if(usuario==null){//setar o usuario caso n encontre o email na lista, para n ocorrer problema no switch case
 
-      usuario={senha:"none"}
+    usuario=usuario[0]
+    if(usuario==null){//email colocado no input está errado
+      return this.alertaDados('login_errado')
     }
 
     switch (usuario.senha) {//senha do usuario
       case senha://caso for a mesma senha do banco ela aceita o login
-        this.admin.SalvarId(usuario.id)
+        this.admin.SalvarId(usuario.id)//setar o id do usuario logado
         this.admin.SalvarAdmin(this.VerificacaoAdm(usuario.email))//setar a variavel global do admin
         this.router.navigate(['/perfil'])//vai para a pagina login
         break
+
       default:
-        console.log('senha errada')
+        this.alertaDados('login_errado')
         break
 
     }
@@ -83,4 +86,37 @@ export class LoginComponent implements OnInit {
     }
     return this.formularioLogin.controls["email"].hasError('email') ? "E-mail inválido" : '';//validação de email inválido
   }
+//-----------função do snackBar--------------------
+  alertaDados(tipoExecucao: String){
+
+    switch (tipoExecucao) {
+      case "login_errado":
+        this.snackBar.open("Email ou senha errados", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
+      case "erro_bancoDados":
+        this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "erro_generico":
+        this.snackBar.open("Erro :(", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      default:
+        this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema']
+        })
+      break;
+    }
+  }
+
 }

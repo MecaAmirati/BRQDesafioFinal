@@ -35,12 +35,12 @@ export class PerfilComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //função para pegar o valor da variavel do admin 
+    //função para pegar o valor da variavel do admin
     this.adminService.GetAdmin().subscribe(dado=>{
       this.adm=dado
-      console.log(this.adm,'q');
+      // console.log(this.adm,'q');
     })
-    console.log(this.adm,'43');
+    // console.log(this.adm,'43');
     if (this.adm==false){//caso o usuario não for admin, vai chamar a função
       this.DadoPerfilNaoAdmin()
     }
@@ -256,6 +256,12 @@ export class PerfilComponent implements OnInit {
 
       case "erro_generico":
         this.snackBar.open("Erro :(", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+      case "falha_pegar_dados":
+        this.snackBar.open("Falha ao pegar os dados do usuário", undefined, {
           // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
