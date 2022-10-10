@@ -9,6 +9,7 @@ import { CarrosService } from 'src/app/service/carros-service/carros.service.ser
 import { MatDialog } from '@angular/material/dialog';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { CarrosEditarDialogComponent } from '../carros-editar-dialog/carros-editar-dialog.component';
+import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 
 @Component({
   selector: 'app-carros',
@@ -20,14 +21,15 @@ export class CarrosComponent implements OnInit {
   carros:CarroInterface[]=[];
   tiposCarros:TipoCarroInterface[]=[];
   locadoras:LocadoraInterface[]=[]
-  adm:boolean=true;
+
 
   constructor(
     private formBuilder:FormBuilder,
     private carroService:CarrosService,
     private tipoService:TipocarroServiceService,
     private locadoraService:LocadoraServiceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+
   ) { }
 
   ngOnInit(): void {

@@ -18,7 +18,7 @@ section{
     background: white;
     border: 1px solid #9F9999;
     margin-top: 3%;
-    
+
 }
 
 .titlePerfil{
@@ -31,7 +31,7 @@ section{
     display: flex;
     flex-direction: column;
     margin-left: 8%;
-    margin-right: 8%; 
+    margin-right: 8%;
 }
 
 .input{
@@ -189,7 +189,7 @@ section{
     align-items: baseline;
 }
 
-//------------ Cor do Spinner 
+//------------ Cor do Spinner
 :host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
     stroke:#DB1812 !important;
 }
