@@ -41,23 +41,45 @@ $BRQDesafioFinal-theme: mat.define-light-theme((
 // font-family: 'Roboto', sans-serif;
 
 *{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; }
+html, body { height: 100%; margin: 0; }
 
 .btnLogin, .btnCadastrar{
-    border: 1px solid #DB1812;
-    font-family: 'Quicksand';
-    background: #DB1812;
-    border-radius: 5px;
-    color: white;
-    width: 250px;
-    height: 70px;
-    font-size: 24px;
+  position: relative;
+  border: none;
+  font-family: 'Quicksand';
+  background: #DB1812;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  width: 250px;
+  height: 70px;
+  font-size: 25px;
+  transition: all 0.4s linear;
+}
+
+.btnExcluir{
+  border: 1px solid #DB1812;
+  border-radius: 5px;
+  color: #DB1812;
+  width: 250px;
+  height: 70px;
+  font-size: 24px;
+  background-image: linear-gradient(#DB1812, #DB1812),linear-gradient(white, white);
+  background-size: 0 100%, auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all .3s ease-out;
+}
+
+.btnExcluir:hover{
+  border-radius: 5px;
+  color: white;
+  background-size: 100% 100%, auto;
 }
 
 //----------- SnackBar
@@ -97,8 +119,8 @@ body { margin: 0; }
 .flex{
   display: flex;
   flex-direction: row;
-
 }
+
 .flex-col{
   display: flex;
   flex-direction: column;
@@ -109,13 +131,13 @@ body { margin: 0; }
 }
 
 .spc-between{
-
   justify-content: space-between;
 }
 
 .txt-left{
   text-align: left;
 }
+
 .txt-center{
   text-align: center;
 }
@@ -125,6 +147,7 @@ body { margin: 0; }
   align-content: center;
   justify-content: center;
 }
+
 .wrap{
 flex-wrap: wrap;
 }
@@ -133,12 +156,15 @@ flex-wrap: wrap;
   width: 400px;
 
 }
+
 .width100{
   width: 100%;
 }
+
 .width90{
 width: 90%;
 }
+
 .width50{
   width: 50%;
 }
@@ -150,4 +176,3 @@ width: 90%;
 .marginAuto{
   margin:auto;
 }
-

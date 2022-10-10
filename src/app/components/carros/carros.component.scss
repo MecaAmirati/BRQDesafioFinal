@@ -41,6 +41,7 @@ section{
 
 ::ng-deep .mat-form-field .mat-form-field-flex{//muda a cor somente da da parte do input
   background: #DCE0E2;
+  height: 50px;
 }
 
 //Controle da linha do underline
@@ -111,3 +112,8 @@ section{
   display: flex;
   flex-direction: column;
 }
+
+
+// .tamanhoInput{
+//   height: 100px;
+// }

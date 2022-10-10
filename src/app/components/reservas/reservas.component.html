@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div id="containerReserva">
-    <form id="containerDados" >
+    <form [formGroup]="form" id="containerDados" >
         <h1>Reservas</h1>
         <div id="boxNome">
             <mat-form-field id="nomeCarro" appearance="fill">
@@ -8,45 +8,64 @@
                 <input matInput formControlName="nomeCarro" name="nomeCarro" placeholder="Nome do Carro">
             </mat-form-field>
 
-
         </div>
         <div id="boxDatas">
-            <mat-form-field id="dataReserva" appearance="fill">
+            <mat-form-field id="dataReserva" appearance="fill" >
                 <mat-label>Data reserva:</mat-label>
-                <input matInput formControlName="dataReserva" name="dataReserva" placeholder="dd/mm/aaaa">
+                <input id="dataReserva" matInput formControlName="dataReserva" name="dataReserva" placeholder="dd/mm/aaaa">
             </mat-form-field>
-            <mat-form-field id="horaReserva" appearance="fill">
+            <mat-form-field  appearance="fill">
                 <mat-label>Horário da reserva:</mat-label>
-                <input matInput formControlName="horaReserva" name="horaReserva" placeholder="ex. 15:00">
+                <input id="horaReserva" matInput formControlName="horaReserva" name="horaReserva" placeholder="ex. 15:00">
             </mat-form-field>
-            <mat-form-field id="dataDevolucao" appearance="fill">
+            <mat-form-field  appearance="fill">
                 <mat-label>Data da Devolução:</mat-label>
-                <input matInput formControlName="dataDevolucao" name="dataDevolucao" placeholder="dd/mm/aaaa">
+                <input id="dataDevolucao"  matInput formControlName="dataDevolucao" name="dataDevolucao" placeholder="dd/mm/aaaa">
             </mat-form-field>
 
         </div>
         <div id="boxLocadora">
-            <mat-form-field id="tipoCarro" appearance="fill">
-                <mat-label>Tipo</mat-label>
-                <mat-select>
+            <mat-form-field  id="filial" >
+                <mat-label>Locadora Filial 1</mat-label>
+                <mat-select formControlName="nomeFilial" name="nomeFilial">
                   <mat-option value="one">First option</mat-option>
                 </mat-select>
             </mat-form-field>
-            <button class="btnLogin" mat-raised-button >Atualizar</button>
+            <button class="btnLogin"><span>Atualizar</span></button>
         </div>
     </form>
     <div id="containerDadosAPI" >
         <h2>RESERVAS CADASTRADAS</h2>
-        <div id="cardAPI">
-            <div id="imagemAPI">
 
-            </div>
-            <div id="dadosAPI">
+        <div id="cardAPI" *ngFor="let cardsCarros of carros" >
 
-            </div>
-            <div id="btnAPI">
+            <mat-card button class="botaoCard" (click)="puxarParaInput(cardsCarros)" >
+                <div id="imagemAPI">
+                    <img class="imgCarro" src="../../../assets/imagens/car3 2.png" alt="Imagem de carro econômico">
+                </div>
 
-            </div>
+                <div class="boxCard">
+                    <div>
+                        <h3>{{cardsCarros.nome}}</h3>
+                    </div>
+
+                    <div>
+                        <p>Data retirada: {{cardsCarros.npessoas}}</p>
+                    </div>
+
+                    <div>
+                        <p>Horário retirada: {{cardsCarros.portas}}</p>
+                    </div>
+                    
+                    <div>
+                        <p>Data de devolução: {{cardsCarros.portas}}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btnExcluir" (click)="excluirUsuario(cardsCarros.id)" >Excluir Reserva</button>
+                </div>
+            </mat-card>
         </div>
     </div>
 </div>
