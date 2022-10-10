@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+  import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LocadoraInterface } from 'src/app/model/locadoras.model';
@@ -56,5 +56,13 @@ export class LocadoraServiceService {
     let endpoint=objeto.id;
     console.log(`${this.url}/${endpoint}`,objeto)
     return this.httpClient.put<LocadoraInterface>(`${this.url}/${endpoint}`,objeto)
+  }
+
+  editarLocadora(objetoLocadora: LocadoraInterface){
+    return this.httpClient.put<LocadoraInterface>(`${this.url}/${objetoLocadora.id}`, objetoLocadora);
+  }
+
+  cadastrarLocadora(objetoLocadora: LocadoraInterface): Observable<LocadoraInterface>{
+    return this.httpClient.post<LocadoraInterface>(this.url, objetoLocadora);
   }
 }
