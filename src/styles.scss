@@ -63,14 +63,6 @@ body { margin: 0; }
     transition: all 0.4s linear;
 }
 
-.btnLogin:hover, .btnCadastrar:hover{
-  transition: all 0.2s linear;
-  transform: translateY(-10px) scale(1.005) translateZ(0);
-  box-shadow: 0 12px 18px rgba(0,0,0,0.11);
-  border: 1px solid #DB1812;
-  background: white;
-  color: #DB1812;
-}
 
 .btnExcluir{
   border: 1px solid #DB1812;
