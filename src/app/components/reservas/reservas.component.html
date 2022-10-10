@@ -3,14 +3,14 @@
     <form [formGroup]="form" id="containerDados" >
         <h1>Reservas</h1>
         <div id="boxNome">
-            <mat-form-field id="nomeCarro" appearance="fill">
+            <mat-form-field appearance="fill">
                 <mat-label>Nome do Carro</mat-label>
-                <input matInput formControlName="nomeCarro" name="nomeCarro" placeholder="Nome do Carro">
+                <input id="nomeCarro" matInput formControlName="nomeCarro" name="nomeCarro" placeholder="Nome do Carro">
             </mat-form-field>
 
         </div>
         <div id="boxDatas">
-            <mat-form-field id="dataReserva" appearance="fill" >
+            <mat-form-field appearance="fill" >
                 <mat-label>Data reserva:</mat-label>
                 <input id="dataReserva" matInput formControlName="dataReserva" name="dataReserva" placeholder="dd/mm/aaaa">
             </mat-form-field>
@@ -25,9 +25,9 @@
 
         </div>
         <div id="boxLocadora">
-            <mat-form-field  id="filial" >
+            <mat-form-field>
                 <mat-label>Locadora Filial 1</mat-label>
-                <mat-select formControlName="nomeFilial" name="nomeFilial">
+                <mat-select id="filial" formControlName="nomeFilial" name="nomeFilial">
                   <mat-option value="one">First option</mat-option>
                 </mat-select>
             </mat-form-field>
