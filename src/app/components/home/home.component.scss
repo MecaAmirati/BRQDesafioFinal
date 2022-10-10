@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.btnLogin, .btnCadastrar{
+.btnLoginHome, .btnCadastrarHome{
     margin: 19px;
 }
 
@@ -58,7 +58,6 @@
     border-radius: 10px;
     transition: all 0.2s linear;
 
-   
 }
 
 .card h2{
@@ -88,10 +87,19 @@
     transition: all .1s ease-out;
 }
 
-
-/////////////////////////////////////////
-//////////////////TESTE//////////////////
-/////////////////////////////////////////
+.btnLoginHome, .btnCadastrarHome{
+    position: relative;
+    border: none;
+    font-family: 'Quicksand';
+    background: #DB1812;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    width: 250px;
+    height: 70px;
+    font-size: 25px;
+    transition: all 0.2s linear;
+  }
 
 *, *:after, *:before {
     box-sizing: border-box;
@@ -126,26 +134,34 @@ button:hover span::before, button:hover span::after{
 height: 100%;
 }
 
-.btnCadastrar::after, .btnLogin::after{
+.btnCadastrarHome::after, .btnLoginHome::after{
 left: 0;
 bottom: 0;
 transition-duration: 0.3s;
 }
 
-.btnCadastrar span::after, .btnLogin span::after{
+.btnCadastrarHome span::after, .btnLoginHome span::after{
 right: 0;
 top: 0;
 transition-duration: 0.3s;
 }
 
-.btnCadastrar::before, .btnLogin::before{
+.btnCadastrarHome::before, .btnLoginHome::before{
 right: 0;
 top: 0;
 transition-duration: 0.3s;
 }
 
-.btnCadastrar span::before, .btnLogin span::before{
+.btnCadastrarHome span::before, .btnLoginHome span::before{
 left: 0;
 bottom: 0;
 transition-duration: 0.3s;
 }
+
+/////////////////////////////////////////
+//////////////////TESTE//////////////////
+/////////////////////////////////////////
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////

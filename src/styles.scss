@@ -74,10 +74,12 @@ html, body { height: 100%; margin: 0; }
 .btnExcluir{
   border: 1px solid #DB1812;
   border-radius: 5px;
+  font-family: 'Quicksand';
   color: #DB1812;
   width: 250px;
   height: 70px;
   font-size: 24px;
+  cursor: pointer;
   transition: all .3s ease-out;
   background-size: 0 100%, auto;
   background-repeat: no-repeat;
@@ -85,19 +87,15 @@ html, body { height: 100%; margin: 0; }
   background-image: linear-gradient(#DB1812, #DB1812), linear-gradient(white, white);
 }
 
-.btnExcluir:hover{
-  border-radius: 5px;
-  color: white;
-  background-size: 100% 100%, auto;
-}
-
 .btnEditar{
   border: 1px solid #DB1812;
   border-radius: 5px;
+  font-family: 'Quicksand';
   color: white;
   width: 250px;
   height: 70px;
   font-size: 24px;
+  cursor: pointer;
   transition: all .3s ease-out;
   background-size: 0 100%, auto;
   background-repeat: no-repeat;
@@ -105,10 +103,10 @@ html, body { height: 100%; margin: 0; }
   background-image: linear-gradient(white, white), linear-gradient(#DB1812, #DB1812);
 }
 
-.btnEditar:hover{
-  border-radius: 5px;
-  color: #DB1812;
-  background-size: 100% 100%, auto;
+.btnEditar:hover, .btnExcluir:hover{
+  transition: all 0.2s linear;
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 12px 18px rgba(0,0,0,0.11);
 }
 
 //----------- SnackBar
@@ -143,68 +141,6 @@ html, body { height: 100%; margin: 0; }
   background-color: rgba($color: #000000, $alpha: 0.3);
 }
 
-//padrao Css Hugo
-
-.flex{
-  display: flex;
-  flex-direction: row;
-}
-
-.flex-col{
-  display: flex;
-  flex-direction: column;
-}
-
-.spc-around{
-  justify-content: space-around;
-}
-
-.spc-between{
-  justify-content: space-between;
-}
-
-.txt-left{
-  text-align: left;
-}
-
-.txt-center{
-  text-align: center;
-}
-
-.center{
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-
-.wrap{
-flex-wrap: wrap;
-}
-
-.width400px{
-  width: 400px;
-
-}
-
-.width100{
-  width: 100%;
-}
-
-.width90{
-width: 90%;
-}
-
-.width50{
-  width: 50%;
-}
-
-.width48{
-  width: 48%;
-}
-
-.marginAuto{
-  margin:auto;
-}
 
 /////////////////////////////////////////
 //////////////////TESTE//////////////////
