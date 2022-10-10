@@ -17,6 +17,8 @@ export class ReservasComponent implements OnInit {
   public carros:CarroInterface[]=[];
   form!: FormGroup;
   adm:boolean=false
+  listaLocadoras:any=[];
+  listaCarros:any=[];
   constructor(
     private carroService:CarrosService,
     private formBuilder:FormBuilder,
@@ -39,11 +41,10 @@ export class ReservasComponent implements OnInit {
 
     })
 
-
-    this.carroService.lerCarros().subscribe({
-      next:(objects:CarroInterface[])=>{
-        this.carros=objects;
-        console.log(this.carros)
+    this.reservaService.lerReservas().subscribe({
+      next:(object:ReservaInterface[])=>{
+        this.reservas=object;
+        console.log(this.reservas);
 
       },
       error:()=>{
@@ -51,21 +52,30 @@ export class ReservasComponent implements OnInit {
       }
 
     })
-    // this.reservaService.lerReservas().subscribe({
-    //   next:(object:ReservaInterface[])=>{
-    //     this.reservas=object;
-    //     console.log(this.reservas);
+    this.locadoraService.lerLocadoras().subscribe({
+      next:(locadora)=>{
+        this.listaLocadoras=locadora
+      },
+      error:()=>{
+        console.log('erro de banco');
 
-    //   },
-    //   error:()=>{
-    //     console.log("Erro ao listar reservas");
-    //   }
+      }
+    })
+  }
+  ListaCarrosLocadora(idLocadora:number){
+    console.log(idLocadora);
 
-    // })
+    this.carroService.lerCarrosLocadora().subscribe({
+      next:(tudoCarros)=>{
+        this.listaCarros=tudoCarros.filter((carro)=>carro.locadoraId==idLocadora)
+        console.log('teste',this.listaCarros);
 
+      },
+      error:()=>{
+        console.log('erro de banco');
 
-
-
+      }
+    })
   }
 
 
