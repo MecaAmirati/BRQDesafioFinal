@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
+import { LocadoraEditarDialogComponent } from 'src/app/locadora-editar-dialog/locadora-editar-dialog.component';
 
 
 
@@ -23,10 +25,12 @@ export class LocadoraComponent implements OnInit {
   locadorasList:any=[];
   id: any;
   LocadoraInterface: any;
-  snackBar: any;
+
   constructor(
     private formBuilder: FormBuilder,
-    private locadoraService: LocadoraServiceService
+    private locadoraService: LocadoraServiceService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -158,4 +162,59 @@ export class LocadoraComponent implements OnInit {
     }
   }
 
+  excludeDialog(id:number,text:string): void {
+    let enterAnimationDuration='500ms';
+    let exitAnimationDuration='500ms';
+
+    const dialogRef = this.dialog.open(ExcluirDialogComponent, {
+      width: '30%',
+      height:'30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:text
+    })
+
+    dialogRef.afterClosed().subscribe((boolean: any) => {
+      if(boolean){
+        this.locadoraService.excluirLocadora(id).subscribe({
+          next:()=>{
+            this.ngOnInit()
+          },
+          error:()=>{
+            alert("Erro ao excluir a locadora")
+          }
+        })
+      }
+    })
+  }
+  editarDialog(element:LocadoraInterface): void {
+    let enterAnimationDuration='500ms';
+    let exitAnimationDuration='500ms';
+    //abrir o dialog
+    const dialogRef = this.dialog.open(LocadoraEditarDialogComponent, {
+      width: '30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:element
+    })
+  
+
+    dialogRef.afterClosed().subscribe((element: LocadoraInterface) => {
+      if(element){
+        this.locadoraService.showLoading()
+        this.locadoraService.updateLocadora(element).subscribe({
+          next:()=>{
+            this.ngOnInit()
+            this.locadoraService.hideLoading()
+        },
+          error:()=>{
+            this.locadoraService.hideLoading()
+            alert("Erro ao salvar a locadora")
+          }
+        })
+      }
+    })
 }
+
+
+} 
