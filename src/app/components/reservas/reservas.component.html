@@ -29,7 +29,7 @@
         <div id="boxLocadora">
             <mat-form-field appearance="fill" >
                 <mat-label>Locadora Filial 1</mat-label>
-                <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial" [ngModel]="form.controls['nomeFilial'].value" (ngModelChange)="ListaCarrosLocadora(form.controls['nomeFilial'].value)">
+                <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial"  (ngModelChange)="ListaCarrosLocadora(form.controls['nomeFilial'].value)">
                     <mat-option *ngFor="let locadora of listaLocadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
                 </mat-select>
             </mat-form-field>
