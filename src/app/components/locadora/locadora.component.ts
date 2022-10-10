@@ -2,6 +2,10 @@ import { LocadoraInterface } from './../../model/locadoras.model';
 import { LocadoraServiceService } from './../../service/locadoras-service/locadora.service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 
 
 
@@ -17,6 +21,9 @@ export class LocadoraComponent implements OnInit {
     telefone:new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$")])
   });
   locadorasList:any=[];
+  id: any;
+  LocadoraInterface: any;
+  snackBar: any;
   constructor(
     private formBuilder: FormBuilder,
     private locadoraService: LocadoraServiceService
@@ -31,7 +38,32 @@ export class LocadoraComponent implements OnInit {
         console.log('erro ao ler locadoras')
       }
      })
-  }
+    }
+    updateLocadora(){
+      const id = this.id;
+      const locadora = this.formularioLocadora.controls['locadora'].value;
+      const endereco = this.formularioLocadora.controls['endereco'].value;
+      const tel = this.formularioLocadora.controls['telefone'].value;
+      const objetoLocadora: LocadoraInterface = {id: id, nome: locadora, endereco: endereco, telefone: tel};
+      this.locadoraService.editarLocadora(objetoLocadora).subscribe({
+        next: () => {
+          this.id = 0;
+          this.ngOnInit();
+          this.alertaSnackBar("Locadora editada");
+        },
+        error: () => {
+          console.log("Alteração não foi concluída.");
+        }
+      })
+    }
+    editarLocadora(locadora: LocadoraInterface){
+      this.id = locadora.id;
+      const editarLocadora = this.formularioLocadora.controls['locadora'].setValue(locadora.nome);
+      const editarEndereco = this.formularioLocadora.controls['endereco'].setValue(locadora.endereco);
+      const editarTelefone = this.formularioLocadora.controls['telefone'].setValue(locadora.telefone);
+    }
+   
+
   ResetarCampos(){
     //resetar os valores
     this.formularioLocadora.controls["locadora"].reset();
@@ -97,5 +129,33 @@ export class LocadoraComponent implements OnInit {
     
   }
 
+  alertaSnackBar(tipoAlerta: string){
+    switch (tipoAlerta){
+      case "cadastrada":
+        this.snackBar.open("Locadora foi cadastrada com sucesso.", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-sucess']
+        });
+        break;
+        case "editada":
+          this.snackBar.open("Locadora foi editada com sucesso.", undefined,{
+            duration: 2000,
+            panelClass: ['snackbar-sucess']
+          });
+          break;
+        case "excluida":
+          this.snackBar.open("Locadora foi deletada com sucesso.", undefined,{
+            duration: 2000,
+            panelClass: ['snackbar-sucess']
+          });
+          break;
+        case "falha":
+        this.snackBar.open("Tente novamente mais tarde.", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-falha']
+        });
+        break;
+    }
+  }
 
 }

@@ -39,7 +39,7 @@
         <p>{{locadora.telefone}}</p>
       </span>
       <div class="conteudo div-botao">
-        <button mat-flat-button class=" btnEditar " >Editar</button>
+        <button mat-flat-button class=" btnEditar " (click)="editarLocadora(locadora)">Editar</button>
         <button mat-flat-button class=" btnExcluir " (click)="DeletarLocadora(locadora.id)">Excluir</button>
       </div>
 
