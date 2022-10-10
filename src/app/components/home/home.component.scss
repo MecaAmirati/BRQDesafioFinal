@@ -129,23 +129,23 @@ height: 100%;
 .btnCadastrar::after, .btnLogin::after{
 left: 0;
 bottom: 0;
-transition-duration: 0.2s;
+transition-duration: 0.3s;
 }
 
 .btnCadastrar span::after, .btnLogin span::after{
 right: 0;
 top: 0;
-transition-duration: 0.2s;
+transition-duration: 0.3s;
 }
 
 .btnCadastrar::before, .btnLogin::before{
 right: 0;
 top: 0;
-transition-duration: 0.2s;
+transition-duration: 0.3s;
 }
 
 .btnCadastrar span::before, .btnLogin span::before{
 left: 0;
 bottom: 0;
-transition-duration: 0.2s;
+transition-duration: 0.3s;
 }

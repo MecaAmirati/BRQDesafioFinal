@@ -10,11 +10,7 @@ h1{
     text-align: center;
     font-family: 'Quicksand', sans-serif;
     font-weight: bold;
-  }
-
-// mat-form-field{
-//     padding: 0;    
-// }
+}
 
 #containerDados{
     border: 1px solid #9F9999;
@@ -49,6 +45,7 @@ h1{
 }
 
 #dataReserva, #horaReserva, #dataDevolucao{
+    // height: 50px;
     width: 320px;
     border-radius: 10px;
     font-size: 24px;
@@ -97,13 +94,7 @@ h2{
     text-align: center;
 }
 
-// #btnAPI button{
-//     background-color: white;
-//     border: none;
-// }
-
 #cardAPI{
-    // margin-bottom: 20px;
     width: 1140px;
     display: flex;
     flex-direction: row;
@@ -118,6 +109,7 @@ h2{
     border-radius: 10px;
     background-color: white;
     border: none;
+    transition: all 0.2s linear;
 }
 
 .boxCard{
@@ -125,7 +117,7 @@ h2{
     flex-direction: column;
     align-self: center;
     margin-right: 240px;
-    // margin-right: 125px;
+    transition: all 0.2s linear;
 }
 
 .boxCard h3{
@@ -139,9 +131,6 @@ h2{
     font-family: 'Quicksand', sans-serif;
     font-size: 20px;
 }
-
-// .botaoCard{
-//     transition: all 0.2s linear;}
 
 .btnExcluir{
     margin-top: 110px;
@@ -158,13 +147,12 @@ h2{
     border: 1px solid #DB1812;
     background: white;
     color: #DB1812;
-  }
-
+}
 
 .botaoCard:hover{
-    // transition: all 0.2s linear;
-    background-color: whitesmoke;
     border: 1px solid #DB1812;
+    transition: all 0.2s linear;
+    transform: translateY(-5px) scale(1.005) translateZ(0);
 }
 
 ::ng-deep .mat-card {
@@ -173,7 +161,12 @@ h2{
 
 ::ng-deep .mat-form-field .mat-form-field-flex{//muda a cor somente da da parte do input
     background: #DCE0E2;
-  }
+    
+}
+
+// ::ng-deep .mat-form-field{
+//     padding: 0;
+// }
   
 // ::ng-deep .mat-form-field-underline:focus,
 // ::ng-deep .mat-form-field-underline:hover{

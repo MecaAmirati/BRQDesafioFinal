@@ -41,28 +41,26 @@ $BRQDesafioFinal-theme: mat.define-light-theme((
 // font-family: 'Roboto', sans-serif;
 
 *{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
-html, body { height: 100%; }
-body { margin: 0; }
+html, body { height: 100%; margin: 0; }
 
 .btnLogin, .btnCadastrar{
-    position: relative;
-    border: none;
-    font-family: 'Quicksand';
-    background: #DB1812;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    width: 250px;
-    height: 70px;
-    font-size: 25px;
-    transition: all 0.4s linear;
+  position: relative;
+  border: none;
+  font-family: 'Quicksand';
+  background: #DB1812;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  width: 250px;
+  height: 70px;
+  font-size: 25px;
+  transition: all 0.4s linear;
 }
-
 
 .btnExcluir{
   border: 1px solid #DB1812;
@@ -121,12 +119,11 @@ body { margin: 0; }
 .flex{
   display: flex;
   flex-direction: row;
-
 }
+
 .flex-col{
   display: flex;
   flex-direction: column;
-
 }
 
 .spc-around{
@@ -134,13 +131,13 @@ body { margin: 0; }
 }
 
 .spc-between{
-
   justify-content: space-between;
 }
 
 .txt-left{
   text-align: left;
 }
+
 .txt-center{
   text-align: center;
 }
@@ -150,6 +147,7 @@ body { margin: 0; }
   align-content: center;
   justify-content: center;
 }
+
 .wrap{
 flex-wrap: wrap;
 }
@@ -158,12 +156,15 @@ flex-wrap: wrap;
   width: 400px;
 
 }
+
 .width100{
   width: 100%;
 }
+
 .width90{
 width: 90%;
 }
+
 .width50{
   width: 50%;
 }
@@ -175,4 +176,3 @@ width: 90%;
 .marginAuto{
   margin:auto;
 }
-
