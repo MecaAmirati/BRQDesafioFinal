@@ -21,7 +21,7 @@ export class CarrosComponent implements OnInit {
   carros:CarroInterface[]=[];
   tiposCarros:TipoCarroInterface[]=[];
   locadoras:LocadoraInterface[]=[]
-  adm:boolean=true;
+
 
   constructor(
     private formBuilder:FormBuilder,
@@ -29,14 +29,10 @@ export class CarrosComponent implements OnInit {
     private tipoService:TipocarroServiceService,
     private locadoraService:LocadoraServiceService,
     public dialog: MatDialog,
-    private admService: AdminServiceService
+
   ) { }
 
   ngOnInit(): void {
-    //variavel para ver se o usuario é adm ou não
-    this.admService.GetAdmin().subscribe(dadoAdm=>{
-      this.adm=dadoAdm
-    })
     this.form=this.formBuilder.group({
       carroNomeInput:new FormControl('',[Validators.required]),
       tipoSelect:new FormControl('',[Validators.required]),

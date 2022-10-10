@@ -1,8 +1,8 @@
 <app-header></app-header>
 <main>
   <section >
-    <h2 class="titleCarros" *ngIf="!adm">Carros</h2>
-    <fieldset class="fildset_form" *ngIf="adm">
+
+    <fieldset class="fildset_form" >
       <form [formGroup]="form" class="flex-col center width90 marginAuto" >
         <h2 class="titleCarros">Carros</h2>
 
@@ -84,8 +84,8 @@
               </p>
             </mat-card-content>
             <mat-card-actions class="btns-card">
-              <button mat-button *ngIf="adm" class="btn" (click)="editarCarro(carro)">Editar</button>
-              <button mat-button  *ngIf="adm" class="btn" (click)="excluirCarro(carro)">Excluir</button>
+              <button mat-button class="btn" (click)="editarCarro(carro)">Editar</button>
+              <button mat-button class="btn" (click)="excluirCarro(carro)">Excluir</button>
             </mat-card-actions>
           </mat-card>
         </ng-container>
