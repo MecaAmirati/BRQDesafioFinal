@@ -1,8 +1,9 @@
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
-import { Component, OnInit,Injectable, } from '@angular/core';
+import { Component, OnInit,Injectable,Output,EventEmitter  } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -23,51 +24,55 @@ export class LoginComponent implements OnInit {
   constructor( private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private router: Router,
-    private admin: AdminServiceService
-
+    private admin: AdminServiceService,
+    private snackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
-    this.usuarioService.lerUsuarios().subscribe({
+    this.usuarioService.lerUsuarios().subscribe({//pegar a lista do usuário para procurar o nome
       next:(usuario)=>{
         this.listaUsuarios=usuario
       },
       error:()=>{
-        console.log('erro carregar api')
+        this.alertaDados('erro_bancoDados')
       }
     })
   }
+  //-------------função para verificar se o email do login é de admin-----------------
   VerificacaoAdm(usuarioEmail:string){
-
     switch (usuarioEmail) {
-      //email para ser admin
+
+      case 'uiui@ui'://email do admin
+        return true
       case 'adm@adm':
         return true
-
       default:
         return false
 
 
     }
   }
-  LoginUsuario(){
+
+  LoginUsuario(){//--------------função de login do usuario--------------------
     let email:string=this.formularioLogin.controls["email"].value
     let senha:string=this.formularioLogin.controls["senha"].value
     //procura o mesmo email da lista do usuario
-    let usuario=this.listaUsuarios.filter((user:any)=>user.email==email)
-//setar o usuario caso n encontre o email na lista
-    if(usuario[0]==null){
+    let usuario=this.listaUsuarios.filter((user:any)=>user.email==email) //pegar o id
 
-      usuario[0]={senha:"none"}
+    usuario=usuario[0]
+    if(usuario==null){//email colocado no input está errado
+      return this.alertaDados('login_errado')
     }
 
-    switch (usuario[0].senha) {//senha do usuario
-      case senha://caso for a mesma senha ela aceita o login
-        this.admin.DataAdmin.next(this.VerificacaoAdm(usuario[0].email))//setar a variavel global do admin
+    switch (usuario.senha) {//senha do usuario
+      case senha://caso for a mesma senha do banco ela aceita o login
+        this.admin.SalvarId(usuario.id)//setar o id do usuario logado
+        this.admin.SalvarAdmin(this.VerificacaoAdm(usuario.email))//setar a variavel global do admin
         this.router.navigate(['/perfil'])//vai para a pagina login
         break
+
       default:
-        console.log('senha errada')
+        this.alertaDados('login_errado')
         break
 
     }
@@ -76,12 +81,42 @@ export class LoginComponent implements OnInit {
     return `Este campo é obrigatório`
   }
   validacaoEmail(): String{
-    if(this.formularioLogin.controls["email"].hasError('required')){
+    if(this.formularioLogin.controls["email"].hasError('required')){//vallidação de espaço branco
       return "Este campo é obrigatório";
     }
-    return this.formularioLogin.controls["email"].hasError('email') ? "E-mail inválido" : '';
+    return this.formularioLogin.controls["email"].hasError('email') ? "E-mail inválido" : '';//validação de email inválido
   }
+//-----------função do snackBar--------------------
+  alertaDados(tipoExecucao: String){
 
+    switch (tipoExecucao) {
+      case "login_errado":
+        this.snackBar.open("Email ou senha errados", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema-sucesso']
+        })
+      break;
+      case "erro_bancoDados":
+        this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
 
+      case "erro_generico":
+        this.snackBar.open("Erro :(", undefined, {
+          // duration: 20000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      default:
+        this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
+          duration: 2000,
+          panelClass: ['snackbar-tema']
+        })
+      break;
+    }
+  }
 
 }
