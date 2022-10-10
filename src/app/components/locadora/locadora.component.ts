@@ -42,9 +42,9 @@ export class LocadoraComponent implements OnInit {
     updateLocadora(){
       const id = this.id;
       const locadora = this.formularioLocadora.controls['locadora'].value;
-      const endereço = this.formularioLocadora.controls['endereço'].value;
+      const endereco = this.formularioLocadora.controls['endereco'].value;
       const tel = this.formularioLocadora.controls['telefone'].value;
-      const objetoLocadora: LocadoraInterface = {id: id, nome: locadora, endereco: endereço, telefone: tel};
+      const objetoLocadora: LocadoraInterface = {id: id, nome: locadora, endereco: endereco, telefone: tel};
       this.locadoraService.editarLocadora(objetoLocadora).subscribe({
         next: () => {
           this.id = 0;
@@ -59,7 +59,7 @@ export class LocadoraComponent implements OnInit {
     editarLocadora(locadora: LocadoraInterface){
       this.id = locadora.id;
       const editarLocadora = this.formularioLocadora.controls['locadora'].setValue(locadora.nome);
-      const editarEndereço = this.formularioLocadora.controls['endereço'].setValue(locadora.endereco);
+      const editarEndereco = this.formularioLocadora.controls['endereco'].setValue(locadora.endereco);
       const editarTelefone = this.formularioLocadora.controls['telefone'].setValue(locadora.telefone);
     }
    
