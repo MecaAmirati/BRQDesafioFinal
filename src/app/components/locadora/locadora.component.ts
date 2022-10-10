@@ -59,7 +59,7 @@ export class LocadoraComponent implements OnInit {
     editarLocadora(locadora: LocadoraInterface){
       this.id = locadora.id;
       const editarLocadora = this.formularioLocadora.controls['locadora'].setValue(locadora.nome);
-      const editarEndereço = this.formularioLocadora.controls['endereço'].setValue(locadora.endereco);
+      const editarEndereço = this.formularioLocadora.controls['endereco'].setValue(locadora.endereco);
       const editarTelefone = this.formularioLocadora.controls['telefone'].setValue(locadora.telefone);
     }
    
