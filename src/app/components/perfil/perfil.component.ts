@@ -35,6 +35,7 @@ export class PerfilComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //função para pegar o valor da variavel do admin 
     this.adminService.GetAdmin().subscribe(dado=>{
       this.adm=dado
       console.log(this.adm,'q');
@@ -63,7 +64,7 @@ export class PerfilComponent implements OnInit {
   // ----------------------Função para colocar os dados no input do usuário não admin
   DadoPerfilNaoAdmin(){
     this.adminService.GetId().subscribe(id=>{//pega o id passado do login
-      this.usuarioService.lerUsuarioById(id).subscribe({//pega o restante das informações
+      this.usuarioService.lerUsuarioById(id).subscribe({//pega o restante das informações na api
         next:(usuario)=>{
           this.formularioPerfil.controls["nome"].setValue(usuario.nome)
           this.formularioPerfil.controls["tel"].setValue(usuario.telefone)
