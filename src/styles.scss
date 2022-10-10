@@ -50,25 +50,46 @@ html, body { height: 100%; }
 body { margin: 0; }
 
 .btnLogin, .btnCadastrar{
-    border: 1px solid #DB1812;
+    position: relative;
+    border: none;
     font-family: 'Quicksand';
     background: #DB1812;
     border-radius: 5px;
     color: white;
+    cursor: pointer;
     width: 250px;
     height: 70px;
-    font-size: 24px;
+    font-size: 25px;
+    transition: all 0.4s linear;
+}
+
+.btnLogin:hover, .btnCadastrar:hover{
+  transition: all 0.2s linear;
+  transform: translateY(-10px) scale(1.005) translateZ(0);
+  box-shadow: 0 12px 18px rgba(0,0,0,0.11);
+  border: 1px solid #DB1812;
+  background: white;
+  color: #DB1812;
 }
 
 .btnExcluir{
-    border: 1px solid #DB1812;
-    font-family: 'Quicksand';
-    background: white;
-    border-radius: 5px;
-    color: #DB1812;
-    width: 250px;
-    height: 70px;
-    font-size: 24px;
+  border: 1px solid #DB1812;
+  border-radius: 5px;
+  color: #DB1812;
+  width: 250px;
+  height: 70px;
+  font-size: 24px;
+  background-image: linear-gradient(#DB1812, #DB1812),linear-gradient(white, white);
+  background-size: 0 100%, auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all .3s ease-out;
+}
+
+.btnExcluir:hover{
+  border-radius: 5px;
+  color: white;
+  background-size: 100% 100%, auto;
 }
 
 //----------- SnackBar
