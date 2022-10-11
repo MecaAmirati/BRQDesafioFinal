@@ -5,8 +5,8 @@
         <div id="boxNome">
             <mat-form-field appearance="fill" class="nomeCarro">
                 <mat-label>Nome do Carro</mat-label>
-                <mat-select class="filial" formControlName="nomeCarro" name="nomeCarro">
-                  <mat-option *ngFor="let carro of listaCarros" [value]="carro.nome">{{carro.nome}}</mat-option>
+                <mat-select class="filial" formControlName="nomeCarro" name="nomeCarro" (ngModelChange)="ListaDeLocadoraPeloCarro(form.controls['nomeCarro'].value)" >
+                  <mat-option *ngFor="let carro of listaCarros" [value]="carro.id">{{carro.nome}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -29,45 +29,50 @@
         <div id="boxLocadora">
             <mat-form-field appearance="fill" >
                 <mat-label>Locadora Filial 1</mat-label>
-                <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial"  (ngModelChange)="ListaCarrosLocadora(form.controls['nomeFilial'].value)">
-                    <mat-option *ngFor="let locadora of listaLocadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
+                <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial"  >
+                    <mat-option *ngFor="let locadora of listaLocadoras" [value]="locadora.id" >{{locadora.nome}}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <button class="btnLogin"><span>Atualizar</span></button>
+            <button class="btnLogin" *ngIf="adm || atualizar" (click)="AtualizarReserva()" ><span>Atualizar</span></button>
+            <button class="btnLogin" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()" ><span>Reservar</span></button>
         </div>
     </form>
     <div id="containerDadosAPI" >
         <h2>RESERVAS CADASTRADAS</h2>
 
-        <div id="cardAPI" *ngFor="let cardsCarros of carros" >
+        <div id="cardAPI" *ngFor="let cardsCarros of reservas" >
 
-            <mat-card button class="botaoCard" (click)="puxarParaInput(cardsCarros)" >
-                <div id="imagemAPI">
-                    <img class="imgCarro" src="../../../assets/imagens/car3 2.png" alt="Imagem de carro econômico">
-                </div>
+          <mat-card  button class="botaoCard" (click)="puxarParaInput(cardsCarros)" *ngIf="adm || cardsCarros.usuarioId==usuarioId">
+            <div id="imagemAPI">
+                <img class="imgCarro" src="../../../assets/imagens/car3 2.png" alt="Imagem de carro econômico">
+            </div>
 
-                <div class="boxCard">
-                    <div>
-                        <h3>{{cardsCarros.nome}}</h3>
-                    </div>
-
-                    <div>
-                        <p>Data retirada: {{cardsCarros.npessoas}}</p>
-                    </div>
-
-                    <div>
-                        <p>Horário retirada: {{cardsCarros.portas}}</p>
-                    </div>
-
-                    <div>
-                        <p>Data de devolução: {{cardsCarros.portas}}</p>
-                    </div>
+            <div class="boxCard">
+                <div>
+                    <h3>{{NomeCarro(cardsCarros.carroId)}}</h3>
                 </div>
 
                 <div>
-                    <button class="btnExcluir" (click)="excluirUsuario(cardsCarros.id)" >Excluir Reserva</button>
+                    <p>Horário retirada: {{cardsCarros.data|date:'shortDate'}}</p>
                 </div>
-            </mat-card>
+
+                <div>
+                    <p>Hora retirada: {{cardsCarros.horario}}</p>
+                </div>
+
+                <div>
+                    <p>Data de devolução: {{cardsCarros.dataentrega|date:'shortDate'}}</p>
+                </div>
+            </div>
+            <div>
+              <button class="btnExcluir" *ngIf="!adm" (click)="puxarParaInput(cardsCarros)">Editar</button>
+              <button class="btnExcluir" (click)="excluirUsuario(cardsCarros.id)" >Excluir Reserva</button>
+
+            </div>
+            <div>
+
+            </div>
+          </mat-card>
         </div>
     </div>
 </div>

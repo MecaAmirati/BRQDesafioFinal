@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +38,9 @@ import {MatIconModule} from '@angular/material/icon';import { BrowserAnimationsM
 import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
 import { CarrosEditarDialogComponent } from './components/carros-editar-dialog/carros-editar-dialog.component';
 import { LocadoraEditarDialogComponent } from './locadora-editar-dialog/locadora-editar-dialog.component';
+import localePt from '@angular/common/locales/pt'
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt,'pt')
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,10 +74,15 @@ import { LocadoraEditarDialogComponent } from './locadora-editar-dialog/locadora
     MatIconModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+
 
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'pt' },
+  {
+    provide:DEFAULT_CURRENCY_CODE,
+    useValue:'BRL'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
