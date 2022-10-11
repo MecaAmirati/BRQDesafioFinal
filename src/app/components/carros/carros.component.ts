@@ -19,11 +19,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./carros.component.scss']
 })
 export class CarrosComponent implements OnInit {
-  form!: FormGroup;
+  form:FormGroup=this.formBuilder.group({
+    carroNomeInput:new FormControl('',[Validators.required]),
+    tipoSelect:new FormControl('',[Validators.required]),
+    locadoraSelect:new FormControl('',[Validators.required]),
+    portasInput:new FormControl('',[Validators.required]),
+    nPessoaInput:new FormControl('',[Validators.required])
+  })
+
   carros:CarroInterface[]=[];
   tiposCarros:TipoCarroInterface[]=[];
   locadoras:LocadoraInterface[]=[]
   adm!:boolean;
+  tipoCarroExistente:any[]=[]
 
   constructor(
     private formBuilder:FormBuilder,
@@ -44,13 +52,6 @@ export class CarrosComponent implements OnInit {
         // console.log(this.adm,'q');
       })
 
-    this.form=this.formBuilder.group({
-      carroNomeInput:new FormControl('',[Validators.required]),
-      tipoSelect:new FormControl('',[Validators.required]),
-      locadoraSelect:new FormControl('',[Validators.required]),
-      portasInput:new FormControl('',[Validators.required]),
-      nPessoaInput:new FormControl('',[Validators.required])
-    })
     this.ResetarCampos();
 
     this.carroService.lerCarros().subscribe({
@@ -60,6 +61,7 @@ export class CarrosComponent implements OnInit {
         this.tipoService.lerTipoCarros().subscribe({
           next:(objects:TipoCarroInterface[]) =>{
             this.tiposCarros=objects;
+            this.TipCarroExistente();
             this.locadoraService.lerLocadoras().subscribe({
               next:(objects:LocadoraInterface[]) =>{
                 this.locadoras=objects;
@@ -96,17 +98,12 @@ export class CarrosComponent implements OnInit {
 
     this.carroService.salvarCarro(objectCarro).subscribe({
       next:()=>{
-
         this.alertaDados('Carro cadastrado com Sucesso',"sucesso")
-        this.ResetarCampos();
         this.ngOnInit();
-
-
       },
       error:()=>{
         //console.log("erro ao salvar filme");
         this.alertaDados('Erro ao salvar filme',"falha")
-
       }
     })
   }
@@ -165,7 +162,7 @@ export class CarrosComponent implements OnInit {
   carrosLocadora(){
     this.carroService.lerCarrosTipoCarro().subscribe({
         next:(objects:CarroInterface[])=>{
-          console.log(objects)
+          //console.log(objects)
           //this.ngOnInit();
         },
         error:()=>{
@@ -174,6 +171,21 @@ export class CarrosComponent implements OnInit {
         }
       })
   }
+
+  //funcao lista a qauntidade de veiculos por tipo
+  TipCarroExistente(){
+    for(let i=0;i<this.tiposCarros.length;i++){
+      let cont=0;
+      for(let j=0;j<this.carros.length;j++){
+        if(this.tiposCarros[i].id==this.carros[j].tipoCarroId){
+          cont++;
+        }
+      }
+      this.tipoCarroExistente[i]=cont;
+    }
+   // console.log(this.tipoCarroExistente)
+  }
+
 
   /////////////////////
   //dialog
@@ -191,6 +203,7 @@ export class CarrosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(boolean => {
       if(boolean){
+
         this.carroService.showLoading()
         this.carroService.excluirCarro(id).subscribe({
           next:()=>{
@@ -206,6 +219,7 @@ export class CarrosComponent implements OnInit {
           }
         })
       }
+      
     })
   }
 

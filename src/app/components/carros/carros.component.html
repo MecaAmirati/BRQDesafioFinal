@@ -60,8 +60,8 @@
   </section>
 
   <section>
-    <div *ngFor="let tipo of tiposCarros" class="cardsCarros">
-      <h2 class="tipoTitle">{{tipo.nome}}</h2>
+    <div *ngFor="let tipo of tiposCarros,let j = index" class="cardsCarros">
+      <h2 class="tipoTitle" *ngIf="tipoCarroExistente[j]">{{tipo.nome.toUpperCase()}}</h2>
       <div class="flex spc-between wrap">
         <ng-container  *ngFor="let carro of carros,let i = index" >
 
