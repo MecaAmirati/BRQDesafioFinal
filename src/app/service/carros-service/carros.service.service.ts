@@ -10,6 +10,9 @@ export class CarrosService {
   private listaCarros:any;
   // private url="http://localhost:3000/carros";
   private url="https://servidor-carros.herokuapp.com/carros";
+  carroSelecionadoId=0;
+  DatacarroSelecionadoId=new BehaviorSubject<number>(this.carroSelecionadoId)
+
   constructor(
     private httpClient:HttpClient
   ) { }
@@ -66,6 +69,14 @@ export class CarrosService {
     let endpoint=objeto.id;
     console.log(`${this.url}/${endpoint}`,objeto)
     return this.httpClient.put<CarroInterface>(`${this.url}/${endpoint}`,objeto)
+  }
+
+  //funcoes de seleção do carro
+  GetCarroSelecionadoID():Observable<number>{
+    return this.DatacarroSelecionadoId.asObservable()
+  }
+  SalvarCarroSelecionadoID(id:number){
+    this.DatacarroSelecionadoId.next(id)
   }
 
 }

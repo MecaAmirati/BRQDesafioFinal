@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { CarrosEditarDialogComponent } from '../carros-editar-dialog/carros-editar-dialog.component';
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
+import { CarrosReservarDialogComponent } from '../carros-reservar-dialog/carros-reservar-dialog.component';
 
 @Component({
   selector: 'app-carros',
@@ -21,7 +22,7 @@ export class CarrosComponent implements OnInit {
   carros:CarroInterface[]=[];
   tiposCarros:TipoCarroInterface[]=[];
   locadoras:LocadoraInterface[]=[]
-
+  adm!:boolean;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -29,10 +30,18 @@ export class CarrosComponent implements OnInit {
     private tipoService:TipocarroServiceService,
     private locadoraService:LocadoraServiceService,
     public dialog: MatDialog,
+    public dialogReserva:MatDialog,
+    public adminService: AdminServiceService,
 
   ) { }
 
   ngOnInit(): void {
+       //função para pegar o valor da variavel do admin
+       this.adminService.GetAdmin().subscribe(dado=>{
+        this.adm=dado
+        // console.log(this.adm,'q');
+      })
+
     this.form=this.formBuilder.group({
       carroNomeInput:new FormControl('',[Validators.required]),
       tipoSelect:new FormControl('',[Validators.required]),
@@ -123,6 +132,11 @@ export class CarrosComponent implements OnInit {
     this.editarDialog(carro);
   }
 
+  reservarCarro(carro:CarroInterface){
+    //console.log(carro)
+    this.reservarDialog(carro);
+  }
+
   //carroLocadora!:any[];
   carrosLocadora(){
     this.carroService.lerCarrosTipoCarro().subscribe({
@@ -136,6 +150,7 @@ export class CarrosComponent implements OnInit {
         }
       })
   }
+
   /////////////////////
   //dialog
   excludeDialog(id:number,text:string): void {
@@ -164,10 +179,10 @@ export class CarrosComponent implements OnInit {
     })
   }
 
- ////Dialog
- editarDialog(element:CarroInterface): void {
-  let enterAnimationDuration='500ms';
-  let exitAnimationDuration='500ms';
+  ////Dialog
+  editarDialog(element:CarroInterface): void {
+    let enterAnimationDuration='500ms';
+    let exitAnimationDuration='500ms';
   //abrir o dialog
   const dialogRef = this.dialog.open(CarrosEditarDialogComponent, {
     width: '30%',
@@ -176,20 +191,42 @@ export class CarrosComponent implements OnInit {
     data:element
   })
 
-  dialogRef.afterClosed().subscribe(element => {
-    if(element){
-      this.carroService.showLoading()
-      this.carroService.updateCarro(element).subscribe({
-        next:()=>{
-          this.ngOnInit()
-          this.carroService.hideLoading()
-      },
-        error:()=>{
-          this.carroService.hideLoading()
-          alert("Erro ao salvar filme")
-        }
-      })
-    }
+    dialogRef.afterClosed().subscribe(element => {
+      if(element){
+        this.carroService.showLoading()
+        this.carroService.updateCarro(element).subscribe({
+          next:()=>{
+            this.ngOnInit()
+            this.carroService.hideLoading()
+        },
+          error:()=>{
+            this.carroService.hideLoading()
+            alert("Erro ao salvar filme")
+          }
+        })
+      }
+    })
+  }
+
+  ////Dialog
+ reservarDialog(element:CarroInterface): void {
+  console.log(element)
+  let enterAnimationDuration='500ms';
+  let exitAnimationDuration='500ms';
+  //abrir o dialog
+  const dialogRef1 = this.dialogReserva.open(CarrosReservarDialogComponent, {
+    width: '30%',
+    enterAnimationDuration,
+    exitAnimationDuration,
+    data:element
   })
-}
+
+   dialogRef1.afterClosed().subscribe(element => {
+      if(element){
+        console.log("fechado")
+        this.carroService.SalvarCarroSelecionadoID(element.id)
+
+      }
+    })
+  }
 }

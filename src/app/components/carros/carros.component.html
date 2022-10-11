@@ -75,11 +75,32 @@
               <div>
                 <p>Faca sua reserva e garanta a locação do automóvel.</p>
               </div>
-              
+
             <div class="btns-card">
               <button class="btnEditar" (click)="editarCarro(carro)">Editar</button>
               <button class="btnExcluir" (click)="excluirCarro(carro)">Excluir</button>
             </div >
+
+              <!-- <div mat-card-avatar class=""></div> -->
+              <mat-card-title>{{carro.nome}}</mat-card-title>
+              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+           
+            <mat-card-content>
+              <p>
+                Faca sua reserva e garanta a locação do automóvel
+              </p>
+            </mat-card-content>
+            <mat-card-actions class="btns-card" >
+              <button mat-button class="btn" *ngIf="adm" (click)="editarCarro(carro)">Editar</button>
+              <button mat-button class="btn" *ngIf="adm" (click)="excluirCarro(carro)">Excluir</button>
+              <button mat-button class="btn" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
+            </mat-card-actions>
+            <!-- <ng-template #reserva>
+              <mat-card-actions class="btns-card">
+              <button mat-button class="btn" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
+              </mat-card-actions>
+            </ng-template> -->
+
 
           </mat-card>
         </ng-container>
@@ -89,3 +110,4 @@
 </main>
 
 <app-footer></app-footer>
+

@@ -1,0 +1,28 @@
+<!-- <h1 mat-dialog-title>REservar carro</h1> -->
+<div mat-dialog-content>
+  <!-- <form [formGroup]="formReserva" class="flex-col width90 center"> -->
+  <form class="flex-col width100 center">
+    <img src="../../../assets/carros/car3_2.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==1">
+    <img src="../../../assets/carros/car2_1.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==2">
+    <img src="../../../assets/carros/car1_1.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==3">
+
+    <div>
+      <h2 >{{data.nome}}</h2>
+    </div>
+
+    <div class="div--background width90">
+      <h2 >{{data.portas}} Portas</h2>
+    </div>
+    <div class="div--background width90">
+      <h2 >{{data.npessoas}} Pessoas</h2>
+    </div>
+    <div class="div--background width90">
+      <h2 >Locadora {{locadoraTexto}}</h2>
+    </div>
+    <div class="center">
+      <button  (click)="reservar()" class="editar" >Reservar</button>
+    </div>
+  </form>
+</div>
+
+
