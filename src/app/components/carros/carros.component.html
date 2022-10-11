@@ -82,10 +82,18 @@
                 Faca sua reserva e garanta a locação do automóvel
               </p>
             </mat-card-content>
-            <mat-card-actions class="btns-card">
-              <button mat-button class="btn" (click)="editarCarro(carro)">Editar</button>
-              <button mat-button class="btn" (click)="excluirCarro(carro)">Excluir</button>
+            <mat-card-actions class="btns-card" >
+              <button mat-button class="btn" *ngIf="adm" (click)="editarCarro(carro)">Editar</button>
+              <button mat-button class="btn" *ngIf="adm" (click)="excluirCarro(carro)">Excluir</button>
+              <button mat-button class="btn" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
             </mat-card-actions>
+            <!-- <ng-template #reserva>
+              <mat-card-actions class="btns-card">
+              <button mat-button class="btn" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
+              </mat-card-actions>
+            </ng-template> -->
+
+
           </mat-card>
         </ng-container>
       </div>
@@ -94,3 +102,4 @@
 </main>
 
 <app-footer></app-footer>
+
