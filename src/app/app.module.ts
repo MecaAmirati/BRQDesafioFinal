@@ -38,7 +38,7 @@ import {MatIconModule} from '@angular/material/icon';import { BrowserAnimationsM
 import { ExcluirDialogComponent } from './components/excluir-dialog/excluir-dialog.component';
 import { CarrosEditarDialogComponent } from './components/carros-editar-dialog/carros-editar-dialog.component';
 import { CarrosReservarDialogComponent } from './components/carros-reservar-dialog/carros-reservar-dialog.component';
-import { LocadoraEditarDialogComponent } from './locadora-editar-dialog/locadora-editar-dialog.component';
+import { LocadoraEditarDialogComponent } from './components/locadora-editar-dialog/locadora-editar-dialog.component';
 import localePt from '@angular/common/locales/pt'
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localePt,'pt')

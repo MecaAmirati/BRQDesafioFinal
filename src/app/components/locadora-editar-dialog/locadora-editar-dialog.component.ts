@@ -2,7 +2,7 @@ import { LocadoraInterface } from 'src/app/model/locadoras.model';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LocadoraServiceService } from '../service/locadoras-service/locadora.service.service';
+import { LocadoraServiceService } from '../../service/locadoras-service/locadora.service.service';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class LocadoraEditarDialogComponent implements OnInit {
   this.locadoraService.lerLocadoras().subscribe({
     next:(objects:LocadoraInterface[])=>{
       this.locadoras=objects;
-     
+
     },
     error:()=>{
       console.log('Erro ao listar as locadoras')
@@ -56,9 +56,9 @@ export class LocadoraEditarDialogComponent implements OnInit {
     this.data.nome=this.form.controls['nome'].value;
     this.data.endereco=this.form.controls['endereco'].value;
     this.data.telefone=this.form.controls['telefone'].value;
-  
-  
-  
+
+
+
     this.dialogRef.close(this.data);
     this.form.reset()
   }
