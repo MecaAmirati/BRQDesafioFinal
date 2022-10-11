@@ -195,12 +195,12 @@ export class CarrosComponent implements OnInit {
         this.carroService.excluirCarro(id).subscribe({
           next:()=>{
             this.carroService.hideLoading()
-            this.alertaDados('Carro EXCLUIDO com sucesso!','sucesso')
+            this.alertaDados('Carro EXCLUÍDO com sucesso!','sucesso')
             this.ngOnInit()
           },
           error:()=>{
             this.carroService.hideLoading()
-            this.alertaDados('Carro NÃO foi excluido!','falha')
+            this.alertaDados('Carro NÃO foi excluído!','falha')
 
             //alert("Erro ao excluir")
           }
@@ -228,11 +228,11 @@ export class CarrosComponent implements OnInit {
           next:()=>{
             this.ngOnInit()
             this.carroService.hideLoading()
-            this.alertaDados(`Carro ${element.nome} EDITADO com sucesso!`,'sucesso')
+            this.alertaDados(`${element.nome} EDITADO com sucesso!`,'sucesso')
         },
           error:()=>{
             this.carroService.hideLoading()
-            this.alertaDados(`Carro ${element.nome}  NÃO foi editado!`,'sucesso')
+            this.alertaDados(`${element.nome}  NÃO foi editado!`,'sucesso')
             //alert("Erro ao salvar filme")
           }
         })

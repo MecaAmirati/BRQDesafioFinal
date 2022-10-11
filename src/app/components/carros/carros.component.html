@@ -8,7 +8,7 @@
 
         <mat-form-field class="width100 tamanhoInput input"  appearance="fill">
           <mat-label>Nome do Carro</mat-label>
-          <input matInput formControlName="carroNomeInput" name="carroNomeInput" placeholder="Nome do carro" class="">
+          <input maxlength="18" matInput formControlName="carroNomeInput" name="carroNomeInput" placeholder="Nome do carro" class="">
           <mat-error *ngIf="form.get('carroNomeInput')?.hasError('required')">
           Este campo é <strong>obrigatório</strong>
           </mat-error>
@@ -62,13 +62,13 @@
   <section>
     <div *ngFor="let tipo of tiposCarros" class="cardsCarros">
       <h2 class="tipoTitle">{{tipo.nome}}</h2>
-      <div class="flex spc-between wrap">
+      <div class="flex spaceEvenly wrap">
         <ng-container  *ngFor="let carro of carros,let i = index" >
 
           <mat-card class="card" *ngIf="carro.tipoCarroId == tipo.id ">
-            <img class="imgCarro" *ngIf="carro.tipoCarroId==1" src="../../../assets/carros/car3_2.png" alt="Foto do carro {{carro.nome}}">
-            <img class="imgCarro" *ngIf="carro.tipoCarroId==2" src="../../../assets/carros/car2_1.png" alt="Foto do carro {{carro.nome}}">
-            <img class="imgCarro" *ngIf="carro.tipoCarroId==3" src="../../../assets/carros/car1_1.png" alt="Foto do carro {{carro.nome}}">
+            <img class="imgCarro" *ngIf="carro.tipoCarroId==1" src="../../../assets/imagens/car3 2.png" alt="Foto do carro {{carro.nome}}">
+            <img class="imgCarro" *ngIf="carro.tipoCarroId==2" src="../../../assets/imagens/car2 3.png" alt="Foto do carro {{carro.nome}}">
+            <img class="imgCarro" *ngIf="carro.tipoCarroId==3" src="../../../assets/imagens/car1 2.png" alt="Foto do carro {{carro.nome}}">
             <!-- <img class="imgCarro" src="../../../assets/carros/vazio.jpg" alt="Foto do carro"> -->
 
               <div>
