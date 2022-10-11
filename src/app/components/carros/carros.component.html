@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-  <section >
+  <section *ngIf="adm">
 
     <fieldset class="fildset_form" >
       <form [formGroup]="form" class="flex-col center width90 marginAuto" >
@@ -62,7 +62,7 @@
   <section>
     <div *ngFor="let tipo of tiposCarros" class="cardsCarros">
       <h2 class="tipoTitle">{{tipo.nome}}</h2>
-      <div class="flex spc-between">
+      <div class="flex spc-between wrap">
         <ng-container  *ngFor="let carro of carros,let i = index" >
 
           <mat-card class="card" *ngIf="carro.tipoCarroId == tipo.id ">
@@ -81,8 +81,8 @@
 
             <div class="btns-card">
               <button class="btnEditar"  *ngIf="adm" (click)="editarCarro(carro)">Editar</button>
-              <button class="btnExcluir" *ngIf="adm" (click)="excluirCarro(carro)">Excluir</button>
-              <button class="btnEditar" *ngIf="!adm" (click)="excluirCarro(carro)">Reservar</button>
+              <button class="btnExcluir" *ngIf="adm" (click)="excluirCarro(carro)" ngClass="">Excluir</button>
+              <button class="btnEditar" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
             </div >
           </mat-card>
 
