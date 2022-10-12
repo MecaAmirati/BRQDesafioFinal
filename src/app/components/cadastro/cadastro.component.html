@@ -10,31 +10,31 @@
                 <form [formGroup]="formularioCadastro" (ngSubmit)="salvarDadosUsuario()">
 
                     <div class="formCadastro">
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="fill" class="tamanhoInput">
                             <mat-label>Nome completo</mat-label>
                             <input formControlName="nome" matInput type="text" name="nome" placeholder="Digite o nome completo" required>
                             <mat-error>{{error}}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="fill" class="tamanhoInput">
                             <mat-label>Telefone</mat-label>
                             <input formControlName="tel" matInput type="text" name="tel" placeholder="(DD)+Numero" required>
                             <mat-error>{{error}}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="fill" class="tamanhoInput">
                             <mat-label>E-mail</mat-label>
                             <input formControlName="email" matInput type="text" name="email" placeholder="Exemplo@exemplo.com" required>
                             <mat-error *ngIf="formularioCadastro.get('email')?.hasError('required') || formularioCadastro.get('email')?.hasError('email')"> {{validaEmail()}} </mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="fill" class="tamanhoInput">
                             <mat-label>Senha</mat-label>
                             <input formControlName="senha" matInput type="password" name="senha" placeholder="Digite uma senha" required>
                             <mat-error *ngIf="formularioCadastro.get('confirmarSenha')?.hasError('camposDivergentes')" >{{validaSenhas()}}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="fill" class="tamanhoInput">
                             <mat-label>Confirmar Senha</mat-label>
                             <input formControlName="confirmarSenha" matInput type="password" name="confirmarSenha" placeholder="Digite novamente a senha" (keyup)="validaSenhas()" required>
                             <mat-error>{{error}}</mat-error>
@@ -43,9 +43,8 @@
 
                     <div class="containerBotao">
                         <!-- <a routerLink="../perfil"> //esta redirecionando antes de salvar -->
-                            <button mat-button type="submit" [disabled]="!formularioCadastro.valid"  > Cadastrar </button>
-                            <a routerLink="../login">já tenho um cadastro</a>
-                        <!-- </a>                                                                 *ngIf=""  formularioCadastro.valid == router.routerState.snapshot.url == '/perfil'           -->
+                            <button type="submit" [disabled]="!formularioCadastro.valid" class="btnCadastrar"  > Cadastrar </button>
+                            <a routerLink="../login">Já tenho um cadastro!</a>
                     </div>
 
                 </form>

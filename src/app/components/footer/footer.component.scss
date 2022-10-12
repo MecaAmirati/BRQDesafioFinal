@@ -7,7 +7,6 @@ footer{
     align-items: center;
 }
 
-
 .footerConteiner{
     display: flex;
     justify-content: center;
@@ -20,22 +19,25 @@ footer{
     display: flex;
     flex-direction: column;
     width: 66%;
+    
 }
 
 .boxLink{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    font-family: Roboto;
+    justify-content: space-between;
+    font-family: 'Roboto';
     font-size: 24px;
     font-weight: 400;
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;
     margin-bottom: 80px;
-    margin-right: 30px;
-    padding-left: 12%;
+    margin-right: 45px;
+    padding-left: 30%;
 }
+
+
 
 .boxLink a{
     color: black;
@@ -68,10 +70,11 @@ footer{
     border-left: 1px solid black;
     height: 250px;
     padding-top: 8px;
-    align-content: space-around;
+    align-content:space-between;
     align-items: center;
     justify-content: center;
-    padding-left: 42px;
+    // padding-left: 42px;
+    // margin-left: 50px;
 }
 
 .box2 img{
@@ -94,7 +97,7 @@ footer{
 }
 
 .box2P p{
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 24px;
     font-weight: 400;
     line-height: 28px;
