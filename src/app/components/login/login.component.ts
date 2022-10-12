@@ -92,8 +92,8 @@ export class LoginComponent implements OnInit {
     switch (tipoExecucao) {
       case "login_errado":
         this.snackBar.open("Email ou senha errados", undefined, {
-          duration: 2000,
-          panelClass: ['snackbar-tema-sucesso']
+          duration: 4000,
+          panelClass: ['snackbar-tema-falha']
         })
       break;
       case "erro_bancoDados":
@@ -112,8 +112,8 @@ export class LoginComponent implements OnInit {
 
       default:
         this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
-          duration: 2000,
-          panelClass: ['snackbar-tema']
+          duration: 4000,
+          panelClass: ['snackbar-tema-falha']
         })
       break;
     }

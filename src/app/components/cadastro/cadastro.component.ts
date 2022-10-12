@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UsuarioInterface } from 'src/app/model/usuario.model';
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
+import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,6 +22,8 @@ export class CadastroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
+    private router: Router,
+    private adminService: AdminServiceService
 
   ) { }
 
@@ -85,8 +89,6 @@ export class CadastroComponent implements OnInit {
 
   salvarDadosUsuario(){
 
-
-
     this.usuarioService.showLoading();
 
     const id = this.nextId()
@@ -103,14 +105,12 @@ export class CadastroComponent implements OnInit {
     if (this.verificarEmail(usuario)) {
       this.usuarioService.salvarUsuario(usuario).subscribe({
         next: () =>{
-          // console.log(this.usuarios);
-          // console.log("Cadastrado com sucesso");
           // this.ngOnInit();
           this.usuarioService.hideLoading();
           this.alertaDados("sucesso_cadastrar")
+          this.router.navigate(['/login']);//redirecionando para a pagina login
         },
         error: () =>{
-          // console.log("Erro ao Salvar Usuario");
           this.usuarioService.hideLoading();
           this.alertaDados("falha_cadastrar");
         }
@@ -121,10 +121,6 @@ export class CadastroComponent implements OnInit {
       this.alertaDados("email_existente");
 
     }
-
-
-
-
 
   }
 
@@ -154,42 +150,42 @@ export class CadastroComponent implements OnInit {
     switch (tipoExecucao) {
       case "sucesso_cadastrar":
         this.snackBar.open("Cadastrado com sucesso", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-sucesso']
         })
       break;
 
       case "sucesso_editar":
         this.snackBar.open("Editado com sucesso", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-sucesso']
         })
       break;
 
       case "sucesso_excluir":
         this.snackBar.open("Excluido com sucesso", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-sucesso']
         })
       break;
 
       case "falha_cadastrar":
         this.snackBar.open("Desculpe, erro ao cadastrar", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "falha_editar":
         this.snackBar.open("Desculpe, erro ao editar", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "falha_excluir":
         this.snackBar.open("Desculpe, erro ao excluir", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
@@ -210,15 +206,15 @@ export class CadastroComponent implements OnInit {
 
       case "email_existente":
         this.snackBar.open("E-mail já existente, por favor realize login", undefined, {
-          duration: 20000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       default:
         this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
-          duration: 2000,
-          panelClass: ['snackbar-tema']
+          duration: 4000,
+          panelClass: ['snackbar-tema-falha']
         })
       break;
     }

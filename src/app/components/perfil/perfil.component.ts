@@ -8,6 +8,7 @@ import { UsuarioInterface } from 'src/app/model/usuario.model';
 import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.service.service';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,12 +25,14 @@ export class PerfilComponent implements OnInit {
 
 
   adm:boolean=true;
+
   constructor(
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioServiceService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
     public adminService: AdminServiceService,
+    private router: Router
 
    ){}
 
@@ -60,6 +63,8 @@ export class PerfilComponent implements OnInit {
         this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
       }
     })
+
+
   }
   // ----------------------Função para colocar os dados no input do usuário não admin
   DadoPerfilNaoAdmin(){
@@ -137,6 +142,11 @@ export class PerfilComponent implements OnInit {
       next: () => {
       //  console.log("Usuario editado");
        this.ngOnInit();
+      if(this.adm == true){
+        this.formularioPerfil.controls['nome'].setValue(this.usuarioSelecionado.nome);
+        this.formularioPerfil.controls['tel'].setValue(this.usuarioSelecionado.telefone);
+        this.formularioPerfil.controls['email'].setValue(this.usuarioSelecionado.email);
+      }
        this.usuarioService.hideLoading();
        this.alertaDados("sucesso_editar");
       },
@@ -150,16 +160,34 @@ export class PerfilComponent implements OnInit {
 
   }
 
-   //----------------mesma coisa da função de dialog abaixo
-   public excluirUsuarioComum(usuario?: UsuarioInterface){
-    const text = `${"usuario.nome"}, Você realmente deseja excluir o seu Cadastro?`
-    const idTemporario =10;
-    this.excludeDialog(idTemporario,text)
+  public excluirUsuarioComum(){
+    this.usuarioService.showLoading();
+    this.adminService.GetId().subscribe(id=>{//pega o id passado do login
+
+      this.usuarioService.lerUsuarioById(id).subscribe({//pega o restante das informações na api
+        next:(usuario)=>{
+          this.usuarioService.hideLoading();
+          const text = `${usuario.nome}, Você realmente deseja excluir o seu Cadastro?`
+          this.excludeDialog(id,text);
+        },
+        error:()=>{
+          this.usuarioService.hideLoading();
+          this.alertaDados("falha_pegar_dados");
+        }
+      })
+      
+    })
+  
+  }
+
+  public excluirUsuarioCard(usuario: UsuarioInterface){
+    const text = `Você realmente deseja excluir o seu Cadastro de: ${usuario.nome}?`
+    this.excludeDialog(usuario.id,text);
+    // this.usuarioSelecionado.id;
   }
 
   /////////////////////
   //dialog
-  // ------------------------para terminar essa função preciso que ja esteja setado o usuario no login
   excludeDialog(id:number,text:string): void {
     let enterAnimationDuration='500ms';
     let exitAnimationDuration='500ms';
@@ -173,13 +201,25 @@ export class PerfilComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(boolean => {
+      
       if(boolean){
+        this.usuarioService.showLoading();
         this.usuarioService.excluirUsuario(id).subscribe({
           next:()=>{
-            this.ngOnInit()
+            if(this.adm){
+              this.ngOnInit();
+              this.usuarioService.hideLoading();
+              this.alertaDados("sucesso_excluir");
+            }else{
+              this.router.navigate(['/cadastro']);
+              this.usuarioService.hideLoading();
+              this.alertaDados("sucesso_excluir");
+            }
+
           },
           error:()=>{
-            alert("Erro ao excluir")
+            this.usuarioService.hideLoading();
+            this.alertaDados("falha_excluir");
           }
         })
       }
@@ -207,42 +247,42 @@ export class PerfilComponent implements OnInit {
     switch (tipoExecucao) {
       case "sucesso_cadastrar":
         this.snackBar.open("Cadastrado com sucesso", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-sucesso']
         })
       break;
 
       case "sucesso_editar":
         this.snackBar.open("Editado com sucesso", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-sucesso']
         })
       break;
 
       case "sucesso_excluir":
         this.snackBar.open("Excluido com sucesso", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-sucesso']
         })
       break;
 
       case "falha_cadastrar":
         this.snackBar.open("Desculpe, erro ao cadastrar", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "falha_editar":
         this.snackBar.open("Desculpe, erro ao editar", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "falha_excluir":
         this.snackBar.open("Desculpe, erro ao excluir", undefined, {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
@@ -269,8 +309,8 @@ export class PerfilComponent implements OnInit {
 
       default:
         this.snackBar.open("Serviço indisponivel no momento, tente novamente mais tarde", undefined, {
-          duration: 2000,
-          panelClass: ['snackbar-tema']
+          duration: 4000,
+          panelClass: ['snackbar-tema-falha']
         })
       break;
     }
