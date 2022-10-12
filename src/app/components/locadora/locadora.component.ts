@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
-import { LocadoraEditarDialogComponent } from 'src/app/locadora-editar-dialog/locadora-editar-dialog.component';
+import { LocadoraEditarDialogComponent } from 'src/app/components/locadora-editar-dialog/locadora-editar-dialog.component';
 
 
 
@@ -66,7 +66,7 @@ export class LocadoraComponent implements OnInit {
       const editarEndereco = this.formularioLocadora.controls['endereco'].setValue(locadora.endereco);
       const editarTelefone = this.formularioLocadora.controls['telefone'].setValue(locadora.telefone);
     }
-   
+
 
   ResetarCampos(){
     //resetar os valores
@@ -196,7 +196,7 @@ export class LocadoraComponent implements OnInit {
       exitAnimationDuration,
       data:element
     })
-  
+
 
     dialogRef.afterClosed().subscribe((element: LocadoraInterface) => {
       if(element){
@@ -216,4 +216,4 @@ export class LocadoraComponent implements OnInit {
 }
 
 
-} 
+}

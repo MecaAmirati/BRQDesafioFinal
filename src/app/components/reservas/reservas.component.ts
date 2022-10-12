@@ -13,22 +13,39 @@ import { ReservaServiceService } from 'src/app/service/reserva-service/reserva.s
   styleUrls: ['./reservas.component.scss']
 })
 export class ReservasComponent implements OnInit {
-  public reservas:ReservaInterface[]=[];
-  public carros:CarroInterface[]=[];
+
+  public reservas:any=[];
+
   form!: FormGroup;
+  //variavel de controle das funções de admin
   adm:boolean=false
+  //variavel de controle do botão atualizar no form
+  atualizar:boolean=false
+  //variavel com o id do usuario logado
+  usuarioId!:number
+  carroNome!:any
+  cardAtualizar!:ReservaInterface
+  //lista com as locadoras
+  listaLocadoras:any=[];
+  //lista com todos os carros
+  listaCarros:CarroInterface[]=[];
   constructor(
     private carroService:CarrosService,
     private formBuilder:FormBuilder,
     private reservaService:ReservaServiceService,
     private locadoraService:LocadoraServiceService,
-    private admService: AdminServiceService
+    private admService: AdminServiceService,
+
   ) { }
 
   ngOnInit(): void {
     //variavel para ver se o usuario é adm ou não
     this.admService.GetAdmin().subscribe(dadoAdm=>{
       this.adm=dadoAdm
+    })
+    //pegar o id do usuario logado
+    this.admService.GetId().subscribe(dadoId=>{
+      this.usuarioId=dadoId
     })
     this.form=this.formBuilder.group({
       nomeCarro:new FormControl('',[Validators.required]),
@@ -38,60 +55,131 @@ export class ReservasComponent implements OnInit {
       nomeFilial:new FormControl('',[Validators.required]),
 
     })
-
-
     this.carroService.lerCarros().subscribe({
-      next:(objects:CarroInterface[])=>{
-        this.carros=objects;
-        console.log(this.carros)
+      next:(carros)=>{
+        this.listaCarros=carros
 
+      },
+      error:()=>{
+        console.log("erro carro");
+
+      }
+    })
+    //lista de locadora
+    this.locadoraService.lerLocadoras().subscribe({
+      next:(locadora)=>{
+        this.listaLocadoras=locadora
+        console.log(this.listaLocadoras);
+
+      },
+      error:()=>{
+        console.log('erro de banco');
+
+      }
+    })
+    // pegar a lista de reserva para listar
+    this.reservaService.lerReservas().subscribe({
+      next:(object)=>{
+        this.reservas=object
       },
       error:()=>{
         console.log("Erro ao listar reservas");
       }
 
     })
-    // this.reservaService.lerReservas().subscribe({
-    //   next:(object:ReservaInterface[])=>{
-    //     this.reservas=object;
-    //     console.log(this.reservas);
-
-    //   },
-    //   error:()=>{
-    //     console.log("Erro ao listar reservas");
-    //   }
-
-    // })
-
-
 
 
   }
+  //-------------função para gerar um novo id------------------
+  idNovo():number{
+    let idNovo:number;
+    if (this.reservas.length==0) {//se não tiver nenhuma rserva, resetar o id para 1
+      idNovo=1
+    }
+    else{// se tiver pelo menos 1 locadora, o id vai ser idAntigo + 1
+      idNovo=this.reservas[this.reservas.length -1].id +1
+    }
 
+    return idNovo;
+  }
+  //---------------função para setar a locadora  do carro-----------------------
+  ListaDeLocadoraPeloCarro(idCarro:number){
+    this.carroService.lerCarroById(idCarro).subscribe({
+      next:(carros)=>{
+        this.form.controls['nomeFilial'].setValue(carros.locadoraId)
+      },
+      error:()=>{
+        console.log('erro de banco');
 
-  puxarParaInput(carros: CarroInterface){
-    this.form.controls['nomeCarro'].setValue(carros.nome);
-    this.form.controls['dataReserva'].setValue(carros.npessoas);
-    this.form.controls['horaReserva'].setValue(carros.nome);
-    this.form.controls['dataDevolucao'].setValue(carros.portas);
-    this.form.controls['nomeFilial'].setValue(carros.locadoraId);
+      }
+    })
+  }
+  //---------------função para adicionar nova reserva de carro---------------------
+  ReservarCarro(){
+    let body:ReservaInterface={
+      id:this.idNovo(),
+      data:this.form.controls['dataReserva'].value,
+      horario:this.form.controls['horaReserva'].value,
+      dataentrega:this.form.controls['dataDevolucao'].value,
+      usuarioId:this.usuarioId,
+      carroId:this.form.controls['nomeCarro'].value,
+    }
+    console.log(body);
+    this.reservaService.salvarReserva(body).subscribe({
+      next:()=>{
+        this.ngOnInit()
+      }
+    })
+  }
+//-------------editar a reserva de carro já existente-------------------
+  AtualizarReserva(){
+
+    let body:ReservaInterface={
+      id:this.cardAtualizar.id,
+      data:this.form.controls['dataReserva'].value,
+      horario:this.form.controls['horaReserva'].value,
+      dataentrega:this.form.controls['dataDevolucao'].value,
+      usuarioId:this.cardAtualizar.usuarioId,
+      carroId:this.form.controls['nomeCarro'].value,
+
+    }
+    this.reservaService.updateReserva(body).subscribe({
+      next:()=>{
+        this.ngOnInit()
+        // console.log('q');
+
+      }
+    })
+  }
+  //-----------função para colocar o Nome do carro no card---------------
+  NomeCarro(id:number):string{
+    let nome:any=this.listaCarros.filter((carro)=>carro.id==id)
+    return nome[0].nome
+  }
+  //-----------função para pegar as informações do card e colocar no input-------------------
+  puxarParaInput(carros: ReservaInterface){
+    this.atualizar=true
+    this.cardAtualizar=carros
+
+    this.form.controls['nomeCarro'].setValue(carros.carroId);
+    this.form.controls['dataReserva'].setValue(carros.data);
+    this.form.controls['horaReserva'].setValue(carros.horario);
+    this.form.controls['dataDevolucao'].setValue(carros.dataentrega);
+    this.ListaDeLocadoraPeloCarro(carros.carroId)
 
     console.log(carros);
 
   }
-
+//---------------função de deletar o card de reserva----------------------------
   excluirUsuario(id: any){
 
-    this.carroService.excluirCarro(id).subscribe({
+    this.reservaService.excluirReserva(id).subscribe({
       next: () => {
         console.log("Usuario excluido");
         this.ngOnInit();
-
-
       },
       error: () => {
         console.log("erro ao excluir reserva");
-
       }
     })
 

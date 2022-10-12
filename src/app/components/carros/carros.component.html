@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-  <section >
+  <section *ngIf="adm">
 
     <fieldset class="fildset_form" >
       <form [formGroup]="form" class="flex-col center width90 marginAuto" >
@@ -8,7 +8,7 @@
 
         <mat-form-field class="width100 tamanhoInput input"  appearance="fill">
           <mat-label>Nome do Carro</mat-label>
-          <input matInput formControlName="carroNomeInput" name="carroNomeInput" placeholder="Nome do carro" class="">
+          <input maxlength="18" matInput formControlName="carroNomeInput" name="carroNomeInput" placeholder="Nome do carro" class="">
           <mat-error *ngIf="form.get('carroNomeInput')?.hasError('required')">
           Este campo é <strong>obrigatório</strong>
           </mat-error>
@@ -62,11 +62,14 @@
   <section>
     <div *ngFor="let tipo of tiposCarros" class="cardsCarros">
       <h2 class="tipoTitle">{{tipo.nome}}</h2>
-      <div >
-        <ng-container *ngFor="let carro of carros,let i = index" >
+      <div class="flex spaceEvenly wrap">
+        <ng-container  *ngFor="let carro of carros,let i = index" >
 
           <mat-card class="card" *ngIf="carro.tipoCarroId == tipo.id ">
-            <img class="imgCarro" src="../../../assets/carros/vazio.jpg" alt="Foto do carro">
+            <img class="imgCarro" *ngIf="carro.tipoCarroId==1" src="../../../assets/imagens/car3 2.png" alt="Foto do carro {{carro.nome}}">
+            <img class="imgCarro" *ngIf="carro.tipoCarroId==2" src="../../../assets/imagens/car2 3.png" alt="Foto do carro {{carro.nome}}">
+            <img class="imgCarro" *ngIf="carro.tipoCarroId==3" src="../../../assets/imagens/car1 2.png" alt="Foto do carro {{carro.nome}}">
+            <!-- <img class="imgCarro" src="../../../assets/carros/vazio.jpg" alt="Foto do carro"> -->
 
               <div>
                 <h2>{{carro.nome}}</h2>
@@ -77,32 +80,13 @@
               </div>
 
             <div class="btns-card">
-              <button class="btnEditar" (click)="editarCarro(carro)">Editar</button>
-              <button class="btnExcluir" (click)="excluirCarro(carro)">Excluir</button>
+              <button class="btnEditar"  *ngIf="adm" (click)="editarCarro(carro)">Editar</button>
+              <button class="btnExcluir" *ngIf="adm" (click)="excluirCarro(carro)" ngClass="">Excluir</button>
+              <button class="btnEditar" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
             </div >
-
-              <!-- <div mat-card-avatar class=""></div> -->
-              <mat-card-title>{{carro.nome}}</mat-card-title>
-              <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-           
-            <mat-card-content>
-              <p>
-                Faca sua reserva e garanta a locação do automóvel
-              </p>
-            </mat-card-content>
-            <mat-card-actions class="btns-card" >
-              <button mat-button class="btn" *ngIf="adm" (click)="editarCarro(carro)">Editar</button>
-              <button mat-button class="btn" *ngIf="adm" (click)="excluirCarro(carro)">Excluir</button>
-              <button mat-button class="btn" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
-            </mat-card-actions>
-            <!-- <ng-template #reserva>
-              <mat-card-actions class="btns-card">
-              <button mat-button class="btn" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
-              </mat-card-actions>
-            </ng-template> -->
-
-
           </mat-card>
+
+
         </ng-container>
       </div>
     </div>

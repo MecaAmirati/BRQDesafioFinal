@@ -7,7 +7,11 @@ import { Subject, Observable,BehaviorSubject } from 'rxjs';
 })
 export class AdminServiceService {
   //variavel para guardar o resultado se é admin
-  adm:boolean=false
+
+  ////////////////////////////////////////////
+  //MUDAR BOOLEAN PARA FALSE NO FINAL DO DIA//
+  ////////////////////////////////////////////
+  adm:boolean=true
   DataAdmin= new BehaviorSubject<boolean>(this.adm) //vai guardar o último valor dado
   // função para pegar o valor do admin
   GetAdmin():Observable<boolean>{

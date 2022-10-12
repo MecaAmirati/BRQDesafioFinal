@@ -11,6 +11,7 @@ import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.compone
 import { CarrosEditarDialogComponent } from '../carros-editar-dialog/carros-editar-dialog.component';
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 import { CarrosReservarDialogComponent } from '../carros-reservar-dialog/carros-reservar-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-carros',
@@ -32,6 +33,7 @@ export class CarrosComponent implements OnInit {
     public dialog: MatDialog,
     public dialogReserva:MatDialog,
     public adminService: AdminServiceService,
+    private snackBar: MatSnackBar,
 
   ) { }
 
@@ -49,6 +51,7 @@ export class CarrosComponent implements OnInit {
       portasInput:new FormControl('',[Validators.required]),
       nPessoaInput:new FormControl('',[Validators.required])
     })
+    this.ResetarCampos();
 
     this.carroService.lerCarros().subscribe({
       next:(objects:CarroInterface[])=>{
@@ -94,11 +97,15 @@ export class CarrosComponent implements OnInit {
     this.carroService.salvarCarro(objectCarro).subscribe({
       next:()=>{
 
+        this.alertaDados('Carro cadastrado com Sucesso',"sucesso")
+        this.ResetarCampos();
         this.ngOnInit();
-        this.form.reset;
+
+
       },
       error:()=>{
-        console.log("erro ao salvar filme");
+        //console.log("erro ao salvar filme");
+        this.alertaDados('Erro ao salvar filme',"falha")
 
       }
     })
@@ -126,6 +133,23 @@ export class CarrosComponent implements OnInit {
 
     //   }
     // })
+  }
+  ResetarCampos(){
+    //resetar os valores
+    this.form.controls['carroNomeInput'].reset();
+    this.form.controls['portasInput'].reset();
+    this.form.controls['nPessoaInput'].reset();
+    this.form.controls['locadoraSelect'].reset();
+    this.form.controls['tipoSelect'].reset();
+
+    //recetar os erros dos inputs
+    this.form.controls['carroNomeInput'].setErrors(null);
+    this.form.controls['portasInput'].setErrors(null);
+    this.form.controls['nPessoaInput'].setErrors(null);
+    this.form.controls['locadoraSelect'].setErrors(null);
+    this.form.controls['tipoSelect'].setErrors(null);
+    this.form.setErrors(null);
+
   }
 
   editarCarro(carro:CarroInterface){
@@ -167,12 +191,18 @@ export class CarrosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(boolean => {
       if(boolean){
+        this.carroService.showLoading()
         this.carroService.excluirCarro(id).subscribe({
           next:()=>{
+            this.carroService.hideLoading()
+            this.alertaDados('Carro EXCLUÍDO com sucesso!','sucesso')
             this.ngOnInit()
           },
           error:()=>{
-            alert("Erro ao excluir")
+            this.carroService.hideLoading()
+            this.alertaDados('Carro NÃO foi excluído!','falha')
+
+            //alert("Erro ao excluir")
           }
         })
       }
@@ -198,10 +228,12 @@ export class CarrosComponent implements OnInit {
           next:()=>{
             this.ngOnInit()
             this.carroService.hideLoading()
+            this.alertaDados(`${element.nome} EDITADO com sucesso!`,'sucesso')
         },
           error:()=>{
             this.carroService.hideLoading()
-            alert("Erro ao salvar filme")
+            this.alertaDados(`${element.nome}  NÃO foi editado!`,'sucesso')
+            //alert("Erro ao salvar filme")
           }
         })
       }
@@ -227,6 +259,29 @@ export class CarrosComponent implements OnInit {
         this.carroService.SalvarCarroSelecionadoID(element.id)
 
       }
+    })
+  }
+  //////////////////////////////////////////////////////////
+  //snackbar
+  alertaDados(mensagem: string, tipoSnack?:string){
+     let snackTema='';
+     if(tipoSnack){
+      snackTema=tipoSnack;
+     }
+     switch(snackTema){
+      case 'sucesso':
+        snackTema='snackbar-tema-sucesso';
+        break;
+      case 'falha':
+        snackTema='snackbar-tema-falha';
+        break;
+      default:
+        snackTema='snackbar-tema';
+        break
+     }
+    this.snackBar.open(mensagem, undefined, {
+      duration: 4000,
+      panelClass: [snackTema]
     })
   }
 }
