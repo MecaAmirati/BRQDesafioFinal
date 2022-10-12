@@ -8,21 +8,29 @@
                 <mat-select class="filial" formControlName="nomeCarro" name="nomeCarro" (ngModelChange)="ListaDeLocadoraPeloCarro(form.controls['nomeCarro'].value)" >
                   <mat-option *ngFor="let carro of listaCarros" [value]="carro.id">{{carro.nome}}</mat-option>
                 </mat-select>
+                <mat-error  *ngIf="form.get('nomeFilial')?.hasError('required')">{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
 
         </div>
         <div id="boxDatas">
             <mat-form-field  appearance="fill" class="dataReserva">
                 <mat-label>Data reserva:</mat-label>
-                <input matInput  type="date" formControlName="dataReserva" name="dataReserva" placeholder="dd/mm/aaaa">
+                <input matInput  [matDatepicker]="dataReserva" [min]="minDiaReserva" formControlName="dataReserva" name="dataReserva" (ngModelChange)="SetarMinDiaDevolucao(form.controls['dataReserva'].value)" re>
+                <mat-datepicker-toggle matSuffix [for]="dataReserva"></mat-datepicker-toggle>
+                <mat-datepicker #dataReserva></mat-datepicker>
+                <mat-error *ngIf="form.get('dataReserva')?.hasError('matDatepickerMin') || form.get('dataReserva')?.hasError('required') && form.get('dataReserva')?.touched ">{{ValidacaoDatas('dataReserva')}}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill" class="horaReserva">
                 <mat-label>Horário da reserva:</mat-label>
                 <input matInput type="time"  formControlName="horaReserva" name="horaReserva" placeholder="ex. 15:00">
+                <mat-error *ngIf="form.get('horaReserva')?.hasError('required')">{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
             <mat-form-field  appearance="fill" class="dataDevolucao">
                 <mat-label>Data da Devolução:</mat-label>
-                <input matInput  type="date"  formControlName="dataDevolucao" name="dataDevolucao" placeholder="dd/mm/aaaa">
+                <input matInput   [matDatepicker]="dataDevolucao1" [min]="minDiaDevolucao" formControlName="dataDevolucao" name="dataDevolucao"  >
+                <mat-datepicker-toggle matSuffix [for]="dataDevolucao1"></mat-datepicker-toggle>
+                <mat-datepicker #dataDevolucao1></mat-datepicker>
+                <mat-error *ngIf="form.get('dataDevolucao')?.hasError('matDatepickerMin') || form.get('dataDevolucao')?.hasError('required') && form.get('dataDevolucao')?.touched ">{{ValidacaoDatas('dataDevolucao')}}</mat-error>
             </mat-form-field>
 
         </div>
@@ -32,6 +40,7 @@
                 <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial"  >
                     <mat-option *ngFor="let locadora of listaLocadoras" [value]="locadora.id" >{{locadora.nome}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="form.get('nomeFilial')?.hasError('required')" >{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
             <button class="btnLogin" *ngIf="adm || atualizar" (click)="AtualizarReserva()" ><span>Atualizar</span></button>
             <button class="btnLogin" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()" ><span>Reservar</span></button>
@@ -65,7 +74,7 @@
                 </div>
             </div>
             <div>
-              <button class="btnExcluir" *ngIf="!adm" (click)="puxarParaInput(cardsCarros)">Editar</button>
+              <!-- <button class="btnExcluir" *ngIf="!adm" (click)="puxarParaInput(cardsCarros)">Editar</button> -->
               <button class="btnExcluir" (click)="excluirUsuario(cardsCarros.id)" >Excluir Reserva</button>
 
             </div>

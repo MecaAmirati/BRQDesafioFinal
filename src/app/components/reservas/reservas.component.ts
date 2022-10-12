@@ -1,3 +1,5 @@
+import { EventListenerFocusTrapInertStrategy } from '@angular/cdk/a11y';
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CarroInterface } from 'src/app/model/carros.model';
@@ -16,7 +18,14 @@ export class ReservasComponent implements OnInit {
 
   public reservas:any=[];
 
-  form!: FormGroup;
+  form:FormGroup=this.formBuilder.group({
+      nomeCarro:new FormControl('',[Validators.required]),
+      dataReserva:new FormControl('',[Validators.required]),
+      horaReserva:new FormControl('',[Validators.required]),
+      dataDevolucao:new FormControl('',[Validators.required]),
+      nomeFilial:new FormControl('',[Validators.required]),
+
+    });
   //variavel de controle das funções de admin
   adm:boolean=false
   //variavel de controle do botão atualizar no form
@@ -29,6 +38,10 @@ export class ReservasComponent implements OnInit {
   listaLocadoras:any=[];
   //lista com todos os carros
   listaCarros:CarroInterface[]=[];
+  //não deixar o usuario pegar dias menores que o atual
+  dateToday:Date=new Date()
+  minDiaReserva:Date=this.dateToday
+  minDiaDevolucao:Date=this.dateToday
   constructor(
     private carroService:CarrosService,
     private formBuilder:FormBuilder,
@@ -46,14 +59,6 @@ export class ReservasComponent implements OnInit {
     //pegar o id do usuario logado
     this.admService.GetId().subscribe(dadoId=>{
       this.usuarioId=dadoId
-    })
-    this.form=this.formBuilder.group({
-      nomeCarro:new FormControl('',[Validators.required]),
-      dataReserva:new FormControl('',[Validators.required]),
-      horaReserva:new FormControl('',[Validators.required]),
-      dataDevolucao:new FormControl('',[Validators.required]),
-      nomeFilial:new FormControl('',[Validators.required]),
-
     })
     this.carroService.lerCarros().subscribe({
       next:(carros)=>{
@@ -87,6 +92,7 @@ export class ReservasComponent implements OnInit {
       }
 
     })
+    this.form.controls['nomeFilial'].disable()
 
 
   }
@@ -104,15 +110,21 @@ export class ReservasComponent implements OnInit {
   }
   //---------------função para setar a locadora  do carro-----------------------
   ListaDeLocadoraPeloCarro(idCarro:number){
-    this.carroService.lerCarroById(idCarro).subscribe({
-      next:(carros)=>{
-        this.form.controls['nomeFilial'].setValue(carros.locadoraId)
-      },
-      error:()=>{
-        console.log('erro de banco');
+    if(idCarro==null){
+      return
+    }
+    else{
+      this.carroService.lerCarroById(idCarro).subscribe({
+        next:(carros)=>{
+          this.form.controls['nomeFilial'].setValue(carros.locadoraId)
+        },
+        error:()=>{
+          console.log('erro de banco');
 
-      }
-    })
+        }
+      })
+    }
+
   }
   //---------------função para adicionar nova reserva de carro---------------------
   ReservarCarro(){
@@ -127,13 +139,15 @@ export class ReservasComponent implements OnInit {
     console.log(body);
     this.reservaService.salvarReserva(body).subscribe({
       next:()=>{
+        this.Resetar()
         this.ngOnInit()
+
       }
     })
   }
 //-------------editar a reserva de carro já existente-------------------
   AtualizarReserva(){
-
+    this.atualizar=false
     let body:ReservaInterface={
       id:this.cardAtualizar.id,
       data:this.form.controls['dataReserva'].value,
@@ -145,8 +159,13 @@ export class ReservasComponent implements OnInit {
     }
     this.reservaService.updateReserva(body).subscribe({
       next:()=>{
+        this.Resetar()
         this.ngOnInit()
+        this.form.controls['dataDevolucao'].setErrors(null);
         // console.log('q');
+      },
+      error:()=>{
+        console.log('erro de reserva');
 
       }
     })
@@ -184,4 +203,40 @@ export class ReservasComponent implements OnInit {
     })
 
   }
+  //------função resetar inputs----------------------
+  Resetar(){
+    //resetar o valor do min de devolução
+    this.minDiaDevolucao= this.dateToday
+    this.form.reset()
+
+
+    this.form.controls['nomeCarro'].setErrors(null);
+    this.form.controls['dataReserva'].setErrors(null);
+    this.form.controls['horaReserva'].setErrors(null);
+    this.form.controls['nomeFilial'].setErrors(null);
+    this.form.controls['dataDevolucao'].setErrors(null);
+
+
+
+
+  }
+  //-------função para setar o min(reserva) da devolução--------------
+  SetarMinDiaDevolucao(dataMin:any){
+    this.minDiaDevolucao=dataMin
+  }
+  //====================FUNÇÕES DE ERROS====================
+  ValidacaoDatas(data:string):string{
+    if (this.form.controls[`${data}`].hasError('required')){
+      return 'Este campo é obrigatório'
+    }
+
+    return 'Data inválida'
+
+
+
+  }
+  ValidacaoGeral(){
+    return 'Este campo é obrigatório'
+  }
+
 }
