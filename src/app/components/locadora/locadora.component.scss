@@ -21,9 +21,17 @@ box-cadastro{
   align-self: center;
 }
 
-.titleLocadoura{
+h2{
+  font-family: Quicksand;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 36px;
+  margin-bottom: 50px;
+}
 
-  margin-top: 3%;
+
+.tamanhoInput{
+  font-size: 20px;
 }
 
 // mat-card-title{
@@ -101,9 +109,11 @@ box-cadastro{
 }
 
 .conteudo{
+  font-family: 'Montserrat';
   width: 25%;
   display: flex;
   justify-content: flex-start;
+  font-size: 20px;
 }
 
 // mat-card-title-group{
