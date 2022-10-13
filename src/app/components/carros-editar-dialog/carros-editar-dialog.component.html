@@ -8,14 +8,12 @@
 
     <mat-form-field class="div-input" appearance="fill">
       <mat-label>Carro:</mat-label>
-      <input matInput formControlName="nomeCarro" name="nomeCarro" value="{{data.nome}}">
+      <input maxlength="18" matInput formControlName="nomeCarro" name="nomeCarro" value="{{data.nome}}">
       <mat-error *ngIf="form.hasError('required')">Nome não selecionado</mat-error>
     </mat-form-field>
 
-     <!-- Select -->
      <mat-form-field class="div-input">
       <mat-label>Tipo</mat-label>
-      <!-- <mat-select formControlName="genderSelect"  name="genderSelect" required > -->
       <mat-select formControlName="tipoSelect"  name="tipoSelect" required value="selected">
         <mat-option >None</mat-option>
         <mat-option *ngFor="let tipo of tiposCarros" [value]="tipo.id">{{tipo.nome}}</mat-option>
@@ -35,10 +33,8 @@
       <mat-error *ngIf="form.hasError('required')">Este campo é obrigaório</mat-error>
     </mat-form-field>
 
-    <!-- Select -->
     <mat-form-field class="div-input">
       <mat-label>Tipo</mat-label>
-      <!-- <mat-select formControlName="genderSelect"  name="genderSelect" required > -->
       <mat-select formControlName="locadoraSelect"  name="locadoraSelect" required value="selected">
         <mat-option >None</mat-option>
         <mat-option *ngFor="let locadora of locadoras" [value]="locadora.id">{{locadora.nome}}</mat-option>
@@ -49,8 +45,6 @@
   </form>
 </div>
 <div mat-dialog-actions class="center">
-  <button mat-button (click)="onNoClick()" class="btnExcluir">Cancelar</button>
-  <button mat-button (click)="updateElement()" class="btnEditar" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Atualizar</button>
-  <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
+  <button mat-button (click)="onNoClick()" class="excluir">Cancelar</button>
+  <button mat-button (click)="updateElement()" class="editar" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Atualizar</button>
 </div>
-

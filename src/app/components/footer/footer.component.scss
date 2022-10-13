@@ -19,7 +19,6 @@ footer{
     display: flex;
     flex-direction: column;
     width: 66%;
-    
 }
 
 .boxLink{
@@ -37,10 +36,11 @@ footer{
     padding-left: 30%;
 }
 
-
-
 .boxLink a{
     color: black;
+}
+
+.boxLink a:hover{
     border-bottom: 1px solid black;
 }
 
@@ -55,14 +55,12 @@ footer{
     line-height: 23px;
     letter-spacing: 0em;
     text-align: right;
-
 }
 
 .boxContato a{
     text-decoration: none;
     color: black;
 }
-
 
 .box2{
     display: flex;
@@ -73,8 +71,6 @@ footer{
     align-content:space-between;
     align-items: center;
     justify-content: center;
-    // padding-left: 42px;
-    // margin-left: 50px;
 }
 
 .box2 img{

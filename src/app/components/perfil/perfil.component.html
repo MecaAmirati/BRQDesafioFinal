@@ -5,7 +5,7 @@
         <mat-card class="box1Perfil">
             <mat-card-content>
                 <div class="titlePerfil">
-                    <mat-card-title> Perfil </mat-card-title>
+                    <p>Perfil</p>
                 </div>
 
                 <form [formGroup]="formularioPerfil">
@@ -50,9 +50,7 @@
 
 
         <div class="cardsPerfil">
-
             <mat-card *ngFor="let usuario of usuarios">
-
                 <button class="botaoCard" (click)="puxarParaInput(usuario)" >
 
                     <div>
@@ -70,14 +68,10 @@
                     <div>
                         <button class="btnExcluir" (click)="excluirUsuarioCard(usuario)" >Excluir usúario</button>
                     </div>
-
                 </button>
             </mat-card>
-
         </div>
-
     </div>
-
     <div class="spinner" *ngIf="loading | async" >
         <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
     </div>
