@@ -1,4 +1,5 @@
 .fechar{
+  height: max-content;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
@@ -10,7 +11,7 @@
   position: absolute;
   background-color: rgba(235, 66, 66, 0.5);
   border: none;
-  padding: 5PX;
+  padding: 5px;
   border-radius: 30px;
   cursor: pointer;
 }
@@ -19,9 +20,32 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80%;
+  height: 85%;
   margin-top: 50px;
   overflow:hidden hidden;
 
 }
-
+p{
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+}
+.btnDiv{
+  justify-content: center;
+}
+.btnExcluir{
+  border: 1px solid #DB1812;
+  margin-bottom: 50px;
+  width: 100px;
+  height: 45px;
+  font-size: 15px;
+}
+.btnLogin{
+  margin-bottom: 50px;
+  width: 100px;
+  height: 45px;
+  font-size: 15px;
+}
