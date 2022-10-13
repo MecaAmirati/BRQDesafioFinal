@@ -41,6 +41,9 @@ import { CarrosReservarDialogComponent } from './components/carros-reservar-dial
 import { LocadoraEditarDialogComponent } from './components/locadora-editar-dialog/locadora-editar-dialog.component';
 import localePt from '@angular/common/locales/pt'
 import { registerLocaleData } from '@angular/common';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 registerLocaleData(localePt,'pt')
 @NgModule({
   declarations: [
@@ -77,6 +80,8 @@ registerLocaleData(localePt,'pt')
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
 
   ],

@@ -22,7 +22,7 @@ export class AdminServiceService {
     this.DataAdmin.next($data)
   }
 // pegar o id do usuario logado
-  id=0
+  id=1
   DataId= new BehaviorSubject<number>(this.id)
   //-----função para pegar o valor do id
   GetId():Observable<number>{
