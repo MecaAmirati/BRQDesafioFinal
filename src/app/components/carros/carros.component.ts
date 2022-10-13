@@ -59,7 +59,7 @@ export class CarrosComponent implements OnInit {
     this.carroService.lerCarros().subscribe({
       next:(objects:CarroInterface[])=>{
         this.carros=objects;
-        console.log(this.carros)
+        //console.log(this.carros)
         this.tipoService.lerTipoCarros().subscribe({
           next:(objects:TipoCarroInterface[]) =>{
             this.tiposCarros=objects;

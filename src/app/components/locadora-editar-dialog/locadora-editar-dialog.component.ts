@@ -25,7 +25,7 @@ export class LocadoraEditarDialogComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data)
+    //console.log(this.data)
     this.form=this.formbuilder.group({
       id: new FormControl('',[Validators.required]),
       nome:new FormControl('',[Validators.required]),
@@ -51,7 +51,7 @@ export class LocadoraEditarDialogComponent implements OnInit {
 
   }
   updateElement(){
-    console.log("dialogUpdate")
+    //console.log("dialogUpdate")
     this.data.id=this.form.controls['id'].value;
     this.data.nome=this.form.controls['nome'].value;
     this.data.endereco=this.form.controls['endereco'].value;

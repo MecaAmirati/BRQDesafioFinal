@@ -30,7 +30,7 @@ export class CarrosEditarDialogComponent implements OnInit {
   { }
 
 ngOnInit(): void {
-  console.log(this.data)
+  
   this.form=this.formbuilder.group({
     id: new FormControl('',[Validators.required]),
     nomeCarro:new FormControl('',[Validators.required]),

@@ -117,7 +117,7 @@ export class ReservasComponent implements OnInit {
   PadronizarData(data:Date):string{
     data= new Date(data)
     let newData=data.toISOString().split('T')[0]
-    console.log(newData);
+    //console.log(newData);
 
     return newData
 
