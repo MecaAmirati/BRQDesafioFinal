@@ -19,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ReservasComponent implements OnInit {
 
   public reservas:any=[];
-
+  loading=this.reservaService.loading
   form:FormGroup=this.formBuilder.group({
       nomeCarro:new FormControl('',[Validators.required]),
       dataReserva:new FormControl('',[Validators.required]),
@@ -160,17 +160,17 @@ export class ReservasComponent implements OnInit {
     let dataReservaErroMatDatepickerMin=this.form.controls['dataReserva'].hasError('matDatepickerMin')
     let dataDevolucaoErroMatDatepickerMin=this.form.controls['dataDevolucao'].hasError('matDatepickerMin')
 
-    let nomeCarroUntouched=this.form.controls['dataReserva'].untouched
-    let horaReservaUntouched=this.form.controls['horaReserva'].untouched
-    let dataReservaUntouched=this.form.controls['dataReserva'].untouched
-    let dataDevolucaoUntouched=this.form.controls['dataDevolucao'].untouched
+    let nomeCarroValue=this.form.controls['dataReserva'].value
+    let horaReservaValue=this.form.controls['horaReserva'].value
+    let dataReservaValue=this.form.controls['dataReserva'].value
+    let dataDevolucaoValue=this.form.controls['dataDevolucao'].value
 
     //validação se não tem erro nos imputs
     if(nomeCarroErroRequired||horaReservaErroRequired||dataReservaErroRequired||dataDevolucaoErroRequired||dataReservaErroMatDatepickerMin||dataDevolucaoErroMatDatepickerMin){
       return false
     }
     //validação se os inputs estão vazios(não tocados)
-    else if(nomeCarroUntouched||horaReservaUntouched||dataReservaUntouched||dataDevolucaoUntouched){
+    else if(nomeCarroValue==''||horaReservaValue==''||dataReservaValue==''||dataDevolucaoValue==''){
       return false
     }
     return true
@@ -188,13 +188,16 @@ export class ReservasComponent implements OnInit {
         usuarioId:this.usuarioId,
         carroId:this.form.controls['nomeCarro'].value,
       }
+      this.reservaService.showLoading()
       this.reservaService.salvarReserva(body).subscribe({
         next:()=>{
+          this.reservaService.hideLoading();
           this.alertaDados("Reserva adicionada",'sucesso');
           this.Resetar()
           this.ngOnInit()
         },
         error:()=>{
+          this.reservaService.hideLoading();
           this.alertaDados("Serviço indisponivel no momento, erro 500 (leitura no banco)",'falha');
         }
       })
@@ -218,11 +221,13 @@ export class ReservasComponent implements OnInit {
       this.reservaService.showLoading()
       this.reservaService.updateReserva(body).subscribe({
         next:()=>{
+          this.reservaService.hideLoading();
           this.alertaDados("Reserva atualizada",'sucesso');
           this.Resetar()
           this.ngOnInit()
         },
         error:()=>{
+          this.reservaService.hideLoading();
           console.log('erro de reserva');
           this.alertaDados("Serviço indisponivel no momento, erro 500 (leitura no banco)",'falha');
         }
@@ -246,15 +251,19 @@ export class ReservasComponent implements OnInit {
       exitAnimationDuration,
       data:text
     })
+
     dialogRef.afterClosed().subscribe(confirmar=>{
       if (confirmar) {
         this.deletar=true
+        this.reservaService.showLoading()
         this.reservaService.excluirReserva(id).subscribe({
           next: () => {
+            this.reservaService.hideLoading();
             this.alertaDados("Reserva excluida",'sucesso');
             this.ngOnInit();
           },
           error: () => {
+            this.reservaService.hideLoading();
             this.alertaDados("erro ao excluir reserva",'falha');
           }
         })
