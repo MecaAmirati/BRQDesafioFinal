@@ -245,6 +245,10 @@ export class ReservasComponent implements OnInit {
 
 //---------------função de deletar o card de reserva----------------------------
   excluirUsuario(id: any){
+    if (this.atualizar) {
+      this.alertaDados("atualize primeiro as informações!",'falha');
+      return
+    }
     this.deletar=true
     let enterAnimationDuration='500ms';
     let exitAnimationDuration='500ms';
