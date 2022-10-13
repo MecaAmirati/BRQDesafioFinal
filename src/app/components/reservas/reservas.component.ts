@@ -11,6 +11,7 @@ import { ReservaServiceService } from 'src/app/service/reserva-service/reserva.s
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ViewportScroller } from "@angular/common";
 @Component({
   selector: 'app-reservas',
   templateUrl: './reservas.component.html',
@@ -55,6 +56,7 @@ export class ReservasComponent implements OnInit {
     private admService: AdminServiceService,
     private snackBar: MatSnackBar,
     private dialogExcluir: MatDialog,
+    private scroller:ViewportScroller,
 
   ) { }
 
@@ -147,6 +149,7 @@ export class ReservasComponent implements OnInit {
       this.form.controls['horaReserva'].setValue(carros.horario);
       this.form.controls['dataDevolucao'].setValue(carros.dataentrega);
       this.ListaDeLocadoraPeloCarro(carros.carroId);
+      this.scroller.scrollToAnchor('containerDados')
     }
 
   }
