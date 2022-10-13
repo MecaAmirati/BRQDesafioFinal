@@ -42,7 +42,8 @@ export class LocadoraComponent implements OnInit {
         console.log('erro ao ler locadoras')
       }
      })
-    }
+  }
+
     updateLocadora(){
       const id = this.id;
       const locadora = this.formularioLocadora.controls['locadora'].value;
@@ -53,10 +54,11 @@ export class LocadoraComponent implements OnInit {
         next: () => {
           this.id = 0;
           this.ngOnInit();
-          this.alertaSnackBar("Locadora editada");
+          this.alertaDados(`Locadora ${locadora} EDITADA com sucesso!`,"sucesso");
         },
         error: () => {
           console.log("Alteração não foi concluída.");
+          this.alertaDados(" Não foi possivel editar a locadora","falha");
         }
       })
     }
@@ -107,59 +109,71 @@ export class LocadoraComponent implements OnInit {
       endereco:this.formularioLocadora.controls["endereco"].value,
       telefone:this.formularioLocadora.controls["telefone"].value
     }
-
+    this.locadoraService.showLoading();
     this.locadoraService.salvarLocadora(body).subscribe({
       next:()=>{
         this.ResetarCampos();
+        this.alertaDados(`Locadora ${body.nome} cadastrada com sucesso!`,"sucesso");
+        this.locadoraService.hideLoading()
         this.ngOnInit();
       },
       error:()=>{
-        console.log('erro no cadastrar')
+        this.locadoraService.hideLoading()
+        this.alertaDados(` Erro ao cadastrar locadora. Tente Novamente`,"falha");
+
+        //console.log('erro no cadastrar')
       }
     })
   }
   DeletarLocadora(id:number){
-    this.locadoraService.excluirLocadora(id).subscribe({
-      next:()=>{
-        console.log('deletar')
-        this.ngOnInit()
-      },
-      error:()=>{
-        console.log('error no deletar')
-      }
-    })
+    let text=`Você realmente deseja excluir esta locadora?`
+    this.excludeDialog(id,text)
+    // this.locadoraService.showLoading()
+    // this.locadoraService.excluirLocadora(id).subscribe({
+    //   next:()=>{
+    //     //console.log('deletar')
+    //     this.alertaDados(`Locadora EXCLUIDA com sucesso!`,"sucesso");
+    //     this.locadoraService.hideLoading()
+    //     this.ngOnInit()
+    //   },
+    //   error:()=>{
+    //     console.log('error no deletar')
+    //     this.locadoraService.hideLoading()
+    //     this.alertaDados(`Erro ao excluir Locadora!!! Tente Novmente!`,"falha");
+    //   }
+    // })
   }
   DialogOpen(id:number){
   }
 
-  alertaSnackBar(tipoAlerta: string){
-    switch (tipoAlerta){
-      case "cadastrada":
-        this.snackBar.open("Locadora foi cadastrada com sucesso.", undefined, {
-          duration: 2000,
-          panelClass: ['snackbar-sucess']
-        });
-        break;
-        case "editada":
-          this.snackBar.open("Locadora foi editada com sucesso.", undefined,{
-            duration: 2000,
-            panelClass: ['snackbar-sucess']
-          });
-          break;
-        case "excluida":
-          this.snackBar.open("Locadora foi deletada com sucesso.", undefined,{
-            duration: 2000,
-            panelClass: ['snackbar-sucess']
-          });
-          break;
-        case "falha":
-        this.snackBar.open("Tente novamente mais tarde.", undefined, {
-          duration: 2000,
-          panelClass: ['snackbar-falha']
-        });
-        break;
-    }
-  }
+  // alertaSnackBar(tipoAlerta: string){
+  //   switch (tipoAlerta){
+  //     case "cadastrada":
+  //       this.snackBar.open("Locadora foi cadastrada com sucesso.", undefined, {
+  //         duration: 2000,
+  //         panelClass: ['snackbar-sucess']
+  //       });
+  //       break;
+  //       case "editada":
+  //         this.snackBar.open("Locadora foi editada com sucesso.", undefined,{
+  //           duration: 2000,
+  //           panelClass: ['snackbar-sucess']
+  //         });
+  //         break;
+  //       case "excluida":
+  //         this.snackBar.open("Locadora foi deletada com sucesso.", undefined,{
+  //           duration: 2000,
+  //           panelClass: ['snackbar-sucess']
+  //         });
+  //         break;
+  //       case "falha":
+  //       this.snackBar.open("Tente novamente mais tarde.", undefined, {
+  //         duration: 2000,
+  //         panelClass: ['snackbar-falha']
+  //       });
+  //       break;
+  //   }
+  // }
 
   excludeDialog(id:number,text:string): void {
     let enterAnimationDuration='500ms';
@@ -175,12 +189,15 @@ export class LocadoraComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((boolean: any) => {
       if(boolean){
+        this.locadoraService.showLoading()
         this.locadoraService.excluirLocadora(id).subscribe({
           next:()=>{
             this.ngOnInit()
+            this.locadoraService.hideLoading()
           },
           error:()=>{
             alert("Erro ao excluir a locadora")
+            this.locadoraService.hideLoading()
           }
         })
       }
@@ -203,17 +220,43 @@ export class LocadoraComponent implements OnInit {
         this.locadoraService.showLoading()
         this.locadoraService.updateLocadora(element).subscribe({
           next:()=>{
+            this.alertaDados(`Locadora ${element.nome.toUpperCase()} editada com sucesso!`,"sucesso");
             this.ngOnInit()
             this.locadoraService.hideLoading()
         },
           error:()=>{
+            this.alertaDados(`Erro ao editar locadoura! Tente Novamente!`,"falha");
             this.locadoraService.hideLoading()
             alert("Erro ao salvar a locadora")
           }
         })
       }
     })
-}
+  }
+
+  //////////////////////////////////////////////////////////
+  //snackbar
+  alertaDados(mensagem: string, tipoSnack?:string){
+    let snackTema='';
+    if(tipoSnack){
+     snackTema=tipoSnack;
+    }
+    switch(snackTema){
+     case 'sucesso':
+       snackTema='snackbar-tema-sucesso';
+       break;
+     case 'falha':
+       snackTema='snackbar-tema-falha';
+       break;
+     default:
+       snackTema='snackbar-tema';
+       break
+    }
+   this.snackBar.open(mensagem, undefined, {
+     duration: 4000,
+     panelClass: [snackTema]
+   })
+  }
 
 
 }

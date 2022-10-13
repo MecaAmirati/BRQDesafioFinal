@@ -4,27 +4,28 @@
         <mat-form-field class="displayNone" appearance="fill" display="none">
             <mat-label>ID</mat-label>
             <input matInput formControlName="id" name="id" value="{{data.id}}">
+
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Locadora:</mat-label>
             <input matInput formControlName="nome" name="locadora" value="{{data.nome}}">
-            <mat-error *ngIf="form.hasError('required')">Nome não selecionado</mat-error>
+            <mat-error *ngIf="form.get('nome')?.hasError('required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
-          
+
           <mat-form-field appearance="fill">
             <mat-label>Endereço:</mat-label>
             <input matInput formControlName="endereco" name="endereco" value="{{data.endereco}}">
-            <mat-error *ngIf="form.hasError('required')">Campo obrigatório</mat-error>
+            <mat-error *ngIf="form.get('endereco')?.hasError('required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Telefone:</mat-label>
             <input matInput formControlName="telefone" name="telefone" value="{{data.telefone}}">
-            <mat-error *ngIf="form.hasError('required')">Campo obrigatório</mat-error>
+            <mat-error *ngIf="form.get('telefone')?.hasError('required')">Campo obrigatório</mat-error>
           </mat-form-field>
-    
+
         </form>
 </div>
 
