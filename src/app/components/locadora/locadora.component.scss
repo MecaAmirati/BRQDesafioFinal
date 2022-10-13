@@ -80,9 +80,11 @@ h2{
   max-width: 450px;
 }
 
-
 .ultimo-card button:disabled{
+  border: 1px solid #9F9999;
   background-color: #9F9999;
+  transform: translateY(0) scale(1) translateZ(0);
+  box-shadow: none;
 }
 
 // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
@@ -105,7 +107,15 @@ h2{
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  transition: all 0.2s linear;
   border: 1px solid #9F9999;
+}
+
+.card-locadora:hover{
+  border: 1px solid #DB1812;
+  transition: all 0.2s linear;
+  transform: translateY(-5px) scale(1.005) translateZ(0);
+  box-shadow: 0 12px 18px rgba(0,0,0,0.11);
 }
 
 .conteudo{

@@ -27,6 +27,13 @@ section{
     justify-content: center;
 }
 
+.titlePerfil p{
+    font-size: 40px;
+    font-family: 'Quicksand';
+    font-weight: bold;
+    margin-top: 3%;
+}
+
 .formPerfil{
     display: flex;
     flex-direction: column;
@@ -42,43 +49,11 @@ section{
     height: 50px;
 }
 
-// mat-card-title{
-//     font-family: Quicksand;
-//     font-size: 40px;
-//     font-weight: 700;
-//     line-height: 50px;
-//     letter-spacing: 0em;
-//     text-align: left;
-//     margin-bottom: 3%;
-// }
-
-// mat-form-field{
-//     font-family: Quicksand;
-//     font-size: 24px;
-//     font-weight: 400;
-//     line-height: 30px;
-//     letter-spacing: 0em;
-//     margin-bottom: 1%;
-// }
-
-// mat-form-field input{
-//     height: 45px;
-//     width: 953px;
-//     border-radius: 10px;
-//     background: #DCE0E2;
-//     font-size: larger;
-    
-// }
-
 .containerBotao{
     margin-top: 30%;
     display: flex;
     flex-direction: row;
     gap: 3%
-}
-
-.containerBotao a:hover{
-    
 }
 
 .botaoEditarPerfil{
@@ -96,23 +71,14 @@ section{
     border: 1px solid #DB1812;
 }
 
-.botaoEditarPerfil:disabled{
+.btnCadastrar:disabled{
+    color: white;
     background-color: #9F9999;
     border: 1px solid #9F9999;
+    transform: translateY(0) scale(1) translateZ(0);
+    box-shadow: none;
+    cursor: auto;
 }
-
-// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-//     background: #DCE0E2;
-//     border: 1px solid #DCE0E2;
-//     border-radius: 10px !important;
-//     font-size: larger; 
-// }
-
-// ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
-//     display: none !important;
-// }
-
-//-------------- style da div - box2
 
 .box2Perfil{
     margin-top: 3%;
@@ -198,6 +164,7 @@ section{
     color: white;
     background-size: 100% 100%, auto;
 }
+
 
 .botaoCard{
     width: 1137px;
