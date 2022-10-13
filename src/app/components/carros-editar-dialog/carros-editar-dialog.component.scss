@@ -5,3 +5,26 @@
 {
   display: none;
 }
+.div-input{
+  width: 100%;
+  background-color: white;
+}
+.btnExcluir
+{
+  width: 45%;
+  border: 1px solid #DB1812;
+}
+.btnEditar
+{
+  width: 45%;
+  border: 1px solid #DB1812;
+  background-color: white;
+}
+.btnEditar:hover{
+  width: 45%;
+  border: 1px solid #DB1812;
+  background-color: white;
+}
+.center{
+  justify-content: space-between;
+}

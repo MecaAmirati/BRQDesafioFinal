@@ -6,7 +6,7 @@
       <input matInput formControlName="id" name="id" value="{{data.id}}">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field class="div-input" appearance="fill">
       <mat-label>Carro:</mat-label>
       <input matInput formControlName="nomeCarro" name="nomeCarro" value="{{data.nome}}">
       <mat-error *ngIf="form.hasError('required')">Nome não selecionado</mat-error>
@@ -23,13 +23,13 @@
       <mat-error *ngIf="form.hasError('required')">Tipo não selecionado</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="div-input">
       <mat-label>Portas:</mat-label>
       <input matInput formControlName="portasInput" name="portasInput" value="{{data.portas}}">
       <mat-error *ngIf="form.hasError('required')">Este campo é obrigaório</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="div-input">
       <mat-label>Número de Pessoas:</mat-label>
       <input matInput formControlName="nPessoasInput" name="nPessoasInput" value="{{data.npessoas}}">
       <mat-error *ngIf="form.hasError('required')">Este campo é obrigaório</mat-error>
@@ -49,8 +49,8 @@
   </form>
 </div>
 <div mat-dialog-actions class="center">
-  <button mat-button (click)="onNoClick()" class="excluir">Cancelar</button>
-  <button mat-button (click)="updateElement()" class="editar" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Atualizar</button>
+  <button mat-button (click)="onNoClick()" class="btnExcluir">Cancelar</button>
+  <button mat-button (click)="updateElement()" class="btnEditar" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Atualizar</button>
   <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
 </div>
 

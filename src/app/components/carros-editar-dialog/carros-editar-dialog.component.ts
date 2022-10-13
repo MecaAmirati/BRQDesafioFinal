@@ -71,7 +71,7 @@ ngOnInit(): void {
 }
 
 updateElement(){
-  console.log("dialogUpdate")
+  //console.log("dialogUpdate")
   this.data.id=this.form.controls['id'].value;
   this.data.nome=this.form.controls['nomeCarro'].value;
   this.data.tipoCarroId=this.form.controls['tipoSelect'].value;
