@@ -120,14 +120,13 @@ export class PerfilComponent implements OnInit {
     this.usuarioSelecionado = usuario;
 
     this.usuarioService.hideLoading();
-    console.log(usuario);
+   // console.log(usuario);
 
 
   }
 
   //----------------------Função de atualizar Perfil
   editarPerfil(){
-    console.log(this.adm,'adm1')
     let perfilAtual: UsuarioInterface = {
       id: this.usuarioSelecionado.id,
       nome: this.formularioPerfil.controls['nome'].value,
@@ -175,9 +174,9 @@ export class PerfilComponent implements OnInit {
           this.alertaDados("falha_pegar_dados");
         }
       })
-      
+
     })
-  
+
   }
 
   public excluirUsuarioCard(usuario: UsuarioInterface){
@@ -201,7 +200,7 @@ export class PerfilComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(boolean => {
-      
+
       if(boolean){
         this.usuarioService.showLoading();
         this.usuarioService.excluirUsuario(id).subscribe({

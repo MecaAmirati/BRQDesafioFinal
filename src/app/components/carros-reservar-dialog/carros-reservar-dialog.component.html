@@ -1,28 +1,34 @@
+<div class="fechar">
+  <button (click)="onNoClick()" class="btn_fechar">
+    <mat-icon aria-hidden="false" aria-label="Fechar o dialog" fontIcon="close"></mat-icon>
+  </button>
+</div>
 <!-- <h1 mat-dialog-title>REservar carro</h1> -->
-<div mat-dialog-content>
+<div mat-dialog-content class="dialog-content flex-col spc-between">
   <!-- <form [formGroup]="formReserva" class="flex-col width90 center"> -->
   <form class="flex-col width100 center">
-    <img src="../../../assets/carros/car3_2.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==1">
-    <img src="../../../assets/carros/car2_1.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==2">
-    <img src="../../../assets/carros/car1_1.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==3">
-
-    <div>
-      <h2 >{{data.nome}}</h2>
+    <div class="editarDistancia">
+      <img src="../../../assets/imagens/car3 2.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==1">
+      <img src="../../../assets/imagens/car2 3.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==2">
+      <img src="../../../assets/imagens/car1 2.png" alt="Imagem de carro popular" *ngIf="data.tipoCarroId==3">
     </div>
 
+    <div class="informacao_titulo">
+      <h2  ><strong>{{data.nome}}</strong></h2>
+    </div>
+
     <div class="div--background width90">
-      <h2 >{{data.portas}} Portas</h2>
+      <p class="informacao">{{data.portas}} Portas</p>
     </div>
     <div class="div--background width90">
-      <h2 >{{data.npessoas}} Pessoas</h2>
+      <p class="informacao" >{{data.npessoas}} Pessoas</p>
     </div>
     <div class="div--background width90">
-      <h2 >Locadora {{locadoraTexto}}</h2>
+      <p class="informacao" >Locadora {{locadoraTexto}}</p>
     </div>
-    <div class="center">
-      <button  (click)="reservar()" class="editar" >Reservar</button>
-    </div>
+
   </form>
+  <div  mat-dialog-actions class="editarDistancia">
+    <button  (click)="reservar()" class="btnEditar" >Reservar</button>
+  </div>
 </div>
-
-

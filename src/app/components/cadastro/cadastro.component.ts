@@ -136,7 +136,7 @@ export class CadastroComponent implements OnInit {
 
     }
     maiorId++;
-    console.log(maiorId); // trazendo o id 1 no console
+    //console.log(maiorId); // trazendo o id 1 no console
 
     return maiorId;
   }

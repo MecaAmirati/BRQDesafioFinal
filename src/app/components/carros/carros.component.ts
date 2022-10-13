@@ -12,6 +12,7 @@ import { CarrosEditarDialogComponent } from '../carros-editar-dialog/carros-edit
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 import { CarrosReservarDialogComponent } from '../carros-reservar-dialog/carros-reservar-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carros',
@@ -42,6 +43,7 @@ export class CarrosComponent implements OnInit {
     public dialogReserva:MatDialog,
     public adminService: AdminServiceService,
     private snackBar: MatSnackBar,
+    private router: Router,
 
   ) { }
 
@@ -219,7 +221,7 @@ export class CarrosComponent implements OnInit {
           }
         })
       }
-      
+
     })
   }
 
@@ -267,10 +269,11 @@ export class CarrosComponent implements OnInit {
     data:element
   })
 
-   dialogRef1.afterClosed().subscribe(element => {
-      if(element){
-        console.log("fechado")
+   dialogRef1.afterClosed().subscribe(ifTrue=> {
+      if(ifTrue){
+        console.log(element.id)
         this.carroService.SalvarCarroSelecionadoID(element.id)
+        this.router.navigate(['/perfil'])//vai para a pagina login
 
       }
     })

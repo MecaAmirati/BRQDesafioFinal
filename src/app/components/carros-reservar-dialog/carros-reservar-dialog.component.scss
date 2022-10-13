@@ -1,14 +1,62 @@
-::ng-deep .mat-form-field{
-  max-width: 100%;
-}
+// ::ng-deep .mat-form-field{
+//   max-width: 100%;
+// }
+// ::ng-deep .mat-dialog-content{
+//   height: 100%;
+// }
+
 .displayNone
 {
   display: none;
 }
 
 .div--background{
+  display: flex;
+  flex-direction: column;
   background-color:#DCE0E2 ;
   padding-left:20px;
+  margin-top: 10px;
+  height: 60px;
+  justify-content: center;
+}
+
+.informacao{
+  margin: 0;
+  font-size:24px ;
+  font-family: 'Quicksand';
+}
+.informacao_titulo{
+  font-family: 'Montserrat';
+  font-size:30px;
+  margin: 0;
+}
+.fechar{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  margin-right: -20px;
+  margin-top: -20px;
+
+}
+.btn_fechar{
+  position: absolute;
+  background-color: #DB1812;
+  border: none;
+  padding: 5PX;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.editarDistancia{
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
 }
 
+.dialog-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  //overflow:hidden hidden;
+}
