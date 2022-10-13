@@ -8,8 +8,8 @@ import { TipoCarroInterface } from 'src/app/model/tipocarro.model';
 })
 export class TipocarroServiceService {
   private listaTipoCarros:any;
-  private url="https://servidor-carros.herokuapp.com/tipoCarros";
   // private url="http://localhost:3000/tipoCarro";
+  private url="https://servidor-carros.herokuapp.com/tipoCarros";
   constructor(
     private httpClient:HttpClient
   ) { }

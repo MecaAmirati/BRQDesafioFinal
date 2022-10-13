@@ -54,7 +54,6 @@ export class UsuarioServiceService {
 
   updateUsuario(objeto:UsuarioInterface):Observable<UsuarioInterface>{
     let endpoint=objeto.id;
-    //console.log(`${this.url}/${endpoint}`,objeto)
     return this.httpClient.put<UsuarioInterface>(`${this.url}/${endpoint}`,objeto)
   }
 }

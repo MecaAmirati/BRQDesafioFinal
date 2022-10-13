@@ -29,15 +29,10 @@ h1{
 }
 
 #boxDatas{
-    // margin-top: 20px;
     display: flex;
     justify-content:space-between;
 }
 
-
-///////////////////
-///////INPUTS//////
-///////////////////
 .nomeCarro{
     width: 100%;
     font-size: 20px;
@@ -53,27 +48,11 @@ h1{
     font-size: 20px;
 }
 
-// ::ng-deep .mat-form-field-flex .nomeCarro{//muda a cor somente da da parte do input
-//     background: greenyellow;
-//     width: 100%;
-//   }
-
-
-
-///////////////////
-///////INPUTS//////
-///////////////////
-
 #boxLocadora{
     display: flex;
     justify-content: space-between;
-    // margin-top: 40px;
 
 }
-
-// .btnLogin{
-//     // margin-top: 20px;
-// }
 
 h2{
     margin-top: 115px;
@@ -141,10 +120,6 @@ h2{
     margin-top: 25px;
 }
 
-/////////////////////////////////////////
-///////////botão/////////////////////////
-////////////////////////////////////////
-
 .btnLogin:disabled{
   background-color: #9F9999;
   transform:none;
@@ -152,64 +127,14 @@ h2{
   color:white;
 }
 
-/////////////////////////////////////////
-//////////////////TESTE//////////////////
-/////////////////////////////////////////
-
 .btnExcluir:hover{
     border-radius: 5px;
     color: white;
     background-size: 100% 100%, auto;
 }
 
-
 .botaoCard:hover{
     border: 1px solid #DB1812;
     transition: all 0.2s linear;
     transform: translateY(-5px) scale(1.005) translateZ(0);
 }
-
-// ::ng-deep .mat-card {
-//     padding: 2px !important;
-// }
-
-/////////////////////////////////////////
-/////////////////////////////////////////
-/////////////////////////////////////////
-
-// ::ng-deep .mat-form-field .mat-form-field-flex{//muda a cor somente da da parte do input
-//     background: #DCE0E2;
-//     // height: 50px;
-// }
-
-// ::ng-deep .mat-form-field{
-//     padding: 0;
-// }
-
-// ::ng-deep .mat-form-field-underline:focus,
-// ::ng-deep .mat-form-field-underline:hover{
-// display:inline-block;
-// }
-
-// ::ng-deep .mat-form-field-ripple{//cor do underline quando tem o hover
-// background-color: black;
-// }
-// ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple{ //cor do underline  quando seleciona
-// background-color: black;
-// }
-// ::ng-deep .mat-form-field-underline::before{//cor do underline antes de clicar/inicia a pagina
-// background-color: #DCE0E2 !important;
-// }
-
-// //Cor do label
-// ::ng-deep .mat-form-field-label-wrapper label{//cor inicial da label
-// color:black;
-// }
-// ::ng-deep .mat-form-field.mat-focused .mat-form-field-label{//cor do label quando o field for  selecionado
-// color: #9F9999;
-// }
-
-// Controle da linha do underline
-//   ::ng-deep .mat-form-field-underline{//Apaga a underline
-//     //display: none;
-//   }

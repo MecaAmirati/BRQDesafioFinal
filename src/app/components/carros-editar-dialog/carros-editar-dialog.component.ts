@@ -13,11 +13,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './carros-editar-dialog.component.html',
   styleUrls: ['./carros-editar-dialog.component.scss']
 })
+
 export class CarrosEditarDialogComponent implements OnInit {
   public form!:FormGroup
   tiposCarros!:TipoCarroInterface[];
   locadoras!:LocadoraInterface[];
-
 
   constructor(
     public formbuilder:FormBuilder,
@@ -30,7 +30,6 @@ export class CarrosEditarDialogComponent implements OnInit {
   { }
 
 ngOnInit(): void {
-  
   this.form=this.formbuilder.group({
     id: new FormControl('',[Validators.required]),
     nomeCarro:new FormControl('',[Validators.required]),
@@ -43,18 +42,15 @@ ngOnInit(): void {
   this.tipoCarroService.lerTipoCarros().subscribe({
     next:(objects:TipoCarroInterface[])=>{
       this.tiposCarros=objects;
-      //console.log(this.tiposCarros)
     },
     error:()=>{
       console.log('Erro ao listar os tipos de carros')
     }
   })
 
-
   this.locadoraService.lerLocadoras().subscribe({
     next:(objects:LocadoraInterface[])=>{
       this.locadoras=objects;
-      //console.log(this.tiposCarros)
     },
     error:()=>{
       console.log('Erro ao listar as locadoras')
@@ -71,18 +67,16 @@ ngOnInit(): void {
 }
 
 updateElement(){
-  //console.log("dialogUpdate")
   this.data.id=this.form.controls['id'].value;
   this.data.nome=this.form.controls['nomeCarro'].value;
   this.data.tipoCarroId=this.form.controls['tipoSelect'].value;
   this.data.portas=this.form.controls['portasInput'].value;
   this.data.npessoas=this.form.controls['nPessoasInput'].value;
   this.data.locadoraId=this.form.controls['locadoraSelect'].value;
-
-
   this.dialogRef.close(this.data);
   this.form.reset()
 }
+
 onNoClick(): void {
   this.dialogRef.close();
   this.form.reset()

@@ -7,10 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { LocadoraEditarDialogComponent } from 'src/app/components/locadora-editar-dialog/locadora-editar-dialog.component';
 
-
-
-
-
 @Component({
   selector: 'app-locadora',
   templateUrl: './locadora.component.html',
@@ -34,7 +30,8 @@ export class LocadoraComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.locadoraService.lerLocadoras().subscribe({//listar as locadorras que estão na api
+    //listar as locadoras que estão na api
+    this.locadoraService.lerLocadoras().subscribe({
       next:(locadora:LocadoraInterface[])=>{
         this.locadorasList=locadora;
       },
@@ -118,60 +115,15 @@ export class LocadoraComponent implements OnInit {
       error:()=>{
         this.locadoraService.hideLoading()
         this.alertaDados(` Erro ao cadastrar locadora. Tente Novamente`,"falha");
-
-        //console.log('erro no cadastrar')
       }
     })
   }
   DeletarLocadora(id:number){
     let text=`Você realmente deseja excluir esta locadora?`
     this.excludeDialog(id,text)
-    // this.locadoraService.showLoading()
-    // this.locadoraService.excluirLocadora(id).subscribe({
-    //   next:()=>{
-    //     //console.log('deletar')
-    //     this.alertaDados(`Locadora EXCLUIDA com sucesso!`,"sucesso");
-    //     this.locadoraService.hideLoading()
-    //     this.ngOnInit()
-    //   },
-    //   error:()=>{
-    //     console.log('error no deletar')
-    //     this.locadoraService.hideLoading()
-    //     this.alertaDados(`Erro ao excluir Locadora!!! Tente Novmente!`,"falha");
-    //   }
-    // })
   }
   DialogOpen(id:number){
   }
-
-  // alertaSnackBar(tipoAlerta: string){
-  //   switch (tipoAlerta){
-  //     case "cadastrada":
-  //       this.snackBar.open("Locadora foi cadastrada com sucesso.", undefined, {
-  //         duration: 2000,
-  //         panelClass: ['snackbar-sucess']
-  //       });
-  //       break;
-  //       case "editada":
-  //         this.snackBar.open("Locadora foi editada com sucesso.", undefined,{
-  //           duration: 2000,
-  //           panelClass: ['snackbar-sucess']
-  //         });
-  //         break;
-  //       case "excluida":
-  //         this.snackBar.open("Locadora foi deletada com sucesso.", undefined,{
-  //           duration: 2000,
-  //           panelClass: ['snackbar-sucess']
-  //         });
-  //         break;
-  //       case "falha":
-  //       this.snackBar.open("Tente novamente mais tarde.", undefined, {
-  //         duration: 2000,
-  //         panelClass: ['snackbar-falha']
-  //       });
-  //       break;
-  //   }
-  // }
 
   excludeDialog(id:number,text:string): void {
     let enterAnimationDuration='500ms';
@@ -201,6 +153,7 @@ export class LocadoraComponent implements OnInit {
       }
     })
   }
+
   editarDialog(element:LocadoraInterface): void {
     let enterAnimationDuration='500ms';
     let exitAnimationDuration='500ms';
@@ -255,6 +208,4 @@ export class LocadoraComponent implements OnInit {
      panelClass: [snackTema]
    })
   }
-
-
 }

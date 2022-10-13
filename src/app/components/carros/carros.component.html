@@ -1,7 +1,6 @@
 <app-header></app-header>
 <main>
   <section *ngIf="adm">
-
     <fieldset class="fildset_form" >
       <form [formGroup]="form" class="flex-col center width90 marginAuto" >
         <h2 class="titleCarros">Carros</h2>
@@ -69,14 +68,13 @@
             <img class="imgCarro" *ngIf="carro.tipoCarroId==1" src="../../../assets/imagens/car3 2.png" alt="Foto do carro {{carro.nome}}">
             <img class="imgCarro" *ngIf="carro.tipoCarroId==2" src="../../../assets/imagens/car2 3.png" alt="Foto do carro {{carro.nome}}">
             <img class="imgCarro" *ngIf="carro.tipoCarroId==3" src="../../../assets/imagens/car1 2.png" alt="Foto do carro {{carro.nome}}">
-            <!-- <img class="imgCarro" src="../../../assets/carros/vazio.jpg" alt="Foto do carro"> -->
 
               <div>
                 <h2>{{carro.nome}}</h2>
               </div>
 
               <div>
-                <p>Faca sua reserva e garanta a locação do automóvel.</p>
+                <p>Faça sua reserva e garanta a locação do automóvel.</p>
               </div>
 
             <div class="btns-card">
@@ -85,7 +83,6 @@
               <button class="btnEditar" *ngIf="!adm" (click)="reservarCarro(carro)">Reservar</button>
             </div >
           </mat-card>
-
 
         </ng-container>
       </div>

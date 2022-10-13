@@ -34,16 +34,6 @@ h2{
   font-size: 20px;
 }
 
-// mat-card-title{
-//   font-family: Quicksand;
-//   font-size: 40px;
-//   font-weight: 700;
-//   line-height: 50px;
-//   letter-spacing: 0em;
-//   margin-bottom: 3%;
-//   text-align: center;
-// }
-
 .formLocadora{
   display: flex;
   flex-direction: column;
@@ -56,25 +46,6 @@ h2{
   justify-content: space-between;
 }
 
-// mat-form-field{
-//   font-family: Quicksand;
-//   font-size: 24px;
-//   font-weight: 400;
-//   line-height: 30px;
-//   letter-spacing: 0em;
-//   margin-bottom: 1%;
-// }
-
-// mat-form-field input{
-//   height: 45px;
-//   max-width: 953px;
-//   border-radius: 10px;
-//   background: #DCE0E2;
-//   font-size: larger;
-
-// }
-
-
 #input-tel{
   width: 50%;
   max-width: 450px;
@@ -86,17 +57,6 @@ h2{
   transform: translateY(0) scale(1) translateZ(0);
   box-shadow: none;
 }
-
-// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-//   background: #DCE0E2;
-//   border: 1px solid #DCE0E2;
-//   border-radius: 10px !important;
-//   font-size: larger;
-// }
-
-// ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
-//   display: none !important;
-// }
 
 #box-cards{
   margin-top: 124px;
@@ -125,14 +85,6 @@ h2{
   justify-content: flex-start;
   font-size: 20px;
 }
-
-// mat-card-title-group{
-//   font-family: 'Montserrat';
-//   font-style: normal;
-//   font-weight: 400;
-//   font-size: 24px;
-//   line-height: 29px;
-// }
 
 span{
 
@@ -175,8 +127,3 @@ span{
   line-height: 30px;
   color: #DB1812;;
 }
-
-// ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
-//   height: 0px;
-//   display: none;
-// }

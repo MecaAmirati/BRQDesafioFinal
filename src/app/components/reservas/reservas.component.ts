@@ -12,11 +12,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewportScroller } from "@angular/common";
+
 @Component({
   selector: 'app-reservas',
   templateUrl: './reservas.component.html',
   styleUrls: ['./reservas.component.scss']
 })
+
 export class ReservasComponent implements OnInit {
 
   public reservas:any=[];
@@ -120,8 +122,6 @@ export class ReservasComponent implements OnInit {
   PadronizarData(data:Date):string{
     data= new Date(data)
     let newData=data.toISOString().split('T')[0]
-    //console.log(newData);
-
     return newData
 
   }
@@ -131,7 +131,6 @@ export class ReservasComponent implements OnInit {
     if(tipo[0]==null){
       return '3'
     }
-
 
     switch (tipo[0].tipoCarroId) {
       case 1:
@@ -187,7 +186,6 @@ export class ReservasComponent implements OnInit {
       return ;
     }
     else{
-
       this.atualizar=true;
       this.cardAtualizar=carros;
       this.form.controls['nomeCarro'].setValue(carros.carroId);
@@ -285,7 +283,6 @@ export class ReservasComponent implements OnInit {
     } else {
       this.alertaDados("Erro nos valores dos campos!",'falha');
     }
-
   }
 
 //---------------função de deletar o card de reserva----------------------------
@@ -329,9 +326,6 @@ export class ReservasComponent implements OnInit {
   Resetar(){
     //resetar o valor do min de devolução
     this.minDiaDevolucao= this.dateToday
-
-    // this.form.reset({nomeCarro:'',dataReserva:'',horaReserva:'',nomeFilial:'',dataDevolucao:''})
-
     this.form.controls['nomeCarro'].reset()
     this.form.controls['dataReserva'].reset()
     this.form.controls['horaReserva'].reset()
