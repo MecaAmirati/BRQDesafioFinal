@@ -5,6 +5,5 @@ export interface UsuarioInterface{
   telefone:number;
   email:string;
   foto:string;
-  //adm:boolean;
 }
 

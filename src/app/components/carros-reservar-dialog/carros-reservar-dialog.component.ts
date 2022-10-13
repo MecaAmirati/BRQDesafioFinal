@@ -14,7 +14,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./carros-reservar-dialog.component.scss']
 })
 export class CarrosReservarDialogComponent implements OnInit {
-    //public formReserva!:FormGroup
     tiposCarros!:TipoCarroInterface[];
     locadoras!:LocadoraInterface[];
     locadoraTexto!:string;
@@ -33,7 +32,6 @@ export class CarrosReservarDialogComponent implements OnInit {
     this.tipoCarroService.lerTipoCarros().subscribe({
       next:(objects:TipoCarroInterface[])=>{
         this.tiposCarros=objects;
-        //console.log(this.tiposCarros)
       },
       error:()=>{
         console.log('Erro ao listar os tipos de carros')
@@ -47,8 +45,6 @@ export class CarrosReservarDialogComponent implements OnInit {
         for(let i=0;i<this.locadoras.length;i++){
           if(this.locadoras[i].id==this.data.locadoraId){
             this.locadoraTexto=this.locadoras[i].nome;
-            //console.log(this.locadoraTexto)
-           // this.formReserva.controls['locadoraReserva'].setValue(this.locadoraTexto);
           }
         }
       },
@@ -59,12 +55,10 @@ export class CarrosReservarDialogComponent implements OnInit {
   }
 
   reservar(){
-    //console.log("dialogUpdate");
     this.dialogRef.close(true);
   }
 
   onNoClick(): void {
     this.dialogRef.close();
-    //this.formReserva.reset()
   }
 }

@@ -10,7 +10,6 @@ import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.compone
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -41,9 +40,7 @@ export class PerfilComponent implements OnInit {
     //função para pegar o valor da variavel do admin
     this.adminService.GetAdmin().subscribe(dado=>{
       this.adm=dado
-      // console.log(this.adm,'q');
     })
-    // console.log(this.adm,'43');
     if (this.adm==false){//caso o usuario não for admin, vai chamar a função
       this.DadoPerfilNaoAdmin()
     }
@@ -57,7 +54,6 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.lerUsuarios().subscribe({
       next: (usuarios: UsuarioInterface[]) => {
         this.usuarios = usuarios;
-        // this.formularioPerfil.reset();
       },
       error: () => {
         this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
@@ -85,9 +81,6 @@ export class PerfilComponent implements OnInit {
     if(this.formularioPerfil.controls["email"].hasError('required')){
       return this.error;
     }
-
-    // if(this.formularioPerfil.controls)
-
     return this.formularioPerfil.controls["email"].hasError('email') ? "E-mail inválido" : '';
 
   }
@@ -97,7 +90,6 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.showLoading();
     this.usuarioService.excluirUsuario(id).subscribe({
       next: () => {
-        // console.log("Usuario excluido");
         this.ngOnInit();
         this.usuarioService.hideLoading();
         this.alertaDados("sucesso_excluir")
@@ -120,9 +112,6 @@ export class PerfilComponent implements OnInit {
     this.usuarioSelecionado = usuario;
 
     this.usuarioService.hideLoading();
-   // console.log(usuario);
-
-
   }
 
   //----------------------Função de atualizar Perfil
@@ -134,12 +123,10 @@ export class PerfilComponent implements OnInit {
       email: this.formularioPerfil.controls['email'].value,
       foto: this.usuarioSelecionado.foto,
       senha: this.usuarioSelecionado.senha,
-      //adm: this.usuarioSelecionado.adm
     };
     this.usuarioService.showLoading();
     this.usuarioService.updateUsuario(perfilAtual).subscribe({
       next: () => {
-      //  console.log("Usuario editado");
        this.ngOnInit();
       if(this.adm == true){
         this.formularioPerfil.controls['nome'].setValue(this.usuarioSelecionado.nome);
@@ -150,10 +137,8 @@ export class PerfilComponent implements OnInit {
        this.alertaDados("sucesso_editar");
       },
       error: () => {
-        // console.log("Erro ao editar");
         this.usuarioService.hideLoading();
         this.alertaDados("falha_editar");
-
       }
     })
 
@@ -182,7 +167,6 @@ export class PerfilComponent implements OnInit {
   public excluirUsuarioCard(usuario: UsuarioInterface){
     const text = `Você realmente deseja excluir o seu Cadastro de: ${usuario.nome}?`
     this.excludeDialog(usuario.id,text);
-    // this.usuarioSelecionado.id;
   }
 
   /////////////////////
@@ -224,7 +208,6 @@ export class PerfilComponent implements OnInit {
       }
     })
   }
-
 
   verificarEmailRepetido(usuario: UsuarioInterface){
 
@@ -288,14 +271,12 @@ export class PerfilComponent implements OnInit {
 
       case "erro_bancoDados":
         this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
-          // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "erro_generico":
         this.snackBar.open("Erro :(", undefined, {
-          // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
@@ -313,8 +294,5 @@ export class PerfilComponent implements OnInit {
         })
       break;
     }
-
   }
-
-
 }

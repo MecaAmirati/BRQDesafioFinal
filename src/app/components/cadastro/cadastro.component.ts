@@ -40,7 +40,6 @@ export class CadastroComponent implements OnInit {
     this.usuarioService.lerUsuarios().subscribe({
       next: (usuarios: UsuarioInterface[]) => {
         this.usuarios = usuarios;
-       // console.log(this.usuarios);
       },
       error: () => {
         this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura
@@ -65,7 +64,6 @@ export class CadastroComponent implements OnInit {
     if (this.formularioCadastro.controls["senha"].value != this.formularioCadastro.controls["confirmarSenha"].value) {
       this.formularioCadastro.controls["confirmarSenha"].setErrors({camposDivergentes: true})
     }
-
     return this.formularioCadastro.controls["confirmarSenha"].hasError('camposDivergentes') ? 'As senhas devem ser iguais' : ''
   }
 
@@ -74,11 +72,9 @@ export class CadastroComponent implements OnInit {
     for (let i = 0; i < this.usuarios.length; i++) {
       if(this.usuarios[i].email === this.formularioCadastro.controls["email"].value){
         console.log("email já cadastrado");
-        // this.formularioCadastro.controls["email"].setErrors({emailExistente: true})
         return false;
       }
     }
-    // return this.formularioCadastro.controls["email"].hasError('emailExistente') ? "E-mail já cadastrado" : '';
     return true;
 
   }
@@ -98,14 +94,12 @@ export class CadastroComponent implements OnInit {
     const email = this.formularioCadastro.controls["email"].value;
     const foto = "foto";
     const senha = this.formularioCadastro.controls["senha"].value;
-    //const adm = false;
 
     const usuario: UsuarioInterface = {id: id, nome: nome, telefone: tel, email: email, foto: foto, senha: senha};
 
     if (this.verificarEmail(usuario)) {
       this.usuarioService.salvarUsuario(usuario).subscribe({
         next: () =>{
-          // this.ngOnInit();
           this.usuarioService.hideLoading();
           this.alertaDados("sucesso_cadastrar")
           this.router.navigate(['/login']);//redirecionando para a pagina login
@@ -136,7 +130,6 @@ export class CadastroComponent implements OnInit {
 
     }
     maiorId++;
-    //console.log(maiorId); // trazendo o id 1 no console
 
     return maiorId;
   }
@@ -192,14 +185,13 @@ export class CadastroComponent implements OnInit {
 
       case "erro_bancoDados":
         this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
-          // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "erro_generico":
         this.snackBar.open("Erro :(", undefined, {
-          // duration: 20000,
+
           panelClass: ['snackbar-tema-falha']
         })
       break;
@@ -218,7 +210,5 @@ export class CadastroComponent implements OnInit {
         })
       break;
     }
-
   }
-
 }

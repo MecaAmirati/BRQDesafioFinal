@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
   templateUrl: './carros.component.html',
   styleUrls: ['./carros.component.scss']
 })
+
 export class CarrosComponent implements OnInit {
   form:FormGroup=this.formBuilder.group({
     carroNomeInput:new FormControl('',[Validators.required]),
@@ -51,7 +52,6 @@ export class CarrosComponent implements OnInit {
        //função para pegar o valor da variavel do admin
        this.adminService.GetAdmin().subscribe(dado=>{
         this.adm=dado
-        // console.log(this.adm,'q');
       })
 
     this.ResetarCampos();
@@ -59,7 +59,6 @@ export class CarrosComponent implements OnInit {
     this.carroService.lerCarros().subscribe({
       next:(objects:CarroInterface[])=>{
         this.carros=objects;
-        //console.log(this.carros)
         this.tipoService.lerTipoCarros().subscribe({
           next:(objects:TipoCarroInterface[]) =>{
             this.tiposCarros=objects;
@@ -104,7 +103,6 @@ export class CarrosComponent implements OnInit {
         this.ngOnInit();
       },
       error:()=>{
-        //console.log("erro ao salvar filme");
         this.alertaDados('Erro ao salvar filme',"falha")
       }
     })
@@ -122,16 +120,6 @@ export class CarrosComponent implements OnInit {
   public excluirCarro(carro:CarroInterface){
     const text=`Voce realmente quer excluir o carro: ${carro.nome}?`
     this.excludeDialog(carro.id,text)
-    // this.carroService.excluirCarro(id).subscribe({
-    //   next:()=>{
-    //     this.ngOnInit();
-
-    //   },
-    //   error:()=>{
-    //     console.log("erro ao excluir filme");
-
-    //   }
-    // })
   }
   ResetarCampos(){
     //resetar os valores
@@ -164,8 +152,6 @@ export class CarrosComponent implements OnInit {
   carrosLocadora(){
     this.carroService.lerCarrosTipoCarro().subscribe({
         next:(objects:CarroInterface[])=>{
-          //console.log(objects)
-          //this.ngOnInit();
         },
         error:()=>{
           console.log("erro ao excluir filme");
@@ -216,8 +202,6 @@ export class CarrosComponent implements OnInit {
           error:()=>{
             this.carroService.hideLoading()
             this.alertaDados('Carro NÃO foi excluído!','falha')
-
-            //alert("Erro ao excluir")
           }
         })
       }
@@ -249,7 +233,6 @@ export class CarrosComponent implements OnInit {
           error:()=>{
             this.carroService.hideLoading()
             this.alertaDados(`${element.nome}  NÃO foi editado!`,'sucesso')
-            //alert("Erro ao salvar filme")
           }
         })
       }

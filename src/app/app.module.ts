@@ -12,9 +12,8 @@ import { CarrosComponent } from './components/carros/carros.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { LocadoraComponent } from './components/locadora/locadora.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {  FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,6 +44,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 registerLocaleData(localePt,'pt')
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,9 +61,8 @@ registerLocaleData(localePt,'pt')
     CarrosEditarDialogComponent,
     CarrosReservarDialogComponent,
     LocadoraEditarDialogComponent,
-
-
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -82,8 +81,6 @@ registerLocaleData(localePt,'pt')
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule
-
-
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt' },
   {
@@ -92,4 +89,5 @@ registerLocaleData(localePt,'pt')
   }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

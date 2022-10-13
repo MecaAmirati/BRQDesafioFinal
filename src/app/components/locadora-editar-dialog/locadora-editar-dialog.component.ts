@@ -4,7 +4,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LocadoraServiceService } from '../../service/locadoras-service/locadora.service.service';
 
-
 @Component({
   selector: 'app-locadora-editar-dialog',
   templateUrl: './locadora-editar-dialog.component.html',
@@ -14,7 +13,6 @@ export class LocadoraEditarDialogComponent implements OnInit {
   public form!:FormGroup;
   locadoras!:LocadoraInterface[];
 
-
   constructor(
     public formbuilder:FormBuilder,
     public dialogRef: MatDialogRef<LocadoraEditarDialogComponent>,
@@ -22,10 +20,7 @@ export class LocadoraEditarDialogComponent implements OnInit {
     public locadoraService:LocadoraServiceService,
   ) { }
 
-
-
   ngOnInit(): void {
-    //console.log(this.data)
     this.form=this.formbuilder.group({
       id: new FormControl('',[Validators.required]),
       nome:new FormControl('',[Validators.required]),
@@ -48,17 +43,12 @@ export class LocadoraEditarDialogComponent implements OnInit {
   this.form.controls['endereco'].setValue(this.data.endereco);
   this.form.controls['telefone'].setValue(this.data.telefone);
 
-
   }
   updateElement(){
-    //console.log("dialogUpdate")
     this.data.id=this.form.controls['id'].value;
     this.data.nome=this.form.controls['nome'].value;
     this.data.endereco=this.form.controls['endereco'].value;
     this.data.telefone=this.form.controls['telefone'].value;
-
-
-
     this.dialogRef.close(this.data);
     this.form.reset()
   }
@@ -66,5 +56,4 @@ export class LocadoraEditarDialogComponent implements OnInit {
     this.dialogRef.close();
     this.form.reset()
   }
-
 }

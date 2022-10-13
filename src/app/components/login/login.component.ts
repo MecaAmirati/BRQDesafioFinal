@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.usuarioService.lerUsuarios().subscribe({//pegar a lista do usuário para procurar o nome
+    //pegar a lista do usuário para procurar o nome
+    this.usuarioService.lerUsuarios().subscribe({
       next:(usuario)=>{
         this.listaUsuarios=usuario
       },
@@ -77,9 +78,12 @@ export class LoginComponent implements OnInit {
 
     }
   }
-  Validacao(){//validação do nome da locadora e do endereço
+
+  //validação do nome da locadora e do endereço
+  Validacao(){
     return `Este campo é obrigatório`
   }
+
   validacaoEmail(): String{
     if(this.formularioLogin.controls["email"].hasError('required')){//vallidação de espaço branco
       return "Este campo é obrigatório";
@@ -98,14 +102,12 @@ export class LoginComponent implements OnInit {
       break;
       case "erro_bancoDados":
         this.snackBar.open("Serviço indisponivel no momento, erro 500 (leitura no banco)", undefined, {
-          // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
 
       case "erro_generico":
         this.snackBar.open("Erro :(", undefined, {
-          // duration: 20000,
           panelClass: ['snackbar-tema-falha']
         })
       break;
@@ -118,5 +120,4 @@ export class LoginComponent implements OnInit {
       break;
     }
   }
-
 }
