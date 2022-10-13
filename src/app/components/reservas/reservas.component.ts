@@ -48,6 +48,7 @@ export class ReservasComponent implements OnInit {
   dateToday:Date=new Date()
   minDiaReserva:Date=this.dateToday
   minDiaDevolucao:Date=this.dateToday
+
   constructor(
     private carroService:CarrosService,
     private formBuilder:FormBuilder,
@@ -58,7 +59,7 @@ export class ReservasComponent implements OnInit {
     private dialogExcluir: MatDialog,
     private scroller:ViewportScroller,
 
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     //variavel para ver se o usuario é adm ou não
@@ -101,6 +102,31 @@ export class ReservasComponent implements OnInit {
 
 
   }
+  //----------------função para deixar a data igual a API-------------------------------
+  PadronizarData(data:Date):string{
+    data= new Date(data)
+    let newData=data.toISOString().split('T')[0]
+    console.log(newData);
+
+    return newData
+
+  }
+  TipoImagem(id:number):string{
+    let tipo=this.listaCarros.filter((carro)=>carro.id==id)
+    if(tipo[0]==null){
+      return '3'
+    }
+
+
+    switch (tipo[0].tipoCarroId) {
+      case 1:
+        return '1';
+      case 2:
+        return '2';
+      default:
+        return '3';
+    }
+  }
   //-------------função para gerar um novo id------------------
   idNovo():number{
     let idNovo:number;
@@ -115,8 +141,6 @@ export class ReservasComponent implements OnInit {
   }
   //---------------função para setar a locadora  do carro-----------------------
   ListaDeLocadoraPeloCarro(idCarro:number){
-    console.log(idCarro,'1');
-
     if(idCarro==null ){
       return
     }
@@ -132,11 +156,18 @@ export class ReservasComponent implements OnInit {
   //-----------função para colocar o Nome do carro no card---------------
   NomeCarro(id:number):string{
     let nome:any=this.listaCarros.filter((carro)=>carro.id==id)
-    return nome[0].nome
+    if (nome[0]==null) {
+      return 'Carro não encontrado'
+    }
+    else{
+      return nome[0].nome
+    }
   }
   //-----------função para pegar as informações do card e colocar no input-------------------
   puxarParaInput(carros: ReservaInterface){
     //se o usuario apertar o botão de deletar, ele n vai puxar os valores para o input
+    let dataReserva=carros.data+'T16:07:02.987Z'
+    let dataEntrega=carros.dataentrega+'T16:07:02.987Z'
     if(this.deletar){
       return ;
     }
@@ -145,18 +176,17 @@ export class ReservasComponent implements OnInit {
       this.atualizar=true;
       this.cardAtualizar=carros;
       this.form.controls['nomeCarro'].setValue(carros.carroId);
-      this.form.controls['dataReserva'].setValue(carros.data);
+      this.form.controls['dataReserva'].setValue(dataReserva);
       this.form.controls['horaReserva'].setValue(carros.horario);
-      this.form.controls['dataDevolucao'].setValue(carros.dataentrega);
+      this.form.controls['dataDevolucao'].setValue(dataEntrega);
       this.ListaDeLocadoraPeloCarro(carros.carroId);
       this.scroller.scrollToAnchor('containerDados')
     }
 
   }
 //---------função de validação do form----------------------
+
   VerificacaoFormValido():boolean{
-
-
     let dataReservaErroMatDatepickerMin=this.form.controls['dataReserva'].hasError('matDatepickerMin')
     let dataDevolucaoErroMatDatepickerMin=this.form.controls['dataDevolucao'].hasError('matDatepickerMin')
 
@@ -169,27 +199,26 @@ export class ReservasComponent implements OnInit {
     if(dataReservaErroMatDatepickerMin||dataDevolucaoErroMatDatepickerMin){
       return false
     }
+
     //validação se os inputs estão vazios(não tocados)
     else if(nomeCarroValue==''||horaReservaValue==''||dataReservaValue==''||dataDevolucaoValue==null|| nomeCarroValue==null||horaReservaValue==null||dataReservaValue==null||dataDevolucaoValue==null){
       return false
     }
     else{
-      console.log(nomeCarroValue,'carr');
-
       return true
     }
 
   }
-  //=========================== CRUD ====================================================
+  verificacaoForm=this.VerificacaoFormValido()  //=========================== CRUD ====================================================
   //---------------função para adicionar nova reserva de carro---------------------
   ReservarCarro(){
     if(this.VerificacaoFormValido()){
 
       let body:ReservaInterface={
         id:this.idNovo(),
-        data:this.form.controls['dataReserva'].value,
+        data:this.PadronizarData(this.form.controls['dataReserva'].value),
         horario:this.form.controls['horaReserva'].value,
-        dataentrega:this.form.controls['dataDevolucao'].value,
+        dataentrega:this.PadronizarData(this.form.controls['dataDevolucao'].value),
         usuarioId:this.usuarioId,
         carroId:this.form.controls['nomeCarro'].value,
       }
@@ -206,6 +235,7 @@ export class ReservasComponent implements OnInit {
           this.alertaDados("Serviço indisponivel no momento, erro 500 (leitura no banco)",'falha');
         }
       })
+
     }else{
       this.alertaDados("Erro nos valores dos campos!",'falha');
     }
@@ -214,15 +244,15 @@ export class ReservasComponent implements OnInit {
   AtualizarReserva(){
     if (this.VerificacaoFormValido()) {
       this.atualizar=false
-        let body:ReservaInterface={
-          id:this.cardAtualizar.id,
-          data:this.form.controls['dataReserva'].value,
-          horario:this.form.controls['horaReserva'].value,
-          dataentrega:this.form.controls['dataDevolucao'].value,
-          usuarioId:this.cardAtualizar.usuarioId,
-          carroId:this.form.controls['nomeCarro'].value,
+      let body:ReservaInterface={
+        id:this.cardAtualizar.id,
+        data:this.PadronizarData(this.form.controls['dataReserva'].value),
+        horario:this.form.controls['horaReserva'].value,
+        dataentrega:this.PadronizarData(this.form.controls['dataDevolucao'].value),
+        usuarioId:this.cardAtualizar.usuarioId,
+        carroId:this.form.controls['nomeCarro'].value,
 
-        }
+      }
       this.reservaService.showLoading()
       this.reservaService.updateReserva(body).subscribe({
         next:()=>{
