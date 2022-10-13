@@ -1,7 +1,7 @@
 import { EventListenerFocusTrapInertStrategy } from '@angular/cdk/a11y';
 import { NONE_TYPE } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit,ViewChild} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CarroInterface } from 'src/app/model/carros.model';
 import { ReservaInterface } from 'src/app/model/reservas.model';
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
@@ -28,6 +28,7 @@ export class ReservasComponent implements OnInit {
       nomeFilial:new FormControl('',[Validators.required]),
 
     });
+    @ViewChild('f') myNgForm:any;
   //variavel de controle do botao deletar
   deletar:boolean=false
   //variavel de controle das funções de admin
@@ -112,16 +113,15 @@ export class ReservasComponent implements OnInit {
   }
   //---------------função para setar a locadora  do carro-----------------------
   ListaDeLocadoraPeloCarro(idCarro:number){
-    if(idCarro==null){
+    console.log(idCarro,'1');
+
+    if(idCarro==null ){
       return
     }
     else{
       this.carroService.lerCarroById(idCarro).subscribe({
         next:(carros)=>{
           this.form.controls['nomeFilial'].setValue(carros.locadoraId)
-        },
-        error:()=>{
-          this.alertaDados("Serviço indisponivel no momento, erro 500 (leitura no banco)",'falha');
         }
       })
     }
@@ -153,27 +153,29 @@ export class ReservasComponent implements OnInit {
 //---------função de validação do form----------------------
   VerificacaoFormValido():boolean{
 
-    let nomeCarroErroRequired=this.form.controls['dataReserva'].hasError('required')
-    let horaReservaErroRequired=this.form.controls['horaReserva'].hasError('required')
-    let dataReservaErroRequired=this.form.controls['dataReserva'].hasError('required')
-    let dataDevolucaoErroRequired=this.form.controls['dataDevolucao'].hasError('required')
+
     let dataReservaErroMatDatepickerMin=this.form.controls['dataReserva'].hasError('matDatepickerMin')
     let dataDevolucaoErroMatDatepickerMin=this.form.controls['dataDevolucao'].hasError('matDatepickerMin')
 
-    let nomeCarroValue=this.form.controls['dataReserva'].value
+    let nomeCarroValue=this.form.controls['nomeCarro'].value
     let horaReservaValue=this.form.controls['horaReserva'].value
     let dataReservaValue=this.form.controls['dataReserva'].value
     let dataDevolucaoValue=this.form.controls['dataDevolucao'].value
 
     //validação se não tem erro nos imputs
-    if(nomeCarroErroRequired||horaReservaErroRequired||dataReservaErroRequired||dataDevolucaoErroRequired||dataReservaErroMatDatepickerMin||dataDevolucaoErroMatDatepickerMin){
+    if(dataReservaErroMatDatepickerMin||dataDevolucaoErroMatDatepickerMin){
       return false
     }
     //validação se os inputs estão vazios(não tocados)
-    else if(nomeCarroValue==''||horaReservaValue==''||dataReservaValue==''||dataDevolucaoValue==''){
+    else if(nomeCarroValue==''||horaReservaValue==''||dataReservaValue==''||dataDevolucaoValue==null|| nomeCarroValue==null||horaReservaValue==null||dataReservaValue==null||dataDevolucaoValue==null){
       return false
     }
-    return true
+    else{
+      console.log(nomeCarroValue,'carr');
+
+      return true
+    }
+
   }
   //=========================== CRUD ====================================================
   //---------------função para adicionar nova reserva de carro---------------------
@@ -240,6 +242,7 @@ export class ReservasComponent implements OnInit {
 
 //---------------função de deletar o card de reserva----------------------------
   excluirUsuario(id: any){
+    this.deletar=true
     let enterAnimationDuration='500ms';
     let exitAnimationDuration='500ms';
     let text='Você quer excluir essa reserva?'
@@ -254,7 +257,6 @@ export class ReservasComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(confirmar=>{
       if (confirmar) {
-        this.deletar=true
         this.reservaService.showLoading()
         this.reservaService.excluirReserva(id).subscribe({
           next: () => {
@@ -269,22 +271,22 @@ export class ReservasComponent implements OnInit {
         })
       }
     })
-
-
   }
   //=============================================================
   //------função resetar inputs----------------------
   Resetar(){
     //resetar o valor do min de devolução
     this.minDiaDevolucao= this.dateToday
-    this.form.reset()
-    this.form.controls['nomeCarro'].setErrors(null);
-    this.form.controls['dataReserva'].setErrors(null);
-    this.form.controls['horaReserva'].setErrors(null);
-    this.form.controls['nomeFilial'].setErrors(null);
-    this.form.controls['dataDevolucao'].setErrors(null);
-    this.form.controls['dataDevolucao'].setErrors({required:null})
-    this.form.untouched
+
+    // this.form.reset({nomeCarro:'',dataReserva:'',horaReserva:'',nomeFilial:'',dataDevolucao:''})
+
+    this.form.controls['nomeCarro'].reset()
+    this.form.controls['dataReserva'].reset()
+    this.form.controls['horaReserva'].reset()
+    this.form.controls['nomeFilial'].reset()
+    this.form.controls['dataDevolucao'].reset()
+    this.myNgForm.resetForm()
+
   }
   //-------função para setar o min(reserva) da devolução--------------
   SetarMinDiaDevolucao(dataMin:any){

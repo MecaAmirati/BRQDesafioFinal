@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div id="containerReserva">
-    <form [formGroup]="form" id="containerDados" >
+    <form [formGroup]="form" id="containerDados" #f="ngForm" >
         <h1>Reservas</h1>
         <div id="boxNome">
             <mat-form-field appearance="fill" class="nomeCarro">
@@ -42,8 +42,8 @@
                 </mat-select>
                 <mat-error *ngIf="form.get('nomeFilial')?.hasError('required')" >{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
-            <button class="btnLogin" *ngIf="adm || atualizar" (click)="AtualizarReserva()"><span>Atualizar</span></button>
-            <button class="btnLogin" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()"><span>Reservar</span></button>
+            <button class="btnLogin" type="submit" *ngIf="adm || atualizar" (click)="AtualizarReserva()"><span>Atualizar</span></button>
+            <button class="btnLogin" type="submit" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()"><span>Reservar</span></button>
         </div>
     </form>
     <div id="containerDadosAPI" >
