@@ -8,7 +8,7 @@
                 <mat-select class="filial" formControlName="nomeCarro" name="nomeCarro" (ngModelChange)="ListaDeLocadoraPeloCarro(form.controls['nomeCarro'].value)" >
                   <mat-option *ngFor="let carro of listaCarros" [value]="carro.id">{{carro.nome}}</mat-option>
                 </mat-select>
-                <mat-error  *ngIf="form.get('nomeFilial')?.hasError('required')">{{ValidacaoGeral()}}</mat-error>
+                <mat-error  *ngIf="form.get('nomeCarro')?.hasError('required')">{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
 
         </div>
@@ -18,7 +18,7 @@
                 <input matInput  [matDatepicker]="dataReserva" [min]="minDiaReserva" formControlName="dataReserva" name="dataReserva" (ngModelChange)="SetarMinDiaDevolucao(form.controls['dataReserva'].value)" re>
                 <mat-datepicker-toggle matSuffix [for]="dataReserva"></mat-datepicker-toggle>
                 <mat-datepicker #dataReserva></mat-datepicker>
-                <mat-error *ngIf="form.get('dataReserva')?.hasError('matDatepickerMin') || form.get('dataReserva')?.hasError('required') && form.get('dataReserva')?.touched ">{{ValidacaoDatas('dataReserva')}}</mat-error>
+                <mat-error *ngIf="form.get('dataReserva')?.hasError('matDatepickerMin') || form.get('dataReserva')?.hasError('required')  ">{{ValidacaoDatas('dataReserva')}}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill" class="horaReserva">
                 <mat-label>Horário da reserva:</mat-label>
@@ -30,7 +30,7 @@
                 <input matInput   [matDatepicker]="dataDevolucao1" [min]="minDiaDevolucao" formControlName="dataDevolucao" name="dataDevolucao"  >
                 <mat-datepicker-toggle matSuffix [for]="dataDevolucao1"></mat-datepicker-toggle>
                 <mat-datepicker #dataDevolucao1></mat-datepicker>
-                <mat-error *ngIf="form.get('dataDevolucao')?.hasError('matDatepickerMin') || form.get('dataDevolucao')?.hasError('required') && form.get('dataDevolucao')?.touched ">{{ValidacaoDatas('dataDevolucao')}}</mat-error>
+                <mat-error *ngIf="form.get('dataDevolucao')?.hasError('matDatepickerMin') || form.get('dataDevolucao')?.hasError('required')">{{ValidacaoDatas('dataDevolucao')}}</mat-error>
             </mat-form-field>
 
         </div>
@@ -42,8 +42,8 @@
                 </mat-select>
                 <mat-error *ngIf="form.get('nomeFilial')?.hasError('required')" >{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
-            <button class="btnLogin" *ngIf="adm || atualizar" (click)="AtualizarReserva()" ><span>Atualizar</span></button>
-            <button class="btnLogin" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()" ><span>Reservar</span></button>
+            <button class="btnLogin" *ngIf="adm || atualizar" (click)="AtualizarReserva()"><span>Atualizar</span></button>
+            <button class="btnLogin" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()"><span>Reservar</span></button>
         </div>
     </form>
     <div id="containerDadosAPI" >
