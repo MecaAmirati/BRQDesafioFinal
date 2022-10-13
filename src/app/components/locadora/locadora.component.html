@@ -4,22 +4,22 @@
       <mat-card class="box1Locadora">
           <mat-card-content>
               <div class="titleLocadora">
-                  <mat-card-title> Locadora </mat-card-title>
+                  <h2  > Locadora </h2>
               </div>
               <form  [formGroup]="formularioLocadora" (ngSubmit)="salvarDadosLocadora()" >
                   <div class="formLocadora">
-                          <mat-form-field appearance="fill">
+                          <mat-form-field appearance="fill" class="tamanhoInput">
                               <mat-label>Locadoura:</mat-label>
                               <input  matInput formControlName="locadora" name="locadora"  >
                               <mat-error *ngIf="formularioLocadora.get('locadora')?.hasError('required')">{{Validacao()}}</mat-error>
                           </mat-form-field>
-                          <mat-form-field appearance="fill">
+                          <mat-form-field appearance="fill" class="tamanhoInput">
                               <mat-label>Endereço:</mat-label>
                               <input matInput formControlName="endereco" name="endereco" >
                               <mat-error *ngIf="formularioLocadora.get('endereco')?.hasError('required')">{{Validacao()}}</mat-error>
                           </mat-form-field>
                           <div class="ultimo-card">
-                            <mat-form-field id="input-tel" appearance="fill">
+                            <mat-form-field id="input-tel" appearance="fill" class="tamanhoInput">
                               <mat-label>Telefone:</mat-label>
                               <input  matInput formControlName="telefone" name="telefone" >
                               <mat-error *ngIf="formularioLocadora.get('telefone')?.hasError('required')||formularioLocadora.get('telefone')?.hasError('pattern')">{{ValidacaoTelefone()}}</mat-error>

@@ -1,6 +1,7 @@
 section{
     width: 100%;
     height: auto;
+    margin-bottom: 165px;
 }
 
 section div{
@@ -8,26 +9,26 @@ section div{
     justify-content: center;
 }
 
-// mat-card{
-//     width: 790px;
-//     height: 825px;
-//     border-radius: 10px;
-//     margin-bottom: 3%;
-//     border: 1px solid #9F9999
-// }
+mat-card{
+    width: 790px;
+    // height: 825px;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    border: 1px solid #9F9999
+}
 
 .titleCadastro{
     margin-bottom: 3%;
 }
 
-// mat-card-title{
-//     font-family: Quicksand;
-//     font-size: 40px;
-//     font-weight: 700;
-//     line-height: 50px;
-//     letter-spacing: 0em;
-//     text-align: left;
-// }
+mat-card-title{
+    font-family: 'Quicksand';
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+    letter-spacing: 0em;
+    text-align: left;
+}
 
 
 .formCadastro{
@@ -37,15 +38,10 @@ section div{
     margin-right: 8%;
 }
 
-// mat-form-field{
-//     font-family: Quicksand;
-//     font-size: 24px;
-//     font-weight: 400;
-//     line-height: 30px;
-//     letter-spacing: 0em;
-//     text-align: left;
-//     margin-bottom: 1%;
-// }
+mat-form-field{
+    font-family: 'Quicksand';
+    font-size: 20px;
+}
 
 // mat-form-field input{
 //     width: 669px;
@@ -59,6 +55,7 @@ section div{
 // }
 
 .containerBotao{
+    margin-top: 5%;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -66,9 +63,13 @@ section div{
 }
 
 .containerBotao a{
-    margin-top: 1%;
+    margin-top: 5%;
     text-decoration: none;
-    color: red;
+    color: #DB1812;
+}
+
+.containerBotao a:hover{
+    text-decoration:underline;
 }
 
 .containerBotao button{
@@ -78,7 +79,7 @@ section div{
     border-radius: 5px;
     background: #DB1812;
     color: white;
-    font-family: Quicksand;
+    font-family: 'Quicksand';
     font-size: 24px;
     font-weight: 700;
     line-height: 30px;
@@ -88,7 +89,24 @@ section div{
 
 .containerBotao button:disabled{
     background-color: gray;
+    border: 1px solid gray;
+    transform: translateY(0) scale(1) translateZ(0);
+    box-shadow: none;
+    cursor:auto;
 }
+
+.spinner{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 998;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+}
+//////////////////////////
 
 // ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
 //     background: #DCE0E2;
@@ -104,16 +122,3 @@ section div{
 // :host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
 //     stroke:#DB1812 !important;
 // }
-
-.spinner{
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    z-index: 998;
-    background-color: rgba($color: #000000, $alpha: 0.3);
-}
-

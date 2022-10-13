@@ -35,9 +35,9 @@
 
         </div>
         <div id="boxLocadora">
-            <mat-form-field appearance="fill" >
+            <mat-form-field appearance="fill" class="filial">
                 <mat-label>Locadora Filial 1</mat-label>
-                <mat-select class="filial" formControlName="nomeFilial" name="nomeFilial"  >
+                <mat-select  formControlName="nomeFilial" name="nomeFilial"  >
                     <mat-option *ngFor="let locadora of listaLocadoras" [value]="locadora.id" >{{locadora.nome}}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="form.get('nomeFilial')?.hasError('required')" >{{ValidacaoGeral()}}</mat-error>
