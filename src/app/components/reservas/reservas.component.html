@@ -42,8 +42,8 @@
                 </mat-select>
                 <mat-error *ngIf="form.get('nomeFilial')?.hasError('required')" >{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
-            <button class="btnLogin" type="submit" *ngIf="adm || atualizar" (click)="AtualizarReserva()"><span>Atualizar</span></button>
-            <button class="btnLogin" type="submit" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()"><span>Reservar</span></button>
+            <button class="btnLogin" type="submit" *ngIf="adm || atualizar" (click)="AtualizarReserva()" [disabled]="VerificacaoFormValido()==false" ><span>Atualizar</span></button>
+            <button class="btnLogin" type="submit" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()" [disabled]="VerificacaoFormValido()==false" ><span>Reservar</span></button>
         </div>
     </form>
     <div id="containerDadosAPI" >
@@ -53,7 +53,9 @@
 
           <mat-card  button class="botaoCard" (click)="puxarParaInput(cardsCarros)" *ngIf="adm || cardsCarros.usuarioId==usuarioId">
             <div id="imagemAPI">
-                <img class="imgCarro" src="../../../assets/imagens/car3 2.png" alt="Imagem de carro econômico">
+                <img class="imgCarro" src="../../../assets/imagens/car1 2.png" alt="Imagem de carro de luxo" *ngIf="TipoImagem(cardsCarros.carroId)=='3'" >
+                <img class="imgCarro" src="../../../assets/imagens/car2 3.png" alt="Imagem de carro sedan" *ngIf="TipoImagem(cardsCarros.carroId)=='2'" >
+                <img class="imgCarro" src="../../../assets/imagens/car3 2.png" alt="Imagem de carro econômico" *ngIf="TipoImagem(cardsCarros.carroId)=='1'" >
             </div>
 
             <div class="boxCard">
