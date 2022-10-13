@@ -273,7 +273,7 @@ export class CarrosComponent implements OnInit {
       if(ifTrue){
         console.log(element.id)
         this.carroService.SalvarCarroSelecionadoID(element.id)
-        this.router.navigate(['/perfil'])//vai para a pagina login
+        this.router.navigate(['/reservas'])//vai para a pagina login
 
       }
     })
