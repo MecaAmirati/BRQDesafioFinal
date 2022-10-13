@@ -22,7 +22,7 @@ export class PerfilComponent implements OnInit {
   error ="Este campo é obrigatório";
   usuarios: UsuarioInterface[] = [];
   loading = this.usuarioService.loading; //atribuindo o spinner a variavel loading
-
+  
 
   adm:boolean=true;
 
@@ -38,6 +38,7 @@ export class PerfilComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     //função para pegar o valor da variavel do admin
     this.adminService.GetAdmin().subscribe(dado=>{
       this.adm=dado
@@ -74,6 +75,7 @@ export class PerfilComponent implements OnInit {
           this.formularioPerfil.controls["nome"].setValue(usuario.nome)
           this.formularioPerfil.controls["tel"].setValue(usuario.telefone)
           this.formularioPerfil.controls["email"].setValue(usuario.email)
+          this.usuarioSelecionado = usuario;
         },
         error:()=>{this.alertaDados("falha_pegar_dados")}
       })
@@ -122,11 +124,17 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.hideLoading();
    // console.log(usuario);
 
-
   }
+
+
 
   //----------------------Função de atualizar Perfil
   editarPerfil(){
+
+    // if(this.adm == false){
+    //   this.adminService.GetId()
+    // }
+
     let perfilAtual: UsuarioInterface = {
       id: this.usuarioSelecionado.id,
       nome: this.formularioPerfil.controls['nome'].value,
@@ -134,29 +142,21 @@ export class PerfilComponent implements OnInit {
       email: this.formularioPerfil.controls['email'].value,
       foto: this.usuarioSelecionado.foto,
       senha: this.usuarioSelecionado.senha,
-      //adm: this.usuarioSelecionado.adm
     };
     this.usuarioService.showLoading();
     this.usuarioService.updateUsuario(perfilAtual).subscribe({
       next: () => {
-      //  console.log("Usuario editado");
-       this.ngOnInit();
-      if(this.adm == true){
-        this.formularioPerfil.controls['nome'].setValue(this.usuarioSelecionado.nome);
-        this.formularioPerfil.controls['tel'].setValue(this.usuarioSelecionado.telefone);
-        this.formularioPerfil.controls['email'].setValue(this.usuarioSelecionado.email);
-      }
-       this.usuarioService.hideLoading();
-       this.alertaDados("sucesso_editar");
+        this.ngOnInit();
+        this.usuarioService.hideLoading();
+        this.alertaDados("sucesso_editar");
       },
       error: () => {
-        // console.log("Erro ao editar");
         this.usuarioService.hideLoading();
         this.alertaDados("falha_editar");
 
       }
     })
-
+    
   }
 
   public excluirUsuarioComum(){
