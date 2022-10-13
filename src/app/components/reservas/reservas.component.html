@@ -47,7 +47,8 @@
         </div>
     </form>
     <div id="containerDadosAPI" >
-        <h2>RESERVAS CADASTRADAS</h2>
+        <h2 *ngIf="adm">RESERVAS CADASTRADAS</h2>
+        <h2 *ngIf="!adm">MINHAS RESERVAS</h2>
 
         <div id="cardAPI" *ngFor="let cardsCarros of reservas" >
 

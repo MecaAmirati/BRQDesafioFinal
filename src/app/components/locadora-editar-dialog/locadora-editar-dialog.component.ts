@@ -56,9 +56,6 @@ export class LocadoraEditarDialogComponent implements OnInit {
     this.data.nome=this.form.controls['nome'].value;
     this.data.endereco=this.form.controls['endereco'].value;
     this.data.telefone=this.form.controls['telefone'].value;
-
-
-
     this.dialogRef.close(this.data);
     this.form.reset()
   }

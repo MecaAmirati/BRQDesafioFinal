@@ -258,7 +258,6 @@ export class CarrosComponent implements OnInit {
 
   ////Dialog
  reservarDialog(element:CarroInterface): void {
-  console.log(element)
   let enterAnimationDuration='500ms';
   let exitAnimationDuration='500ms';
   //abrir o dialog
