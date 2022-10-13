@@ -99,7 +99,18 @@ export class ReservasComponent implements OnInit {
     })
     //nao deixar que o usuario coloque nada no input da locadora(ela vem do id do carro atomaticament)
     this.form.controls['nomeFilial'].disable()
-
+    //função para pegar o id do carro selecionado do modal
+    this.carroService.GetCarroSelecionadoID().subscribe(carro=>{
+      if (carro==0) {
+        //acontecer nada
+      }
+      else{
+        //colocar o nome do carro no input
+        this.form.controls['nomeCarro'].setValue(carro)
+        //recetar a variavel
+        this.carroService.SalvarCarroSelecionadoID(0)
+      }
+    })
 
   }
   //----------------função para deixar a data igual a API-------------------------------
@@ -202,7 +213,7 @@ export class ReservasComponent implements OnInit {
     }
 
     //validação se os inputs estão vazios(não tocados)
-    else if(nomeCarroValue==''||horaReservaValue==''||dataReservaValue==''||dataDevolucaoValue==null|| nomeCarroValue==null||horaReservaValue==null||dataReservaValue==null||dataDevolucaoValue==null){
+    else if(nomeCarroValue==''||horaReservaValue==''||dataReservaValue==''||dataDevolucaoValue==''||dataDevolucaoValue==null|| nomeCarroValue==null||horaReservaValue==null||dataReservaValue==null||dataDevolucaoValue==null){
       return false
     }
     else{

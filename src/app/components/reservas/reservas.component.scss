@@ -2,7 +2,7 @@
     max-width: 1140px;
     margin: auto;
     margin-bottom: 150px;
-    
+
 }
 
 h1{
@@ -142,6 +142,17 @@ h2{
 }
 
 /////////////////////////////////////////
+///////////botão/////////////////////////
+////////////////////////////////////////
+.btnLogin:disabled{
+  background-color: #9F9999;
+  transform:none;
+  border:none;
+  color:white;
+  
+
+}
+/////////////////////////////////////////
 //////////////////TESTE//////////////////
 /////////////////////////////////////////
 
@@ -174,7 +185,7 @@ h2{
 // ::ng-deep .mat-form-field{
 //     padding: 0;
 // }
-  
+
 // ::ng-deep .mat-form-field-underline:focus,
 // ::ng-deep .mat-form-field-underline:hover{
 // display:inline-block;
