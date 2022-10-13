@@ -111,6 +111,7 @@ export class ReservasComponent implements OnInit {
     return newData
 
   }
+  //---------------função para ajustar os tipo de imagens---------------------
   TipoImagem(id:number):string{
     let tipo=this.listaCarros.filter((carro)=>carro.id==id)
     if(tipo[0]==null){
@@ -209,7 +210,7 @@ export class ReservasComponent implements OnInit {
     }
 
   }
-  verificacaoForm=this.VerificacaoFormValido()  //=========================== CRUD ====================================================
+  //=========================== CRUD ====================================================
   //---------------função para adicionar nova reserva de carro---------------------
   ReservarCarro(){
     if(this.VerificacaoFormValido()){
