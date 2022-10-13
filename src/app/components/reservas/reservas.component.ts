@@ -9,6 +9,8 @@ import { CarrosService } from 'src/app/service/carros-service/carros.service.ser
 import { LocadoraServiceService } from 'src/app/service/locadoras-service/locadora.service.service';
 import { ReservaServiceService } from 'src/app/service/reserva-service/reserva.service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-reservas',
   templateUrl: './reservas.component.html',
@@ -51,6 +53,7 @@ export class ReservasComponent implements OnInit {
     private locadoraService:LocadoraServiceService,
     private admService: AdminServiceService,
     private snackBar: MatSnackBar,
+    private dialogExcluir: MatDialog,
 
   ) { }
 
@@ -232,22 +235,37 @@ export class ReservasComponent implements OnInit {
 
 //---------------função de deletar o card de reserva----------------------------
   excluirUsuario(id: any){
-    this.deletar=true
-    this.reservaService.excluirReserva(id).subscribe({
-      next: () => {
-        this.alertaDados("Reserva excluida",'sucesso');
-        this.ngOnInit();
-      },
-      error: () => {
-        this.alertaDados("erro ao excluir reserva",'falha');
+    let enterAnimationDuration='500ms';
+    let exitAnimationDuration='500ms';
+    let text='Você quer excluir essa reserva?'
+    //dilog confirmando se o usuario quer excluir o card
+    const dialogRef=this.dialogExcluir.open(ExcluirDialogComponent,{
+      width: '30%',
+      height:'30%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:text
+    })
+    dialogRef.afterClosed().subscribe(confirmar=>{
+      if (confirmar) {
+        this.deletar=true
+        this.reservaService.excluirReserva(id).subscribe({
+          next: () => {
+            this.alertaDados("Reserva excluida",'sucesso');
+            this.ngOnInit();
+          },
+          error: () => {
+            this.alertaDados("erro ao excluir reserva",'falha');
+          }
+        })
       }
     })
+
 
   }
   //=============================================================
   //------função resetar inputs----------------------
   Resetar(){
-    debugger
     //resetar o valor do min de devolução
     this.minDiaDevolucao= this.dateToday
     this.form.reset()
