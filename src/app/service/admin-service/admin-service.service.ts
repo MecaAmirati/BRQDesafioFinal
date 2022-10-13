@@ -11,7 +11,7 @@ export class AdminServiceService {
   ////////////////////////////////////////////
   //MUDAR BOOLEAN PARA FALSE NO FINAL DO DIA//
   ////////////////////////////////////////////
-  adm:boolean=false
+  adm:boolean=true
   DataAdmin= new BehaviorSubject<boolean>(this.adm) //vai guardar o último valor dado
   // função para pegar o valor do admin
   GetAdmin():Observable<boolean>{
