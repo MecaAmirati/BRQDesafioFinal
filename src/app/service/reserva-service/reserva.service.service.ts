@@ -54,7 +54,7 @@ export class ReservaServiceService {
 
   updateReserva(objeto:ReservaInterface):Observable<ReservaInterface>{
     let endpoint=objeto.id;
-    console.log(`${this.url}/${endpoint}`,objeto)
+    //console.log(`${this.url}/${endpoint}`,objeto)
     return this.httpClient.put<ReservaInterface>(`${this.url}/${endpoint}`,objeto)
   }
 }

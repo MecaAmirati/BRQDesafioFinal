@@ -67,7 +67,6 @@ export class CarrosService {
 
   updateCarro(objeto:CarroInterface):Observable<CarroInterface>{
     let endpoint=objeto.id;
-    console.log(`${this.url}/${endpoint}`,objeto)
     return this.httpClient.put<CarroInterface>(`${this.url}/${endpoint}`,objeto)
   }
 

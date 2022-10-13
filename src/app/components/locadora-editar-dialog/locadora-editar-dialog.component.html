@@ -7,20 +7,20 @@
 
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="div-input">
             <mat-label>Locadora:</mat-label>
             <input matInput formControlName="nome" name="locadora" value="{{data.nome}}">
             <mat-error *ngIf="form.get('nome')?.hasError('required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="div-input">
             <mat-label>Endereço:</mat-label>
             <input matInput formControlName="endereco" name="endereco" value="{{data.endereco}}">
             <mat-error *ngIf="form.get('endereco')?.hasError('required')">Campo obrigatório</mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field class="div-input" appearance="fill">
             <mat-label>Telefone:</mat-label>
             <input matInput formControlName="telefone" name="telefone" value="{{data.telefone}}">
             <mat-error *ngIf="form.get('telefone')?.hasError('required')">Campo obrigatório</mat-error>
@@ -30,7 +30,7 @@
 </div>
 
 <div mat-dialog-actions class="center">
-    <button mat-button (click)="onNoClick()" class="excluir">Cancelar</button>
-    <button mat-button (click)="updateElement()" class="editar" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Atualizar</button>
+    <button mat-button (click)="onNoClick()" class="btnExcluir">Cancelar</button>
+    <button mat-button (click)="updateElement()" class="btnEditar" [ngClass]="{'BtnCadastrarDisable':!form.valid}" [disabled]="!form.valid">Atualizar</button>
     <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
   </div>

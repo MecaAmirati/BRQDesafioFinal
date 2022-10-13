@@ -97,12 +97,10 @@ export class LocadoraComponent implements OnInit {
     else{// se tiver pelo menos 1 locadora, o id vai ser idAntigo + 1
       idNovo=this.locadorasList[this.locadorasList.length -1].id +1
     }
-    console.log(idNovo)
+
     return idNovo;
   }
   salvarDadosLocadora(){
-    console.log(this.idNovo());
-
     let body={
       id:this.idNovo(),
       nome:this.formularioLocadora.controls["locadora"].value,

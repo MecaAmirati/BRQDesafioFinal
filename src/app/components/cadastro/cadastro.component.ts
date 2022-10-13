@@ -40,7 +40,7 @@ export class CadastroComponent implements OnInit {
     this.usuarioService.lerUsuarios().subscribe({
       next: (usuarios: UsuarioInterface[]) => {
         this.usuarios = usuarios;
-        console.log(this.usuarios);
+       // console.log(this.usuarios);
       },
       error: () => {
         this.alertaDados("erro_bancoDados");  // chamando a função alerta dados para a snackbar e passando o erro de BD caso não tiver leitura

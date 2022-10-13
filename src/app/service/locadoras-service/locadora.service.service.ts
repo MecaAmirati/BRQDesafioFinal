@@ -54,7 +54,6 @@ export class LocadoraServiceService {
 
   updateLocadora(objeto:LocadoraInterface):Observable<LocadoraInterface>{
     let endpoint=objeto.id;
-    console.log(`${this.url}/${endpoint}`,objeto)
     return this.httpClient.put<LocadoraInterface>(`${this.url}/${endpoint}`,objeto)
   }
 
