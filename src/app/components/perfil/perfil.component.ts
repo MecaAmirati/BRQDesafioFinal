@@ -108,7 +108,7 @@ export class PerfilComponent implements OnInit {
 
   //-----------------------Função para puxar do card para o Input--------
   puxarParaInput(usuario: UsuarioInterface){
-    
+
     this.usuarioService.showLoading();
     this.formularioPerfil.controls['nome'].setValue(usuario.nome);
     this.formularioPerfil.controls['tel'].setValue(usuario.telefone);
@@ -148,7 +148,7 @@ export class PerfilComponent implements OnInit {
         this.alertaDados("sucesso_editar");
       },
       error: () => {
-        
+
         this.usuarioService.hideLoading();
         this.alertaDados("falha_editar");
       }

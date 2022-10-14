@@ -116,7 +116,7 @@ h2{
     font-size: 20px;
 }
 
-.btnExcluir{
+.btnExcluir,.btnEditar{
     margin-top: 25px;
 }
 
@@ -127,11 +127,6 @@ h2{
   color:white;
 }
 
-.btnExcluir:hover{
-    border-radius: 5px;
-    color: white;
-    background-size: 100% 100%, auto;
-}
 
 .botaoCard:hover{
     border: 1px solid #DB1812;
