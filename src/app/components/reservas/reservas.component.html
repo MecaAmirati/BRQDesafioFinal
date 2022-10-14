@@ -42,7 +42,7 @@
                 </mat-select>
                 <mat-error *ngIf="form.get('nomeFilial')?.hasError('required')" >{{ValidacaoGeral()}}</mat-error>
             </mat-form-field>
-            <button class="btnLogin" type="submit" *ngIf="adm || atualizar" (click)="AtualizarReserva()" [disabled]="VerificacaoFormValido()==false" ><span>Atualizar</span></button>
+            <button class="btnLogin" type="submit" *ngIf="adm || atualizar" (click)="AtualizarReserva()" [disabled]="VerificacaoFormValido()==false|| atualizar==false" ><span>Atualizar</span></button>
             <button class="btnLogin" type="submit" *ngIf="!adm " [hidden]="atualizar==true" (click)="ReservarCarro()" [disabled]="VerificacaoFormValido()==false" ><span>Reservar</span></button>
         </div>
     </form>
