@@ -206,6 +206,7 @@ export class PerfilComponent implements OnInit {
               this.usuarioService.hideLoading();
               this.alertaDados("sucesso_excluir");
             }else{
+              this.adminService.Clear()
               this.router.navigate(['/cadastro']);
               this.usuarioService.hideLoading();
               this.alertaDados("sucesso_excluir");
