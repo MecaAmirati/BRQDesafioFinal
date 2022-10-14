@@ -7,6 +7,7 @@ import { Subject, Observable,BehaviorSubject } from 'rxjs';
 })
 export class AdminServiceService {
   //variavel para guardar o resultado se é admin
+  private storage: Storage;
 
   ////////////////////////////////////////////
   //MUDAR BOOLEAN PARA FALSE NO FINAL DO DIA//
@@ -19,10 +20,11 @@ export class AdminServiceService {
   }
   ///função para salvar o valor do admin
   SalvarAdmin($data:boolean){
+    this.storage.setItem('admin',`${$data}`)
     this.DataAdmin.next($data)
   }
 // pegar o id do usuario logado
-  id=1
+  id=0
   DataId= new BehaviorSubject<number>(this.id)
   //-----função para pegar o valor do id
   GetId():Observable<number>{
@@ -30,7 +32,21 @@ export class AdminServiceService {
   }
   //------função para salvar o valor do id
   SalvarId($data:number){
+    this.storage.setItem('id',`${$data}`)
     this.DataId.next($data)
   }
-  constructor() { }
+  constructor() {
+    this.storage = window.localStorage;
+    if (this.storage.getItem('admin')=='true') {
+      this.DataAdmin.next(true)
+    }
+    else if(this.storage.getItem('admin')=='false'){
+      this.DataAdmin.next(false)
+    }
+    this.DataId.next(Number(this.storage.getItem('id')))
+
+   }
+   Clear(){
+    this.storage.clear()
+   }
 }

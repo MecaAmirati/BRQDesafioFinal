@@ -19,5 +19,7 @@ export class HeaderComponent implements OnInit {
       this.adm=Dadoadm
     })
   }
-
+  Sair(){
+    this.admService.Clear()
+  }
 }
