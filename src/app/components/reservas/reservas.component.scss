@@ -127,6 +127,19 @@ h2{
   color:white;
 }
 
+.btnExcluir{
+    transition: all 0.2s linear;
+    background-size: 0 100%, auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: linear-gradient(#DB1812, #DB1812), linear-gradient(white, white);
+}
+
+.btnExcluir:hover{
+    border-radius: 5px;
+    color: white;
+    background-size: 100% 100%, auto;
+}
 
 .botaoCard:hover{
     border: 1px solid #DB1812;
