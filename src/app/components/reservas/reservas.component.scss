@@ -138,3 +138,8 @@ h2{
     transition: all 0.2s linear;
     transform: translateY(-5px) scale(1.005) translateZ(0);
 }
+
+//------------ Cor do Spinner
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    stroke:#DB1812 !important;
+}

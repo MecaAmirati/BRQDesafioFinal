@@ -9,6 +9,7 @@ import { UsuarioServiceService } from 'src/app/service/usuario-service/usuario.s
 import { ExcluirDialogComponent } from '../excluir-dialog/excluir-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-perfil',
@@ -31,7 +32,8 @@ export class PerfilComponent implements OnInit {
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
     public adminService: AdminServiceService,
-    private router: Router
+    private router: Router,
+    private scroller:ViewportScroller
 
    ){}
 
@@ -106,24 +108,29 @@ export class PerfilComponent implements OnInit {
 
   //-----------------------Função para puxar do card para o Input--------
   puxarParaInput(usuario: UsuarioInterface){
+    
     this.usuarioService.showLoading();
     this.formularioPerfil.controls['nome'].setValue(usuario.nome);
     this.formularioPerfil.controls['tel'].setValue(usuario.telefone);
     this.formularioPerfil.controls['email'].setValue(usuario.email);
 
     this.usuarioSelecionado = usuario;
-
+    this.scroller.scrollToAnchor('puxatela')
     this.usuarioService.hideLoading();
+
+    if(this.usuarioSelecionado.email == 'adm@adm'){
+      this.formularioPerfil.controls['nome'].setValue("Nome do ADM");
+      this.formularioPerfil.controls['tel'].setValue("Telefone do ADM"); // função para não conseguir modificar o valor do ADM
+      this.formularioPerfil.controls['email'].setValue("E-mail@ do ADM");
+      this.alertaDados("adm");
+    }
+
   }
 
 
 
   //----------------------Função de atualizar Perfil
   editarPerfil(){
-
-    // if(this.adm == false){
-    //   this.adminService.GetId()
-    // }
 
     let perfilAtual: UsuarioInterface = {
       id: this.usuarioSelecionado.id,
@@ -269,6 +276,13 @@ export class PerfilComponent implements OnInit {
 
       case "falha_excluir":
         this.snackBar.open("Desculpe, erro ao excluir", undefined, {
+          duration: 4000,
+          panelClass: ['snackbar-tema-falha']
+        })
+      break;
+
+      case "adm":
+        this.snackBar.open("Desculpe, Voce não tem permissoes para modificar um ADM", undefined, {
           duration: 4000,
           panelClass: ['snackbar-tema-falha']
         })
