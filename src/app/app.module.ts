@@ -42,6 +42,11 @@ import localePt from '@angular/common/locales/pt'
 import { registerLocaleData } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
 
 registerLocaleData(localePt,'pt')
 
@@ -80,13 +85,29 @@ registerLocaleData(localePt,'pt')
     MatProgressSpinnerModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    SocialLoginModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt' },
   {
     provide:DEFAULT_CURRENCY_CODE,
     useValue:'BRL'
-  }],
+  },{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: true, //keeps the user signed in
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('474504906176-5o7fpn1d2tb5ird8drekpdn10c8d7e7e.apps.googleusercontent.com') // your client id
+        }
+      ],
+      onError: (err) => {
+        console.error(err);
+      }
+    }as SocialAuthServiceConfig,
+  }
+  ],
   bootstrap: [AppComponent]
 })
 

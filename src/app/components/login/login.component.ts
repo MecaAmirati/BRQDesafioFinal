@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from "@angular/router";
 import { AdminServiceService } from 'src/app/service/admin-service/admin-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SocialAuthService,FacebookLoginProvider, GoogleLoginProvider,SocialUser } from "@abacritt/angularx-social-login";
+
 
 @Component({
   selector: 'app-login',
@@ -25,10 +27,29 @@ export class LoginComponent implements OnInit {
     private usuarioService: UsuarioServiceService,
     private router: Router,
     private admin: AdminServiceService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: SocialAuthService, //variavel ara o servico de autorizacao com o google
     ) { }
 
+
+   //login com o goolge
+   user!: SocialUser;
+   loggedIn!: boolean;
+   signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    }
+    signOut(): void {
+      this.authService.signOut();
+    }
+
   ngOnInit(): void {
+    //autenticação com o google
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+
+
     //pegar a lista do usuário para procurar o nome
     this.usuarioService.lerUsuarios().subscribe({
       next:(usuario)=>{
