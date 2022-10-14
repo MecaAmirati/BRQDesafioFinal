@@ -157,8 +157,10 @@ export class PerfilComponent implements OnInit {
   }
 
   public excluirUsuarioComum(){
+    console.log('qwe');
+
     this.usuarioService.showLoading();
-    this.adminService.GetId().subscribe(id=>{//pega o id passado do login
+    let id=this.adminService.GetId().subscribe(id=>{//pega o id passado do login
 
       this.usuarioService.lerUsuarioById(id).subscribe({//pega o restante das informações na api
         next:(usuario)=>{
@@ -173,7 +175,7 @@ export class PerfilComponent implements OnInit {
       })
 
     })
-
+    id.unsubscribe()
   }
 
   public excluirUsuarioCard(usuario: UsuarioInterface){
